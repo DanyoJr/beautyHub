@@ -8,4 +8,7 @@ async function handleLogout() {
   await $fetch("/api/auth/logout", { method: "POST" });
   navigateTo("/login");
 }
+definePageMeta({
+  middleware: "auth",
+});
 </script>

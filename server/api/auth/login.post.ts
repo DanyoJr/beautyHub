@@ -34,7 +34,12 @@ export default defineEventHandler(async (event) => {
     // Salva o token num cookie seguro
     setCookie(event, "token", token, {
       httpOnly: true,
-      maxAge: 60 * 60 * 24 * 7, // 7 dias
+      maxAge: 60 * 60 * 24 * 7,
+      sameSite: "strict",
+    });
+
+    setCookie(event, "logged", "true", {
+      maxAge: 60 * 60 * 24 * 7,
       sameSite: "strict",
     });
 

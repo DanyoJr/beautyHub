@@ -33,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ middleware: "guest" });
 const form = reactive({
   name: "",
   email: "",

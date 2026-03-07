@@ -20,6 +20,9 @@
       <button type="submit" :disabled="loading">
         {{ loading ? "Entrando..." : "Entrar" }}
       </button>
+      <button :disabled="loading" @click="handleCreateAccount">
+        Criar conta
+      </button>
     </form>
 
     <p v-if="error" style="color: red">{{ error }}</p>
@@ -32,6 +35,10 @@ definePageMeta({ middleware: "guest" }); // redireciona se já estiver logado
 const form = reactive({ email: "", password: "" });
 const loading = ref(false);
 const error = ref("");
+
+function handleCreateAccount() {
+  navigateTo("/createUser");
+}
 
 async function handleLogin() {
   loading.value = true;

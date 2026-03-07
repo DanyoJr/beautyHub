@@ -1,4 +1,4 @@
-import User from "~~/server/models/User";
+import UserSchema from "~~/server/models/User";
 import bcrypt from "bcrypt";
 
 export default defineEventHandler(async (event) => {
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     // Verifica se email já existe
-    const exists = await User.findOne({ email: email });
+    const exists = await UserSchema.findOne({ email: email });
     if (exists) {
       throw createError({
         statusCode: 409,
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Cria o usuário
-    const user = await User.create({
+    const user = await UserSchema.create({
       name,
       email,
       password: hashedPassword,
