@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-interface IUser {
+export interface IUser {
   name: string;
   email: string;
   password: string;
   roles: string;
-  permissions: [string];
+  permissions: string[];
 }
 
 const UserSchema = new mongoose.Schema<IUser>(

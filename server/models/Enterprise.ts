@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface IEnterprise {}
+export interface IEnterprise {}
 
 const EnterpriseSchema = new mongoose.Schema<IEnterprise>(
   {},
