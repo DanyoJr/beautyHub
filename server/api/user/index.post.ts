@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const { name, email, password, roles, permissions } = body;
 
   // Validação básica
-  if (!name || !email || !password || !roles) {
+  if (!name || !email || !password) {
     throw createError({
       statusCode: 400,
       message: "Preencha todos os campos",
