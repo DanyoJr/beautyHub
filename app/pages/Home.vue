@@ -1,22 +1,31 @@
 <template>
   <h1>{{ message }}</h1>
-  <button @click="handleLogout">Sair</button>
+  <LogoutButton />
 </template>
 
 <script setup lang="ts">
-// definePageMeta({
-//   middleware: "auth",
-// });
+import LogoutButton from "~/components/LogoutButton.vue";
+const user = ref(null) as any;
+const loading = ref(true);
 
-const { data } = await useFetch("/api/auth/me");
-const user = computed(() => data.value?.user);
+onMounted(async () => {
+  try {
+    const data = await $fetch("/api/auth/me", {
+      credentials: "include",
+    });
+    user.value = (data as any)?.user;
+  } catch {
+    user.value = null;
+  } finally {
+    setTimeout(() => {
+      loading.value = false;
+    }, 600);
+  }
+});
 
-const message = user.value
-  ? `Bem-vindo, ${user.value?.name}!`
-  : "Bem-vindo! Faça login para agendar.";
-
-async function handleLogout() {
-  await $fetch("/api/auth/logout", { method: "POST" });
-  navigateTo("/login");
-}
+const message = computed(() =>
+  user.value
+    ? `Bem-vindo, ${user.value?.name}!`
+    : "Bem-vindo! Faça login para agendar.",
+);
 </script>

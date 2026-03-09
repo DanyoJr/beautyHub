@@ -23,6 +23,9 @@
       <UButton :disabled="loading" @click="handleCreateAccount">
         Criar conta
       </UButton>
+      <a href="/api/auth/google">
+        <UButton>Entrar com Google</UButton>
+      </a>
     </form>
 
     <p v-if="error" style="color: red">{{ error }}</p>
