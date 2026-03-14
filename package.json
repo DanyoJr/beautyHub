@@ -3,8 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt dev",
+    "build": "NODE_OPTIONS=--max-old-space-size=4096 nuxt build",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -17,7 +17,8 @@
     "nuxt": "^4.3.1",
     "nuxt-auth-utils": "^0.5.29",
     "vue": "^3.5.29",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "yarn": "^1.22.22"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
