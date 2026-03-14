@@ -17,12 +17,15 @@
         />
       </div>
 
-      <button type="submit" :disabled="loading">
+      <UButton type="submit" :disabled="loading">
         {{ loading ? "Entrando..." : "Entrar" }}
-      </button>
-      <button :disabled="loading" @click="handleCreateAccount">
+      </UButton>
+      <UButton :disabled="loading" @click="handleCreateAccount">
         Criar conta
-      </button>
+      </UButton>
+      <a href="/api/auth/google">
+        <UButton>Entrar com Google</UButton>
+      </a>
     </form>
 
     <p v-if="error" style="color: red">{{ error }}</p>
@@ -37,7 +40,7 @@ const loading = ref(false);
 const error = ref("");
 
 function handleCreateAccount() {
-  navigateTo("/createUser");
+  navigateTo("/cadastrar");
 }
 
 async function handleLogin() {
