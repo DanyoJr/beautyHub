@@ -1,6 +1,7 @@
 <template>
   <h1>{{ message }}</h1>
   <LogoutButton />
+  <UButton label="Ir para Admin" @click="goToAdmin" />
 </template>
 
 <script setup lang="ts">
@@ -28,4 +29,8 @@ const message = computed(() =>
     ? `Bem-vindo, ${user.value?.name}!`
     : "Bem-vindo! Faça login para agendar.",
 );
+
+const goToAdmin = () => {
+  navigateTo("/admin");
+};
 </script>
