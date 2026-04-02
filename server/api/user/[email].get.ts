@@ -3,7 +3,9 @@ import User from "~~/server/models/User";
 export default defineEventHandler(async (event) => {
   const email = getRouterParam(event, "email");
 
-  const user = await User.findOne({ email: email }).select("-password");
+  const user = await User.findOne({ email: email }).select(
+    "-password -_id -__v",
+  );
 
   if (!user) {
     console.log(user);

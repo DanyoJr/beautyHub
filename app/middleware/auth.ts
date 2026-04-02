@@ -5,6 +5,6 @@ export default defineNuxtRouteMiddleware(() => {
 
   if (!logged.value) {
     console.log("Não autenticado, faça o login...");
-    return navigateTo("/login");
+    return navigateTo("/");
   }
 });

@@ -2,7 +2,7 @@ import User from "~~/server/models/User";
 
 export default defineEventHandler(async (event) => {
   try {
-    const users = await User.find().select("-password");
+    const users = await User.find().select("-password -_id -__v"); // Exclui campos sensíveis e internos do MongoDB
 
     return {
       statusCode: 200,

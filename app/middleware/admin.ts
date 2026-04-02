@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(async (to) => {
   const logged = useCookie("logged");
 
-  if (!logged.value) return navigateTo("/login");
+  if (!logged.value) return navigateTo("/");
 
   try {
     const headers = useRequestHeaders(["cookie"]); // ← pega os cookies da requisição
@@ -13,6 +13,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
     if ((data as any)?.user?.roles !== "admin") return navigateTo("/home");
   } catch (e) {
     console.log("erro:", e);
-    return navigateTo("/login");
+    return navigateTo("/");
   }
 });

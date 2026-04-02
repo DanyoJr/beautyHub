@@ -9,9 +9,9 @@ export default defineEventHandler(async (event) => {
     nome_empresa,
     categoria_empresa,
     status_empresa,
-    avaliacao_empresa,
     imagem_empresa,
     descricao_empresa,
+    cnpj_cpf_empresa,
     local,
   } = body;
 
@@ -55,9 +55,9 @@ export default defineEventHandler(async (event) => {
       nome_empresa,
       categoria_empresa,
       status_empresa,
-      avaliacao_empresa,
       imagem_empresa,
       descricao_empresa,
+      cnpj_cpf_empresa,
       local,
     });
 

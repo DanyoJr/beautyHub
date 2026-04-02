@@ -40,10 +40,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  redirectTo: {
-    type: String,
-    default: "/login",
-  },
 });
 
 const form = reactive({
@@ -71,7 +67,6 @@ async function handleSubmit() {
     form.name = "";
     form.email = "";
     form.password = "";
-    navigateTo(props.redirectTo);
   } catch (err: any) {
     error.value = err.data?.message || "Erro ao criar usuário";
   } finally {

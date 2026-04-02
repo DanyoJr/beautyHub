@@ -2,7 +2,7 @@ import Enterprise from "~~/server/models/Enterprise";
 
 export default defineEventHandler(async (event) => {
   try {
-    const enterprises = await Enterprise.find();
+    const enterprises = await Enterprise.find().select("-_id -__v"); // Exclui campos internos do MongoDB
 
     return {
       statusCode: 200,

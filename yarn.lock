@@ -6214,7 +6214,7 @@ unimport@^5.6.0:
 
 unplugin-auto-import@^21.0.0:
   version "21.0.0"
-  resolved "https://registry.npmjs.org/unplugin-auto-import/-/unplugin-auto-import-21.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-21.0.0.tgz#d1ac3bf95f80fb4182ec8f3d65d3e3aad38a63ac"
   integrity sha512-vWuC8SwqJmxZFYwPojhOhOXDb5xFhNNcEVb9K/RFkyk/3VnfaOjzitWN7v+8DEKpMjSsY2AEGXNgt6I0yQrhRQ==
   dependencies:
     local-pkg "^1.1.2"
@@ -6242,7 +6242,7 @@ unplugin-utils@^0.3.0, unplugin-utils@^0.3.1:
 
 unplugin-vue-components@^31.0.0:
   version "31.0.0"
-  resolved "https://registry.npmjs.org/unplugin-vue-components/-/unplugin-vue-components-31.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-31.0.0.tgz#fa31b8884ac76e78696e3a41f46e5b58a4539b60"
   integrity sha512-4ULwfTZTLuWJ7+S9P7TrcStYLsSRkk6vy2jt/WTfgUEUb0nW9//xxmrfhyHUEVpZ2UKRRwfRb8Yy15PDbVZf+Q==
   dependencies:
     chokidar "^5.0.0"

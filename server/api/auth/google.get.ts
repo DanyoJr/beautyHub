@@ -41,6 +41,6 @@ export default defineOAuthGoogleEventHandler({
   },
   onError(event, error) {
     console.error("Erro Google OAuth:", error);
-    return sendRedirect(event, "/login");
+    return sendRedirect(event, "/");
   },
 });

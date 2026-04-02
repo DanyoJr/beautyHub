@@ -3,6 +3,10 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   modules: ["@nuxt/ui", "nuxt-auth-utils"],
+  colorMode: {
+    preference: "light",
+  },
+  css: ["~/assets/css/main.css"],
   runtimeConfig: {
     mongoUri: "",
     jwtSecret: "",
