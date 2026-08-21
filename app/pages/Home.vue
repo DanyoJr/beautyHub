@@ -1,36 +1,29 @@
 <template>
-  <h1>{{ message }}</h1>
-  <LogoutButton />
-  <UButton label="Ir para Admin" @click="goToAdmin" />
+  <div class="min-h-screen flex items-center justify-center bg-[#fafafa]">
+    <div class="text-center">
+      <div class="w-12 h-12 border-4 border-[#6d3483] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p class="text-gray-500 text-sm">Redirecionando...</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import LogoutButton from "~/components/LogoutButton.vue";
-const user = ref(null) as any;
-const loading = ref(true);
-
+/**
+ * Página de roteamento pós-login.
+ * Redireciona para a área correta baseado no role do usuário.
+ */
 onMounted(async () => {
   try {
-    const data = await $fetch("/api/auth/me", {
-      credentials: "include",
-    });
-    user.value = (data as any)?.user;
+    const data = await $fetch("/api/auth/me", { credentials: "include" });
+    const user = (data as any)?.user;
+
+    if (!user) return navigateTo("/");
+
+    if (user.roles === "admin") return navigateTo("/Admin");
+    if (user.roles === "empresa") return navigateTo("/empresa/dashboard");
+    return navigateTo("/cliente/busca");
   } catch {
-    user.value = null;
-  } finally {
-    setTimeout(() => {
-      loading.value = false;
-    }, 600);
+    navigateTo("/");
   }
 });
-
-const message = computed(() =>
-  user.value
-    ? `Bem-vindo, ${user.value?.name}!`
-    : "Bem-vindo! Faça login para agendar.",
-);
-
-const goToAdmin = () => {
-  navigateTo("/admin");
-};
 </script>

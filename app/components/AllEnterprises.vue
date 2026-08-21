@@ -1,9 +1,11 @@
 <template>
-  <div class="flex flex-col gap-6 w-full">
+  <div class="flex flex-col w-full">
     
     <!-- Top Container: Search and Button -->
-    <div class="flex flex-col sm:flex-row items-center gap-4 w-full">
-      <SearchEnterprise v-model="searchQuery" class="flex-1 w-full sm:max-w-md" />
+    <div class="flex flex-col sm:flex-row items-center justify-between w-full mb-6 relative">
+      <div class="w-full sm:flex-1 sm:max-w-md mb-4 sm:mb-0 sm:mr-4">
+        <SearchEnterprise v-model="searchQuery" />
+      </div>
       <UButton
         icon="i-heroicons-plus"
         size="lg"
@@ -17,7 +19,7 @@
     </div>
 
     <!-- Middle: Tabs -->
-    <div class="flex w-full">
+    <div class="flex w-full mb-6">
       <UTabs
         :items="tabs"
         v-model="activeTab"

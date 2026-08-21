@@ -15,26 +15,19 @@ export default defineEventHandler(async (event) => {
     local,
   } = body;
 
-  // Validação básica
-  if (
-    !id_empresa ||
-    !email_empresa ||
-    !telefone_empresa ||
-    !nome_empresa ||
-    !categoria_empresa ||
-    !status_empresa ||
-    !local?.cep_empresa ||
-    !local?.logadouro_empresa ||
-    !local?.numero_empresa ||
-    !local?.bairro_empresa ||
-    !local?.cidade_empresa ||
-    !local?.uf_empresa
-  ) {
-    throw createError({
-      statusCode: 400,
-      message: "Preencha todos os campos obrigatórios",
-    });
-  }
+  // Validação básica detalhada
+  if (!id_empresa) throw createError({ statusCode: 400, message: "ID da empresa ausente." });
+  if (!email_empresa) throw createError({ statusCode: 400, message: "E-mail obrigatório." });
+  if (!telefone_empresa) throw createError({ statusCode: 400, message: "Telefone obrigatório." });
+  if (!nome_empresa) throw createError({ statusCode: 400, message: "Nome obrigatório." });
+  if (!categoria_empresa) throw createError({ statusCode: 400, message: "Categoria obrigatória." });
+  if (!status_empresa) throw createError({ statusCode: 400, message: "Status obrigatório." });
+  if (!local?.cep_empresa) throw createError({ statusCode: 400, message: "CEP obrigatório." });
+  if (!local?.logadouro_empresa) throw createError({ statusCode: 400, message: "Logradouro obrigatório (verifique se o CEP é válido)." });
+  if (local?.numero_empresa === undefined || local?.numero_empresa === null) throw createError({ statusCode: 400, message: "Número do endereço obrigatório." });
+  if (!local?.bairro_empresa) throw createError({ statusCode: 400, message: "Bairro obrigatório (verifique se o CEP é válido)." });
+  if (!local?.cidade_empresa) throw createError({ statusCode: 400, message: "Cidade obrigatória (verifique se o CEP é válido)." });
+  if (!local?.uf_empresa) throw createError({ statusCode: 400, message: "Estado/UF obrigatório (verifique se o CEP é válido)." });
 
   try {
     // Verifica se empresa já existe

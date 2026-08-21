@@ -7,7 +7,7 @@ export interface IEnterprise {
   cnpj_cpf_empresa?: string;
   nome_empresa: string;
   categoria_empresa: string;
-  status_empresa: "Ativo" | "Inativo";
+  status_empresa: "ativo" | "inativo";
   imagem_empresa?: string;
   descricao_empresa: string;
   local: {
@@ -37,8 +37,8 @@ const EnterpriseSchema = new mongoose.Schema<IEnterprise>(
     status_empresa: {
       type: String,
       required: true,
-      enum: ["Ativo", "Inativo"],
-      default: "Ativo",
+      enum: ["ativo", "inativo"],
+      default: "ativo",
     },
     imagem_empresa: { type: String, required: false },
     descricao_empresa: { type: String, required: true },

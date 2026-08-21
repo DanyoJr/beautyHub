@@ -7,6 +7,8 @@ export interface IUser {
   roles: string;
   permissions: string[];
   googleId?: string;
+  id_empresa?: string; // Vínculo com a empresa (apenas para role 'empresa')
+  imagem_perfil?: string; // Base64 da imagem de perfil
 }
 
 const UserSchema = new mongoose.Schema<IUser>(
@@ -17,6 +19,8 @@ const UserSchema = new mongoose.Schema<IUser>(
     roles: { type: String, required: true },
     permissions: { type: [String], default: [] },
     googleId: { type: String },
+    id_empresa: { type: String, required: false },
+    imagem_perfil: { type: String, required: false },
   },
   { timestamps: true },
 );

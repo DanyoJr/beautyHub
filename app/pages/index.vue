@@ -6,7 +6,7 @@
 
       <!-- Logo -->
       <div class="flex justify-center mb-6">
-        <img src="~/assets/Logo.png" alt="BeautyHub" class="h-16" />
+        <img src="~/assets/Logo.png" alt="BeautyHub" class="w-[150px]" />
       </div>
 
       <!-- Heading -->

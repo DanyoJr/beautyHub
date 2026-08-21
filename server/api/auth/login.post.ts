@@ -23,10 +23,15 @@ export default defineEventHandler(async (event) => {
       throw createError({ statusCode: 401, message: "Senha incorreta" });
     }
 
-    // Gera o token JWT
+    // Gera o token JWT com id_empresa para contas do tipo empresa
     const config = useRuntimeConfig();
     const token = jwt.sign(
-      { id: user._id, email: user.email, roles: user.roles },
+      {
+        id: user._id,
+        email: user.email,
+        roles: user.roles,
+        id_empresa: user.id_empresa || null,
+      },
       config.jwtSecret,
       { expiresIn: "7d" },
     );
@@ -51,6 +56,7 @@ export default defineEventHandler(async (event) => {
         name: user.name,
         email: user.email,
         roles: user.roles,
+        id_empresa: user.id_empresa || null,
       },
     };
   } catch (error: any) {
@@ -59,3 +65,4 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 500, message: "Erro ao fazer login" });
   }
 });
+
