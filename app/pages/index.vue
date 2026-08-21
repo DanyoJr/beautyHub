@@ -104,7 +104,7 @@ async function handleLogin() {
       return;
     }
     if (response.user.roles === "user") {
-      navigateTo("/Home");
+      navigateTo("/cliente/busca");
       return;
     }
   } catch (err: any) {

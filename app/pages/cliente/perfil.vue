@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ middleware: 'auth' });
+definePageMeta({ middleware: ['auth', 'role-redirect'] });
 
 const user = ref<any>(null);
 const loading = ref(true);

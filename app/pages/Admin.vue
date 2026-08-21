@@ -5,11 +5,51 @@
       <LogoutButton />
     </div>
     <GradientDivisor />
+    
     <div class="table-container">
-      <AllEnterprises />
+      <UTabs :items="tabs" v-model="activeTab" class="w-full">
+        <template #empresas="{ item }">
+          <div class="mt-4">
+            <AllEnterprises />
+          </div>
+        </template>
+
+        <template #buscar="{ item }">
+          <div class="mt-4">
+            <SearchComponent />
+          </div>
+        </template>
+
+        <template #historico="{ item }">
+          <div class="mt-4">
+            <HistoryComponent />
+          </div>
+        </template>
+
+        <template #agendamentos="{ item }">
+          <div class="mt-4">
+            <AdminAppointments />
+          </div>
+        </template>
+      </UTabs>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+definePageMeta({ middleware: 'auth' });
+
+const activeTab = ref(0);
+
+const tabs = [
+  { label: 'Empresas', slot: 'empresas', icon: 'i-heroicons-building-office' },
+  { label: 'Buscar Serviços', slot: 'buscar', icon: 'i-heroicons-magnifying-glass' },
+  { label: 'Meus Agendamentos', slot: 'historico', icon: 'i-heroicons-calendar-days' },
+  { label: 'Todos os Agendamentos', slot: 'agendamentos', icon: 'i-heroicons-clipboard-document-list' },
+];
+</script>
 
 <style>
 .container {

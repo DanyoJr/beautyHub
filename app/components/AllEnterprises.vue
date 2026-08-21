@@ -109,6 +109,19 @@ const tabs = computed(() => [
   },
 ]);
 
+async function toggleStatus(enterprise: IEnterprise) {
+  const newStatus = enterprise.status_empresa === "ativo" ? "inativo" : "ativo";
+  try {
+    await $fetch(`/api/enterprise/${enterprise.id_empresa}`, {
+      method: "PUT",
+      body: { status_empresa: newStatus },
+    });
+    await refreshList();
+  } catch (err) {
+    console.error("Erro ao alterar status da empresa", err);
+  }
+}
+
 function openDialog(enterprise: IEnterprise) {
   selectedEnterprise.value = enterprise;
   isOpen.value = true;
@@ -138,11 +151,21 @@ const columns: TableColumn<IEnterprise>[] = [
     id: "acoes",
     header: "Ações",
     cell: ({ row }) => {
-      return h(UButton, {
-        variant: "ghost",
-        label: "Ver detalhes",
-        onClick: () => openDialog(row.original as IEnterprise),
-      });
+      const enterprise = row.original as IEnterprise;
+      const isActive = enterprise.status_empresa === "ativo";
+      return h("div", { class: "flex gap-2" }, [
+        h(UButton, {
+          variant: "ghost",
+          label: "Ver",
+          onClick: () => openDialog(enterprise),
+        }),
+        h(UButton, {
+          variant: "ghost",
+          color: isActive ? "red" : "green",
+          label: isActive ? "Desativar" : "Ativar",
+          onClick: () => toggleStatus(enterprise),
+        }),
+      ]);
     },
   },
 ];
