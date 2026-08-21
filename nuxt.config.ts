@@ -7,6 +7,10 @@ export default defineNuxtConfig({
     preference: "light",
   },
   css: ["~/assets/css/main.css"],
+  routeRules: {
+    '/clientes': { redirect: '/cliente/busca' },
+    '/cliente': { redirect: '/cliente/busca' },
+  },
   runtimeConfig: {
     mongoUri: "",
     jwtSecret: "",
