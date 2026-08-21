@@ -107,6 +107,10 @@ async function handleLogin() {
       navigateTo("/cliente/busca");
       return;
     }
+    if (response.user.roles === "empresa") {
+      navigateTo("/empresa/dashboard");
+      return;
+    }
   } catch (err: any) {
     error.value = err.data?.message || "Erro ao fazer login";
   } finally {
