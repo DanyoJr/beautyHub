@@ -9,7 +9,6 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   routeRules: {
     '/clientes': { redirect: '/cliente/busca' },
-    '/cliente': { redirect: '/cliente/busca' },
   },
   runtimeConfig: {
     mongoUri: "",
