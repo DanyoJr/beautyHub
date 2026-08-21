@@ -122,6 +122,7 @@ definePageMeta({ middleware: 'auth' });
 
 const route = useRoute();
 const id_empresa = route.params.id as string;
+const toast = useToast();
 
 const empresa = ref<any>(null);
 const services = ref<any[]>([]);
@@ -174,11 +175,15 @@ async function confirmarAgendamento() {
         data_hora_inicio: slotSelecionado.value.inicio,
       },
     });
-    successMsg.value = 'Agendamento confirmado! Veja em Meus Agendamentos.';
-    slotSelecionado.value = null;
-    slotsDisponiveis.value = [];
-    dataSelecionada.value = '';
-    setTimeout(() => successMsg.value = '', 4000);
+    
+    toast.add({
+      title: 'Sucesso',
+      description: 'Agendamento confirmado com sucesso!',
+      color: 'green',
+      icon: 'i-heroicons-check-circle'
+    });
+    
+    navigateTo('/cliente/historico');
   } catch (err: any) {
     errorMsg.value = err.data?.message || 'Erro ao confirmar agendamento';
   } finally {
