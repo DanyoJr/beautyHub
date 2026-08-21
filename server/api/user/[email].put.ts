@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const emailParam = getRouterParam(event, "email");
   const body = await readBody(event);
 
-  const { name, email, roles, permissions } = body;
+  const { name, email, roles, permissions, imagem_perfil } = body;
 
   const fieldsToUpdate = Object.fromEntries(
     Object.entries({
@@ -12,6 +12,7 @@ export default defineEventHandler(async (event) => {
       email,
       roles,
       permissions,
+      imagem_perfil,
     }).filter(([_, value]) => value !== undefined),
   );
 

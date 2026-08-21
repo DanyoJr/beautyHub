@@ -26,7 +26,7 @@
                 </span>
               </div>
               <UBadge 
-                :color="enterprise.status_empresa === 'Ativo' ? 'success' : 'error'" 
+                :color="enterprise.status_empresa === 'ativo' ? 'success' : 'error'" 
                 variant="subtle" 
                 class="capitalize px-4 py-1 text-sm rounded-lg"
               >
