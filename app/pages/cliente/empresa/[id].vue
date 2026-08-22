@@ -177,13 +177,15 @@ async function confirmarAgendamento() {
     });
     
     toast.add({
-      title: 'Sucesso',
-      description: 'Agendamento confirmado com sucesso!',
+      title: 'Sucesso!',
+      description: 'Agendamento confirmado com sucesso.',
       color: 'green',
       icon: 'i-heroicons-check-circle'
     });
     
-    navigateTo('/cliente/historico');
+    setTimeout(() => {
+      navigateTo('/cliente/historico');
+    }, 1500);
   } catch (err: any) {
     errorMsg.value = err.data?.message || 'Erro ao confirmar agendamento';
   } finally {
