@@ -27,6 +27,18 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 403, message: "Sem permissão para esta empresa" });
   }
 
+  // Verifica se já existe um serviço exatamente igual para esta empresa
+  const existingService = await Service.findOne({
+    id_empresa,
+    nome_servico: { $regex: new RegExp(`^${nome_servico}$`, "i") },
+    valor_servico: Number(valor_servico),
+    duracao_minutos: Number(duracao_minutos)
+  });
+
+  if (existingService) {
+    throw createError({ statusCode: 409, message: "Já existe um serviço exatamente igual cadastrado" });
+  }
+
   try {
     const id_servico = Math.random().toString(36).substring(2, 10).toUpperCase();
     const service = await Service.create({

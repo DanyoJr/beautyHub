@@ -60,14 +60,16 @@ const errorMsg = ref('');
 
 const form = reactive({ nome_servico: '', descricao_servico: '', valor_servico: 0, duracao_minutos: 60 });
 
-watch(() => props.service, (s) => {
-  if (s) {
-    form.nome_servico = s.nome_servico;
-    form.descricao_servico = s.descricao_servico || '';
-    form.valor_servico = s.valor_servico;
-    form.duracao_minutos = s.duracao_minutos;
-  } else {
-    Object.assign(form, { nome_servico: '', descricao_servico: '', valor_servico: 0, duracao_minutos: 60 });
+watch([() => props.modelValue, () => props.service], ([isOpenVal, s]) => {
+  if (isOpenVal) {
+    if (s) {
+      form.nome_servico = s.nome_servico;
+      form.descricao_servico = s.descricao_servico || '';
+      form.valor_servico = s.valor_servico;
+      form.duracao_minutos = s.duracao_minutos;
+    } else {
+      Object.assign(form, { nome_servico: '', descricao_servico: '', valor_servico: 0, duracao_minutos: 60 });
+    }
   }
 }, { immediate: true });
 

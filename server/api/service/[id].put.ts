@@ -34,6 +34,19 @@ export default defineEventHandler(async (event) => {
     if (duracao_minutos !== undefined) service.duracao_minutos = Number(duracao_minutos);
     if (ativo !== undefined) service.ativo = Boolean(ativo);
 
+    // Verifica se já existe OUTRO serviço exatamente igual para esta empresa
+    const existingService = await Service.findOne({
+      id_empresa: service.id_empresa,
+      id_servico: { $ne: service.id_servico },
+      nome_servico: { $regex: new RegExp(`^${service.nome_servico}$`, "i") },
+      valor_servico: service.valor_servico,
+      duracao_minutos: service.duracao_minutos
+    });
+
+    if (existingService) {
+      throw createError({ statusCode: 409, message: "Já existe um serviço exatamente igual cadastrado" });
+    }
+
     await service.save();
     return { message: "Serviço atualizado com sucesso!", service };
   } catch (error: any) {
