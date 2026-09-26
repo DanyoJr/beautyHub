@@ -11,6 +11,18 @@
           </div>
 
           <form @submit.prevent="handleSubmit" class="p-6 flex flex-col gap-4">
+            <!-- Foto do Serviço -->
+            <div class="flex flex-col items-center">
+              <div class="relative w-24 h-24 rounded-2xl border border-gray-200 shadow-sm overflow-hidden bg-gray-50 flex items-center justify-center mb-2">
+                <img v-if="form.imagem_servico" :src="form.imagem_servico" class="w-full h-full object-cover" />
+                <UIcon v-else name="i-heroicons-sparkles" class="w-8 h-8 text-gray-300" />
+              </div>
+              <label class="cursor-pointer text-xs font-semibold text-[#6d3483] hover:underline">
+                Adicionar Foto
+                <input type="file" accept="image/*" class="hidden" @change="handleFileUpload" />
+              </label>
+            </div>
+
             <div>
               <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nome do Serviço *</label>
               <input v-model="form.nome_servico" type="text" placeholder="Ex: Design de Sobrancelhas" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 outline-none focus:border-[#6d3483] transition-colors" />
@@ -58,7 +70,7 @@ const isEditing = computed(() => !!props.service);
 const loading = ref(false);
 const errorMsg = ref('');
 
-const form = reactive({ nome_servico: '', descricao_servico: '', valor_servico: 0, duracao_minutos: 60 });
+const form = reactive({ nome_servico: '', descricao_servico: '', valor_servico: 0, duracao_minutos: 60, imagem_servico: '' });
 
 watch([() => props.modelValue, () => props.service], ([isOpenVal, s]) => {
   if (isOpenVal) {
@@ -67,11 +79,24 @@ watch([() => props.modelValue, () => props.service], ([isOpenVal, s]) => {
       form.descricao_servico = s.descricao_servico || '';
       form.valor_servico = s.valor_servico;
       form.duracao_minutos = s.duracao_minutos;
+      form.imagem_servico = s.imagem_servico || '';
     } else {
-      Object.assign(form, { nome_servico: '', descricao_servico: '', valor_servico: 0, duracao_minutos: 60 });
+      Object.assign(form, { nome_servico: '', descricao_servico: '', valor_servico: 0, duracao_minutos: 60, imagem_servico: '' });
     }
   }
 }, { immediate: true });
+
+function handleFileUpload(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    form.imagem_servico = e.target?.result as string;
+  };
+  reader.readAsDataURL(file);
+}
 
 function close() {
   isOpen.value = false;

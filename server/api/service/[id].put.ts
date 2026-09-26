@@ -26,10 +26,11 @@ export default defineEventHandler(async (event) => {
       throw createError({ statusCode: 403, message: "Sem permissão" });
     }
 
-    const { nome_servico, descricao_servico, valor_servico, duracao_minutos, ativo } = body;
+    const { nome_servico, descricao_servico, imagem_servico, valor_servico, duracao_minutos, ativo } = body;
 
     if (nome_servico !== undefined) service.nome_servico = nome_servico;
     if (descricao_servico !== undefined) service.descricao_servico = descricao_servico;
+    if (imagem_servico !== undefined) service.imagem_servico = imagem_servico;
     if (valor_servico !== undefined) service.valor_servico = Number(valor_servico);
     if (duracao_minutos !== undefined) service.duracao_minutos = Number(duracao_minutos);
     if (ativo !== undefined) service.ativo = Boolean(ativo);

@@ -1,17 +1,6 @@
 <template>
   <div class="min-h-screen bg-[#fafafa]">
-    <header class="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
-      <div class="flex items-center gap-3">
-        <NuxtLink to="/cliente/busca" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-          <UIcon name="i-heroicons-arrow-left" class="w-5 h-5 text-gray-600" />
-        </NuxtLink>
-        <img src="~/assets/Logo.png" alt="BeautyHub" class="w-[150px]" />
-      </div>
-      <nav class="flex items-center gap-1">
-        <NuxtLink to="/cliente/historico" class="px-3 py-2 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">Meus Agendamentos</NuxtLink>
-        <LogoutButton class="ml-2" />
-      </nav>
-    </header>
+    <ClienteHeader backTo="/cliente/busca" />
 
     <div v-if="loadingEmpresa" class="flex justify-center py-24">
       <div class="w-8 h-8 border-4 border-[#6d3483] border-t-transparent rounded-full animate-spin"></div>
@@ -36,41 +25,62 @@
         </div>
         <div class="p-6">
           <p class="text-gray-600 text-sm leading-relaxed">{{ empresa.descricao_empresa }}</p>
-          <p class="text-xs text-gray-400 mt-3 flex items-center gap-1">
-            <UIcon name="i-heroicons-map-pin" class="w-3.5 h-3.5" />
-            {{ empresa.local?.logadouro_empresa }}, {{ empresa.local?.numero_empresa }} — {{ empresa.local?.bairro_empresa }}, {{ empresa.local?.cidade_empresa }}/{{ empresa.local?.uf_empresa }}
-          </p>
+          <div class="mt-4 space-y-2">
+            <p v-if="empresa.cnpj_cpf_empresa" class="text-xs text-gray-400 flex items-center gap-1.5">
+              <UIcon name="i-heroicons-identification" class="w-4 h-4 flex-shrink-0" />
+              {{ formatDocumento(empresa.cnpj_cpf_empresa) }}
+            </p>
+            <p v-if="empresa.telefone_empresa" class="text-xs text-gray-400 flex items-center gap-1.5">
+              <UIcon name="i-heroicons-phone" class="w-4 h-4 flex-shrink-0" />
+              {{ formatTelefone(empresa.telefone_empresa) }}
+            </p>
+            <p class="text-xs text-gray-400 flex items-start gap-1.5">
+              <UIcon name="i-heroicons-map-pin" class="w-4 h-4 mt-0.5 flex-shrink-0" />
+              <span class="leading-relaxed">
+                {{ empresa.local?.logadouro_empresa }}, {{ empresa.local?.numero_empresa }}
+                <template v-if="empresa.local?.complemento_empresa"> — {{ empresa.local?.complemento_empresa }}</template>
+                — {{ empresa.local?.bairro_empresa }}, {{ empresa.local?.cidade_empresa }}/{{ empresa.local?.uf_empresa }}
+                <br v-if="empresa.local?.cep_empresa" />
+                <span v-if="empresa.local?.cep_empresa" class="font-medium">CEP: {{ formatCep(empresa.local.cep_empresa) }}</span>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="grid lg:grid-cols-5 gap-8">
         <!-- Catálogo de serviços -->
-        <div class="lg:col-span-2">
+        <div class="lg:col-span-2 min-w-0">
           <h2 class="text-lg font-bold text-gray-900 mb-4">Serviços</h2>
           <div v-if="services.length === 0" class="text-sm text-gray-400 bg-white rounded-xl p-4 border border-gray-100">Nenhum serviço disponível</div>
           <div class="space-y-3">
             <button v-for="s in services" :key="s.id_servico"
               @click="selecionarServico(s)"
-              :class="['w-full text-left bg-white rounded-xl border p-4 transition-all hover:shadow-md', servicoSelecionado?.id_servico === s.id_servico ? 'border-[#6d3483] ring-2 ring-[#6d3483]/20' : 'border-gray-100 shadow-sm']">
-              <div class="flex items-start justify-between gap-2">
-                <p class="font-semibold text-gray-900 text-sm leading-tight">{{ s.nome_servico }}</p>
-                <p class="font-bold text-[#6d3483] text-sm flex-shrink-0">R$ {{ Number(s.valor_servico).toFixed(2) }}</p>
+              :class="['w-full text-left bg-white rounded-xl border p-4 transition-all hover:shadow-md flex gap-4', servicoSelecionado?.id_servico === s.id_servico ? 'border-[#6d3483] ring-2 ring-[#6d3483]/20' : 'border-gray-100 shadow-sm']">
+              <div v-if="s.imagem_servico" class="w-16 h-16 rounded-xl flex-shrink-0 overflow-hidden bg-gray-50 border border-gray-100">
+                <img :src="s.imagem_servico" class="w-full h-full object-cover" />
               </div>
-              <p class="text-xs text-gray-400 mt-1">{{ s.descricao_servico }}</p>
-              <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
-                <UIcon name="i-heroicons-clock" class="w-3 h-3" />{{ s.duracao_minutos }} min
-              </p>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <p class="font-semibold text-gray-900 text-sm leading-tight">{{ s.nome_servico }}</p>
+                  <p class="font-bold text-[#6d3483] text-sm flex-shrink-0">R$ {{ Number(s.valor_servico).toFixed(2) }}</p>
+                </div>
+                <p class="text-xs text-gray-400 mt-1">{{ s.descricao_servico }}</p>
+                <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                  <UIcon name="i-heroicons-clock" class="w-3 h-3" />{{ s.duracao_minutos }} min
+                </p>
+              </div>
             </button>
           </div>
         </div>
 
         <!-- Calendário e Agendamento -->
-        <div class="lg:col-span-3">
+        <div class="lg:col-span-3 min-w-0">
           <h2 class="text-lg font-bold text-gray-900 mb-4">Agendar</h2>
 
           <div v-if="!servicoSelecionado" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
             <UIcon name="i-heroicons-cursor-arrow-rays" class="w-10 h-10 text-gray-300 mx-auto mb-2" />
-            <p class="text-gray-400 text-sm">Selecione um serviço ao lado para ver os horários disponíveis</p>
+            <p class="text-gray-400 text-sm">Selecione um serviço para ver os horários disponíveis</p>
           </div>
 
           <div v-else class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
@@ -80,7 +90,17 @@
             </div>
 
             <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Selecionar Data</label>
-            <input v-model="dataSelecionada" type="date" :min="hoje" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 mb-4 outline-none focus:border-[#6d3483] transition-colors" @change="buscarDisponibilidade" />
+            <UPopover v-model:open="isCalendarOpen" :content="{ align: 'start', side: 'bottom', sideOffset: 8 }" class="w-full mb-4">
+              <button type="button" :class="['w-full flex items-center gap-2 border border-gray-300 rounded-lg px-3 sm:px-4 py-2.5 outline-none focus:border-[#6d3483] hover:border-[#6d3483] transition-colors bg-white text-left', !dataSelecionada ? 'text-gray-400' : 'text-gray-900']">
+                <span class="flex-1 text-sm">{{ dataSelecionada ? formatarDataUI(dataSelecionada) : 'Selecione uma data' }}</span>
+                <UIcon name="i-heroicons-calendar" class="w-5 h-5 text-gray-500" />
+              </button>
+              <template #content>
+                <div class="p-1">
+                  <UCalendar v-model="calendarDate" :min-value="hojeCalendarDate" color="primary" />
+                </div>
+              </template>
+            </UPopover>
 
             <div v-if="loadingSlots" class="flex justify-center py-6">
               <div class="w-6 h-6 border-4 border-[#6d3483] border-t-transparent rounded-full animate-spin"></div>
@@ -92,7 +112,7 @@
 
             <div v-else-if="slotsDisponiveis.length > 0">
               <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Horários Disponíveis</label>
-              <div class="grid grid-cols-3 gap-2 mb-5">
+              <div class="grid grid-cols-2 min-[400px]:grid-cols-3 sm:grid-cols-4 gap-2 mb-5">
                 <button v-for="slot in slotsDisponiveis" :key="slot.inicio"
                   @click="slotSelecionado = slot"
                   :class="['py-2 rounded-lg text-sm font-semibold border transition-all', slotSelecionado?.inicio === slot.inicio ? 'bg-[#6d3483] text-white border-[#6d3483]' : 'bg-gray-50 text-gray-700 border-gray-200 hover:border-[#6d3483]']">
@@ -118,6 +138,9 @@
 </template>
 
 <script setup lang="ts">
+import { today, getLocalTimeZone } from '@internationalized/date';
+import { formatDocumento, formatTelefone, formatCep } from '~/utils/formatters';
+
 definePageMeta({ middleware: 'auth' });
 
 const route = useRoute();
@@ -134,16 +157,36 @@ const successMsg = ref('');
 
 const servicoSelecionado = ref<any>(null);
 const dataSelecionada = ref('');
+const isCalendarOpen = ref(false);
+const calendarDate = ref<any>();
 const slotsDisponiveis = ref<any[]>([]);
 const slotSelecionado = ref<any>(null);
 
 const hoje = new Date().toISOString().split('T')[0];
+const hojeCalendarDate = today(getLocalTimeZone());
+
+function formatarDataUI(dataStr: string) {
+  if (!dataStr) return '';
+  const [y, m, d] = dataStr.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+watch(calendarDate, (newDate) => {
+  if (newDate) {
+    dataSelecionada.value = newDate.toString();
+    isCalendarOpen.value = false;
+    buscarDisponibilidade();
+  } else {
+    dataSelecionada.value = '';
+  }
+});
 
 function selecionarServico(s: any) {
   servicoSelecionado.value = s;
   slotSelecionado.value = null;
   slotsDisponiveis.value = [];
   dataSelecionada.value = '';
+  calendarDate.value = null;
 }
 
 async function buscarDisponibilidade() {
