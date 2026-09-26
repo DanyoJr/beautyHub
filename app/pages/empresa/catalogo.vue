@@ -1,28 +1,6 @@
 <template>
   <div class="min-h-screen bg-[#fafafa]">
-    <!-- Header reutilizado (igual ao dashboard) -->
-    <header class="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
-      <div class="flex items-center gap-3">
-        <img src="~/assets/Logo.png" alt="BeautyHub" class="w-[150px]" />
-        <div class="hidden sm:block w-px h-6 bg-gray-200"></div>
-        <span class="hidden sm:block text-sm font-medium text-gray-500">Catálogo de Serviços</span>
-      </div>
-      <nav class="flex items-center gap-1">
-        <NuxtLink to="/empresa/dashboard" class="px-3 py-2 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
-          <UIcon name="i-heroicons-calendar-days" class="w-4 h-4 inline mr-1" />Agenda
-        </NuxtLink>
-        <NuxtLink to="/empresa/catalogo" class="px-3 py-2 text-sm font-medium rounded-lg bg-[#6d3483]/10 text-[#6d3483] transition-colors">
-          <UIcon name="i-heroicons-scissors" class="w-4 h-4 inline mr-1" />Catálogo
-        </NuxtLink>
-        <NuxtLink to="/empresa/agenda" class="px-3 py-2 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
-          <UIcon name="i-heroicons-cog-6-tooth" class="w-4 h-4 inline mr-1" />Configurações
-        </NuxtLink>
-        <NuxtLink to="/empresa/perfil" class="px-3 py-2 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
-          <UIcon name="i-heroicons-building-storefront" class="w-4 h-4 inline mr-1" />Perfil
-        </NuxtLink>
-        <LogoutButton class="ml-2" />
-      </nav>
-    </header>
+    <EmpresaHeader />
 
     <main class="max-w-4xl mx-auto px-4 py-8">
       <div class="flex items-center justify-between mb-6">
@@ -49,8 +27,9 @@
 
       <div v-else class="grid gap-3">
         <div v-for="s in services" :key="s.id_servico" class="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-center gap-4 hover:shadow-md transition-shadow">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#6d3483/10">
-            <UIcon name="i-heroicons-sparkles" class="w-5 h-5 text-[#6d3483]" />
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden" style="background:#6d3483/10">
+            <img v-if="s.imagem_servico" :src="s.imagem_servico" class="w-full h-full object-cover" />
+            <UIcon v-else name="i-heroicons-sparkles" class="w-5 h-5 text-[#6d3483]" />
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2">

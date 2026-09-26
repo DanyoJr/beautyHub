@@ -53,7 +53,7 @@
                 </div>
                 <div class="flex items-center gap-2 text-sm text-gray-600">
                   <span class="w-4"></span>
-                  <span>CNPJ/CPF: <strong class="text-gray-900 font-medium">{{ enterprise.cnpj_cpf_empresa || 'N/A' }}</strong></span>
+                  <span>CNPJ/CPF: <strong class="text-gray-900 font-medium">{{ enterprise.cnpj_cpf_empresa ? formatDocumento(enterprise.cnpj_cpf_empresa) : 'N/A' }}</strong></span>
                 </div>
                 <div class="flex items-center gap-2 text-sm text-gray-600">
                   <UIcon name="i-heroicons-envelope" class="w-4 h-4 text-gray-400" />
@@ -61,7 +61,7 @@
                 </div>
                 <div class="flex items-center gap-2 text-sm text-gray-600">
                   <UIcon name="i-heroicons-phone" class="w-4 h-4 text-gray-400" />
-                  <span class="text-gray-900 font-medium">{{ enterprise.telefone_empresa }}</span>
+                  <span class="text-gray-900 font-medium">{{ enterprise.telefone_empresa ? formatTelefone(enterprise.telefone_empresa) : 'N/A' }}</span>
                 </div>
               </div>
 
@@ -70,7 +70,7 @@
                 <h4 class="text-gray-900 font-bold mb-2 text-lg">Endereço Completo</h4>
                 
                 <div class="text-sm text-gray-600">
-                  CEP: <strong class="text-gray-900 font-medium">{{ enterprise.local?.cep_empresa || 'N/A' }}</strong>
+                  CEP: <strong class="text-gray-900 font-medium">{{ enterprise.local?.cep_empresa ? formatCep(enterprise.local.cep_empresa) : 'N/A' }}</strong>
                 </div>
                 <div class="text-sm text-gray-600">
                   Logradouro: <strong class="text-gray-900 font-medium">{{ enterprise.local?.logadouro_empresa || 'N/A' }}{{ enterprise.local?.numero_empresa ? ', ' + enterprise.local?.numero_empresa : '' }}</strong>
@@ -95,6 +95,7 @@
 <script setup lang="ts">
 import type { IEnterprise } from "~~/server/models/Enterprise";
 import { ref, watch } from 'vue';
+import { formatDocumento, formatTelefone, formatCep } from '~/utils/formatters';
 
 const props = defineProps<{
   modelValue: boolean,

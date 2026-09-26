@@ -1,28 +1,6 @@
 <template>
   <div class="min-h-screen bg-[#fafafa]">
-    <!-- Header -->
-    <header class="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between sticky top-0 z-50 shadow-sm">
-      <div class="flex items-center gap-3">
-        <img src="~/assets/Logo.png" alt="BeautyHub" class="w-[150px]" />
-        <div class="hidden sm:block w-px h-6 bg-gray-200"></div>
-        <span class="hidden sm:block text-sm font-medium text-gray-500">Área da Empresa</span>
-      </div>
-      <nav class="flex items-center gap-1">
-        <NuxtLink to="/empresa/dashboard" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors" :class="$route.path === '/empresa/dashboard' ? 'bg-[#6d3483]/10 text-[#6d3483]' : 'text-gray-600 hover:bg-gray-100'">
-          <UIcon name="i-heroicons-calendar-days" class="w-4 h-4 inline mr-1" />Agenda
-        </NuxtLink>
-        <NuxtLink to="/empresa/catalogo" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors" :class="$route.path === '/empresa/catalogo' ? 'bg-[#6d3483]/10 text-[#6d3483]' : 'text-gray-600 hover:bg-gray-100'">
-          <UIcon name="i-heroicons-scissors" class="w-4 h-4 inline mr-1" />Catálogo
-        </NuxtLink>
-        <NuxtLink to="/empresa/agenda" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors" :class="$route.path === '/empresa/agenda' ? 'bg-[#6d3483]/10 text-[#6d3483]' : 'text-gray-600 hover:bg-gray-100'">
-          <UIcon name="i-heroicons-cog-6-tooth" class="w-4 h-4 inline mr-1" />Configurações
-        </NuxtLink>
-        <NuxtLink to="/empresa/perfil" class="px-3 py-2 text-sm font-medium rounded-lg transition-colors" :class="$route.path === '/empresa/perfil' ? 'bg-[#6d3483]/10 text-[#6d3483]' : 'text-gray-600 hover:bg-gray-100'">
-          <UIcon name="i-heroicons-building-storefront" class="w-4 h-4 inline mr-1" />Perfil
-        </NuxtLink>
-        <LogoutButton class="ml-2" />
-      </nav>
-    </header>
+    <EmpresaHeader />
 
     <main class="max-w-4xl mx-auto px-4 py-8">
       <!-- Seletor de data -->

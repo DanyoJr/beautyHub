@@ -57,6 +57,7 @@
 import type { IEnterprise } from "~~/server/models/Enterprise";
 import { h, resolveComponent } from "vue";
 import type { TableColumn } from "@nuxt/ui";
+import { formatTelefone } from '~/utils/formatters';
 
 const UBadge = resolveComponent("UBadge");
 const UButton = resolveComponent("UButton");
@@ -132,7 +133,11 @@ const columns: TableColumn<IEnterprise>[] = [
   { accessorKey: "nome_empresa", header: "Nome" },
   { accessorKey: "categoria_empresa", header: "Categoria" },
   { accessorKey: "email_empresa", header: "Email" },
-  { accessorKey: "telefone_empresa", header: "Telefone" },
+  { 
+    accessorKey: "telefone_empresa", 
+    header: "Telefone",
+    cell: ({ row }) => formatTelefone(row.getValue("telefone_empresa") as number)
+  },
   {
     accessorKey: "status_empresa",
     header: "Status",

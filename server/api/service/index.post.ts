@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event);
-  const { nome_servico, descricao_servico, valor_servico, duracao_minutos, id_empresa } = body;
+  const { nome_servico, descricao_servico, imagem_servico, valor_servico, duracao_minutos, id_empresa } = body;
 
   if (!nome_servico) throw createError({ statusCode: 400, message: "O campo 'Nome do Serviço' é obrigatório" });
   if (valor_servico === undefined || valor_servico === "") throw createError({ statusCode: 400, message: "O campo 'Valor' é obrigatório" });
@@ -46,6 +46,7 @@ export default defineEventHandler(async (event) => {
       id_empresa,
       nome_servico,
       descricao_servico: descricao_servico || "",
+      imagem_servico: imagem_servico || "",
       valor_servico: Number(valor_servico),
       duracao_minutos: Number(duracao_minutos),
       ativo: true,
