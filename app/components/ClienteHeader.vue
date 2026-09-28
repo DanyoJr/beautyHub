@@ -4,7 +4,9 @@
       <NuxtLink v-if="backTo" :to="backTo" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
         <UIcon name="i-heroicons-arrow-left" class="w-5 h-5 text-gray-600" />
       </NuxtLink>
-      <img src="~/assets/Logo.png" alt="BeautyHub" class="w-[120px] md:w-[150px]" />
+      <NuxtLink to="/cliente/busca" class="cursor-pointer">
+        <img src="~/assets/Logo.png" alt="BeautyHub" class="w-[120px] md:w-[150px]" />
+      </NuxtLink>
     </div>
 
     <!-- Desktop Menu -->
