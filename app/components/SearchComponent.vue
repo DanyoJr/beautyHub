@@ -1,7 +1,33 @@
 <template>
   <div class="max-w-6xl mx-auto px-4 py-12">
     <!-- Hero de busca -->
-    <div class="text-center mb-12">
+    <div v-if="currentAgendamento" class="max-w-2xl mx-auto mb-12 relative">
+      <h2 class="text-xl font-bold text-gray-900 mb-4 text-center">Seu próximo agendamento</h2>
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex gap-4 overflow-hidden relative">
+        <!-- Logo empresa -->
+        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#6d3483]/20 to-[#dd4f6e]/20 flex items-center justify-center flex-shrink-0 overflow-hidden">
+          <img v-if="currentAgendamento.empresa?.imagem" :src="currentAgendamento.empresa.imagem" class="w-full h-full object-cover" />
+          <UIcon v-else name="i-heroicons-building-storefront" class="w-7 h-7 text-[#6d3483]/50" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2 flex-wrap">
+            <div>
+              <p class="font-bold text-gray-900">{{ currentAgendamento.empresa?.nome || 'Empresa' }}</p>
+              <p class="text-sm text-[#6d3483] font-medium">{{ currentAgendamento.servico?.nome }}</p>
+            </div>
+            <span class="bg-blue-50 text-blue-600 text-xs px-2.5 py-0.5 rounded-full font-medium">Confirmado</span>
+          </div>
+          <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-gray-400">
+            <span><UIcon name="i-heroicons-calendar" class="w-3.5 h-3.5 inline -mt-0.5 mr-0.5" />{{ dataFormatada(currentAgendamento.data_hora_inicio) }}</span>
+            <span><UIcon name="i-heroicons-clock" class="w-3.5 h-3.5 inline -mt-0.5 mr-0.5" />{{ horaFormatada(currentAgendamento.data_hora_inicio) }}</span>
+            <span><UIcon name="i-heroicons-banknotes" class="w-3.5 h-3.5 inline -mt-0.5 mr-0.5" />R$ {{ Number(currentAgendamento.servico?.valor || 0).toFixed(2) }} (externo)</span>
+          </div>
+        </div>
+        <!-- Barra de Progresso -->
+        <div v-if="proximosAgendamentos.length > 1" class="absolute bottom-0 left-0 h-1 bg-[#6d3483] transition-all duration-75" :style="{ width: progress + '%' }"></div>
+      </div>
+    </div>
+    <div v-else class="text-center mb-12">
       <h1 class="text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">Encontre seu espaço</h1>
       <p class="text-gray-500 font-medium">Os melhores serviços de beleza ao seu alcance</p>
     </div>
@@ -76,12 +102,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 const busca = ref('');
 const categoriaFiltro = ref('');
 const loading = ref(true);
 const empresas = ref<any[]>([]);
+const user = ref<any>(null);
+const proximosAgendamentos = ref<any[]>([]);
+const currentAgendamentoIndex = ref(0);
+const progress = ref(100);
+let timer: any = null;
+let progressTimer: any = null;
 
 const categorias = ['Estética', 'Manicure', 'Cabeleireiro', 'Barbearia', 'Spa', 'Maquiagem', 'Depilação', 'Massagem'];
 
@@ -99,8 +131,46 @@ const empresasFiltradas = computed(() => {
   return result;
 });
 
+const currentAgendamento = computed(() => {
+  if (proximosAgendamentos.value.length === 0) return null;
+  return proximosAgendamentos.value[currentAgendamentoIndex.value];
+});
+
+function dataFormatada(d: string) { return new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }); }
+function horaFormatada(d: string) { return new Date(d).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); }
+
+function startRotation() {
+  if (proximosAgendamentos.value.length <= 1) return;
+  
+  clearInterval(timer);
+  clearInterval(progressTimer);
+  progress.value = 100;
+  
+  progressTimer = setInterval(() => {
+    progress.value -= (100 / (5000 / 50));
+    if (progress.value <= 0) progress.value = 0;
+  }, 50);
+
+  timer = setInterval(() => {
+    progress.value = 100;
+    currentAgendamentoIndex.value = (currentAgendamentoIndex.value + 1) % proximosAgendamentos.value.length;
+  }, 5000);
+}
+
 onMounted(async () => {
   try {
+    const authData = await $fetch('/api/auth/me', { credentials: 'include' }).catch(() => null) as any;
+    if (authData?.user) {
+      user.value = authData.user;
+      const appData = await $fetch(`/api/appointment/cliente/${user.value._id}`, { credentials: 'include' }).catch(() => null) as any;
+      if (appData?.agendamentos) {
+        const agora = new Date();
+        proximosAgendamentos.value = appData.agendamentos.filter((ag: any) => new Date(ag.data_hora_inicio) >= agora && ag.status === 'aberto');
+        if (proximosAgendamentos.value.length > 1) {
+          startRotation();
+        }
+      }
+    }
     const data = await $fetch('/api/enterprise') as any;
     empresas.value = (data.enterprises || []).filter((e: any) => e.status_empresa === 'ativo');
   } catch {
@@ -108,5 +178,10 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
+});
+
+onUnmounted(() => {
+  clearInterval(timer);
+  clearInterval(progressTimer);
 });
 </script>
