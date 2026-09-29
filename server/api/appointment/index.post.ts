@@ -1,6 +1,7 @@
 import Appointment from "~~/server/models/Appointment";
 import Service from "~~/server/models/Service";
 import jwt from "jsonwebtoken";
+import { getAgenda } from "~~/server/utils/agenda";
 
 /**
  * POST /api/appointment — Cria um agendamento (RF010, RF011, RF012, RN03, RN04)
@@ -67,6 +68,30 @@ export default defineEventHandler(async (event) => {
       status: "aberto",
       avaliado: false,
     });
+
+    // FASE 1: Agendar os lembretes para 1h e 30m antes do agendamento
+    const lembrete1h = new Date(inicio.getTime() - 60 * 60 * 1000);
+    const lembrete30m = new Date(inicio.getTime() - 30 * 60 * 1000);
+    
+    const now = new Date();
+    
+    // Só agenda se a data do lembrete for no futuro
+    const agenda = await getAgenda();
+    if (lembrete1h > now) {
+      await agenda.schedule(lembrete1h, "enviar_lembrete", {
+        userId: decoded.id,
+        appointmentId: appointment.id_agendamento,
+        tipo: "1h"
+      });
+    }
+    
+    if (lembrete30m > now) {
+      await agenda.schedule(lembrete30m, "enviar_lembrete", {
+        userId: decoded.id,
+        appointmentId: appointment.id_agendamento,
+        tipo: "30m"
+      });
+    }
 
     return { statusCode: 201, message: "Agendamento realizado com sucesso!", appointment };
   } catch (error: any) {
