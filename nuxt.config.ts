@@ -13,7 +13,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     mongoUri: "",
     jwtSecret: "",
-    resendApiKey: "",
     oauth: {
       google: {
         clientId: "",
