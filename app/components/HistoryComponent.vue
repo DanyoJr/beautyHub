@@ -21,28 +21,9 @@
     </div>
 
     <div v-else class="space-y-4">
-      <div v-for="ag in agendamentosFiltrados" :key="ag.id_agendamento"
-        class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex gap-4">
-        <!-- Logo empresa -->
-        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#6d3483]/20 to-[#dd4f6e]/20 flex items-center justify-center flex-shrink-0 overflow-hidden">
-          <img v-if="ag.empresa?.imagem" :src="ag.empresa.imagem" class="w-full h-full object-cover" />
-          <UIcon v-else name="i-heroicons-building-storefront" class="w-7 h-7 text-[#6d3483]/50" />
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-start justify-between gap-2 flex-wrap">
-            <div>
-              <p class="font-bold text-gray-900">{{ ag.empresa?.nome || 'Empresa' }}</p>
-              <p class="text-sm text-[#6d3483] font-medium">{{ ag.servico?.nome }}</p>
-            </div>
-            <span :class="statusClass(ag.status)" class="text-xs px-2.5 py-0.5 rounded-full font-medium">{{ statusLabel(ag.status) }}</span>
-          </div>
-          <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-gray-400">
-            <span><UIcon name="i-heroicons-calendar" class="w-3.5 h-3.5 inline -mt-0.5 mr-0.5" />{{ dataFormatada(ag.data_hora_inicio) }}</span>
-            <span><UIcon name="i-heroicons-clock" class="w-3.5 h-3.5 inline -mt-0.5 mr-0.5" />{{ horaFormatada(ag.data_hora_inicio) }}</span>
-            <span><UIcon name="i-heroicons-banknotes" class="w-3.5 h-3.5 inline -mt-0.5 mr-0.5" />R$ {{ Number(ag.servico?.valor || 0).toFixed(2) }} (externo)</span>
-          </div>
-          <!-- Ações -->
-          <div class="flex gap-2 mt-3">
+      <ClientAppointmentCard v-for="ag in agendamentosFiltrados" :key="ag.id_agendamento" :appointment="ag">
+        <template #actions>
+          <div class="flex gap-2 mt-4">
             <button v-if="ag.status === 'aberto' && podeCancelar(ag.data_hora_inicio)" @click="cancelar(ag.id_agendamento)"
               class="text-xs px-3 py-1.5 border border-red-200 text-red-500 rounded-lg hover:bg-red-50 transition-colors font-medium">
               Cancelar
@@ -55,8 +36,8 @@
               <UIcon name="i-heroicons-check-circle" class="w-3.5 h-3.5" />Avaliado
             </span>
           </div>
-        </div>
-      </div>
+        </template>
+      </ClientAppointmentCard>
     </div>
 
     <!-- Modal de avaliação -->

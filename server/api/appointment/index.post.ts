@@ -1,14 +1,11 @@
 import Appointment from "~~/server/models/Appointment";
 import Service from "~~/server/models/Service";
+import Employee from "~~/server/models/Employee";
+import AgendaConfig from "~~/server/models/AgendaConfig";
 import jwt from "jsonwebtoken";
 import { getAgenda } from "~~/server/utils/agenda";
 
-/**
- * POST /api/appointment — Cria um agendamento (RF010, RF011, RF012, RN03, RN04)
- * Requer autenticação de cliente.
- */
 export default defineEventHandler(async (event) => {
-  // RN03 — Bloqueio de acesso anônimo
   const token = getCookie(event, "token");
   if (!token) throw createError({ statusCode: 401, message: "Você precisa estar logado para agendar" });
 
@@ -21,39 +18,88 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event);
-  const { id_empresa, id_servico, data_hora_inicio } = body;
+  const { id_empresa, id_servico, data_hora_inicio, id_funcionario } = body;
 
   if (!id_empresa || !id_servico || !data_hora_inicio) {
     throw createError({ statusCode: 400, message: "Campos obrigatórios ausentes" });
   }
 
   try {
-    // Busca serviço para obter duração
     const service = await Service.findOne({ id_servico, id_empresa, ativo: true });
     if (!service) throw createError({ statusCode: 404, message: "Serviço não encontrado" });
 
     const inicio = new Date(data_hora_inicio);
     const fim = new Date(inicio.getTime() + service.duracao_minutos * 60 * 1000);
+    const diaSemana = inicio.getDay();
 
-    // RN04 — Prevenção de overbooking: verifica conflito de horário
-    const conflito = await Appointment.findOne({
-      id_empresa,
-      status: "aberto",
-      $or: [
-        // Algum agendamento existente começa durante o novo slot
-        { data_hora_inicio: { $gte: inicio, $lt: fim } },
-        // Algum agendamento existente termina durante o novo slot
-        { data_hora_fim: { $gt: inicio, $lte: fim } },
-        // Algum agendamento existente engloba o novo slot completamente
-        { data_hora_inicio: { $lte: inicio }, data_hora_fim: { $gte: fim } },
-      ],
-    });
+    let finalEmployeeId: string | undefined = undefined;
 
-    if (conflito) {
-      throw createError({
-        statusCode: 409,
-        message: "Este horário não está mais disponível. Por favor, escolha outro.",
+    const employees = await Employee.find({ id_empresa, ativo: true });
+
+    if (employees.length > 0) {
+      let candidates = employees;
+
+      if (id_funcionario && id_funcionario !== 'qualquer') {
+        candidates = employees.filter(e => e.id_funcionario === id_funcionario);
+        if (candidates.length === 0) throw createError({ statusCode: 404, message: "Funcionário não encontrado" });
+      }
+
+      const validCandidates = [];
+      for (const emp of candidates) {
+        if (!emp.dias_semana.includes(diaSemana)) continue;
+
+        const [hAb, mAb] = emp.hora_abertura.split(":").map(Number);
+        const [hFe, mFe] = emp.hora_fechamento.split(":").map(Number);
+        const abertura = new Date(inicio); abertura.setHours(hAb, mAb, 0, 0);
+        const fechamento = new Date(inicio); fechamento.setHours(hFe, mFe, 0, 0);
+
+        if (inicio < abertura || fim > fechamento) continue;
+
+        let conflitoPausa = false;
+        for (const pausa of emp.pausas) {
+          const pI = new Date(inicio); const pF = new Date(inicio);
+          pI.setHours(...pausa.inicio.split(":").map(Number) as [number, number], 0, 0);
+          pF.setHours(...pausa.fim.split(":").map(Number) as [number, number], 0, 0);
+          if (inicio < pF && fim > pI) { conflitoPausa = true; break; }
+        }
+        if (conflitoPausa) continue;
+
+        const conflito = await Appointment.findOne({
+          id_empresa,
+          id_funcionario: emp.id_funcionario,
+          status: "aberto",
+          $or: [
+            { data_hora_inicio: { $gte: inicio, $lt: fim } },
+            { data_hora_fim: { $gt: inicio, $lte: fim } },
+            { data_hora_inicio: { $lte: inicio }, data_hora_fim: { $gte: fim } },
+          ],
+        });
+
+        if (!conflito) validCandidates.push(emp);
+      }
+
+      if (validCandidates.length === 0) {
+        throw createError({ statusCode: 409, message: "Este horário não está mais disponível para o(s) funcionário(s) selecionado(s)." });
+      }
+
+      // Random pick if 'qualquer'
+      const picked = validCandidates[Math.floor(Math.random() * validCandidates.length)];
+      finalEmployeeId = picked.id_funcionario;
+    } else {
+      // Fallback for companies without employees
+      const conflito = await Appointment.findOne({
+        id_empresa,
+        status: "aberto",
+        $or: [
+          { data_hora_inicio: { $gte: inicio, $lt: fim } },
+          { data_hora_fim: { $gt: inicio, $lte: fim } },
+          { data_hora_inicio: { $lte: inicio }, data_hora_fim: { $gte: fim } },
+        ],
       });
+
+      if (conflito) {
+        throw createError({ statusCode: 409, message: "Este horário não está mais disponível. Por favor, escolha outro." });
+      }
     }
 
     const id_agendamento = Math.random().toString(36).substring(2, 12).toUpperCase();
@@ -63,6 +109,7 @@ export default defineEventHandler(async (event) => {
       id_empresa,
       id_cliente: decoded.id,
       id_servico,
+      id_funcionario: finalEmployeeId,
       data_hora_inicio: inicio,
       data_hora_fim: fim,
       status: "aberto",

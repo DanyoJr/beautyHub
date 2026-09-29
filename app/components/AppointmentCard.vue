@@ -15,13 +15,22 @@
         </span>
       </div>
       <p class="text-sm text-[#6d3483] font-medium mt-0.5">{{ appointment.servico?.nome }}</p>
-      <p class="text-xs text-gray-400 mt-0.5">
+      <p class="text-xs text-gray-400 mt-0.5 mb-2">
         <UIcon name="i-heroicons-clock" class="w-3.5 h-3.5 inline -mt-0.5" />
         {{ appointment.servico?.duracao }} min
         <span class="mx-1.5 text-gray-300">·</span>
         <UIcon name="i-heroicons-envelope" class="w-3.5 h-3.5 inline -mt-0.5" />
         {{ appointment.cliente?.email }}
       </p>
+
+      <!-- Funcionário -->
+      <div v-if="appointment.funcionario" class="inline-flex items-center gap-1.5 bg-gray-50 rounded-md px-2 py-1 border border-gray-100">
+        <div class="w-4 h-4 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+          <img v-if="appointment.funcionario.foto" :src="appointment.funcionario.foto" class="w-full h-full object-cover" />
+          <UIcon v-else name="i-heroicons-user" class="w-3 h-3 text-gray-400 m-auto mt-0.5" />
+        </div>
+        <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-wide">{{ appointment.funcionario.nome.split(' ')[0] }}</span>
+      </div>
     </div>
 
     <!-- Ações -->

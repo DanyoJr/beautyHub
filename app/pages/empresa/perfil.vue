@@ -2,43 +2,55 @@
   <div class="min-h-screen bg-[#fafafa]">
     <EmpresaHeader />
 
-    <main class="max-w-2xl mx-auto px-4 py-8">
-      <h1 class="text-2xl font-bold text-gray-900 mb-6">Perfil da Empresa</h1>
+    <main class="max-w-4xl mx-auto px-4 py-8">
+      <h1 class="text-2xl font-bold text-gray-900 mb-6">Configurações</h1>
 
       <div v-if="loading" class="flex justify-center py-16">
         <div class="w-8 h-8 border-4 border-[#6d3483] border-t-transparent rounded-full animate-spin"></div>
       </div>
 
-      <form v-else @submit.prevent="salvar" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col gap-5">
-        <!-- Foto / Logo -->
-        <div class="flex flex-col items-center mb-4">
-          <div class="relative w-32 h-32 rounded-2xl border-4 border-white shadow-md overflow-hidden bg-gray-100 mb-3">
-            <img v-if="form.imagem_empresa" :src="form.imagem_empresa" class="w-full h-full object-cover" />
-            <UIcon v-else name="i-heroicons-building-storefront" class="w-12 h-12 text-gray-300 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <UTabs v-else :items="[{label: 'Perfil da Empresa', slot: 'perfil'}, {label: 'Equipe', slot: 'equipe'}]" class="w-full">
+        <!-- Tab 1: Perfil da Empresa -->
+        <template #perfil>
+          <form @submit.prevent="salvar" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col gap-5 mt-4">
+            <!-- Foto / Logo -->
+            <div class="flex flex-col items-center mb-4">
+              <div class="relative w-32 h-32 rounded-2xl border-4 border-white shadow-md overflow-hidden bg-gray-100 mb-3">
+                <img v-if="form.imagem_empresa" :src="form.imagem_empresa" class="w-full h-full object-cover" />
+                <UIcon v-else name="i-heroicons-building-storefront" class="w-12 h-12 text-gray-300 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+              </div>
+              <label class="cursor-pointer text-sm font-semibold text-[#6d3483] hover:underline">
+                Alterar Foto/Logo
+                <input type="file" accept="image/*" class="hidden" @change="handleFileUpload" />
+              </label>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nome da Empresa</label>
+              <input v-model="form.nome_empresa" type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 outline-none focus:border-[#6d3483] transition-colors" />
+            </div>
+            
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Descrição</label>
+              <textarea v-model="form.descricao_empresa" rows="3" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 outline-none focus:border-[#6d3483] transition-colors resize-none"></textarea>
+            </div>
+
+            <p v-if="errorMsg" class="text-sm text-red-500 text-center bg-red-50 p-3 rounded-xl">{{ errorMsg }}</p>
+            <p v-if="successMsg" class="text-sm text-green-600 text-center bg-green-50 p-3 rounded-xl">{{ successMsg }}</p>
+
+            <button type="submit" :disabled="saving" class="w-full py-3 text-white font-bold rounded-xl hover:opacity-90 disabled:opacity-50 mt-2" style="background: linear-gradient(135deg,#dd4f6e,#6d3483)">
+              {{ saving ? 'Salvando...' : 'Salvar Alterações' }}
+            </button>
+          </form>
+        </template>
+
+        <!-- Tab 2: Equipe -->
+        <template #equipe>
+          <div class="mt-4">
+            <EmployeeSettings v-if="user?.id_empresa" :id-empresa="user.id_empresa" />
           </div>
-          <label class="cursor-pointer text-sm font-semibold text-[#6d3483] hover:underline">
-            Alterar Foto/Logo
-            <input type="file" accept="image/*" class="hidden" @change="handleFileUpload" />
-          </label>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nome da Empresa</label>
-          <input v-model="form.nome_empresa" type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 outline-none focus:border-[#6d3483] transition-colors" />
-        </div>
-        
-        <div>
-          <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Descrição</label>
-          <textarea v-model="form.descricao_empresa" rows="3" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 outline-none focus:border-[#6d3483] transition-colors resize-none"></textarea>
-        </div>
-
-        <p v-if="errorMsg" class="text-sm text-red-500 text-center bg-red-50 p-3 rounded-xl">{{ errorMsg }}</p>
-        <p v-if="successMsg" class="text-sm text-green-600 text-center bg-green-50 p-3 rounded-xl">{{ successMsg }}</p>
-
-        <button type="submit" :disabled="saving" class="w-full py-3 text-white font-bold rounded-xl hover:opacity-90 disabled:opacity-50 mt-2" style="background: linear-gradient(135deg,#dd4f6e,#6d3483)">
-          {{ saving ? 'Salvando...' : 'Salvar Alterações' }}
-        </button>
-      </form>
+        </template>
+      </UTabs>
     </main>
   </div>
 </template>
