@@ -7,6 +7,7 @@ export interface IAppointment {
   id_empresa: string;
   id_cliente: string;
   id_servico: string;
+  id_funcionario?: string; // Add id_funcionario
   data_hora_inicio: Date;
   data_hora_fim: Date;
   status: AppointmentStatus;
@@ -19,6 +20,7 @@ const AppointmentSchema = new mongoose.Schema<IAppointment>(
     id_empresa: { type: String, required: true, index: true },
     id_cliente: { type: String, required: true, index: true },
     id_servico: { type: String, required: true },
+    id_funcionario: { type: String, required: false, index: true }, // Add id_funcionario
     data_hora_inicio: { type: Date, required: true },
     data_hora_fim: { type: Date, required: true },
     status: {
@@ -32,9 +34,10 @@ const AppointmentSchema = new mongoose.Schema<IAppointment>(
   { timestamps: true },
 );
 
-// Índice composto para prevenção de overbooking (RN04)
+// Índice composto para prevenção de overbooking
+// Agora inclui id_funcionario para que 2 funcionários possam atender ao mesmo tempo
 AppointmentSchema.index(
-  { id_empresa: 1, data_hora_inicio: 1, status: 1 },
+  { id_empresa: 1, id_funcionario: 1, data_hora_inicio: 1, status: 1 },
   { name: "idx_overbooking" },
 );
 

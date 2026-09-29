@@ -80,53 +80,78 @@
 
           <div v-if="!servicoSelecionado" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
             <UIcon name="i-heroicons-cursor-arrow-rays" class="w-10 h-10 text-gray-300 mx-auto mb-2" />
-            <p class="text-gray-400 text-sm">Selecione um serviço para ver os horários disponíveis</p>
+            <p class="text-gray-400 text-sm">Selecione um serviço para continuar</p>
           </div>
 
           <div v-else class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-            <div class="mb-4 p-3 bg-[#6d3483]/5 rounded-xl">
+            <div class="mb-6 p-4 bg-[#6d3483]/5 rounded-xl border border-[#6d3483]/10">
               <p class="text-sm font-semibold text-[#6d3483]">{{ servicoSelecionado.nome_servico }}</p>
-              <p class="text-xs text-gray-500">{{ servicoSelecionado.duracao_minutos }} min · R$ {{ Number(servicoSelecionado.valor_servico).toFixed(2) }} <span class="text-gray-400">(pagamento externo)</span></p>
+              <p class="text-xs text-gray-500">{{ servicoSelecionado.duracao_minutos }} min · R$ {{ Number(servicoSelecionado.valor_servico).toFixed(2) }}</p>
             </div>
 
-            <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Selecionar Data</label>
-            <UPopover v-model:open="isCalendarOpen" :content="{ align: 'start', side: 'bottom', sideOffset: 8 }" class="w-full mb-4">
-              <button type="button" :class="['w-full flex items-center gap-2 border border-gray-300 rounded-lg px-3 sm:px-4 py-2.5 outline-none focus:border-[#6d3483] hover:border-[#6d3483] transition-colors bg-white text-left', !dataSelecionada ? 'text-gray-400' : 'text-gray-900']">
-                <span class="flex-1 text-sm">{{ dataSelecionada ? formatarDataUI(dataSelecionada) : 'Selecione uma data' }}</span>
-                <UIcon name="i-heroicons-calendar" class="w-5 h-5 text-gray-500" />
-              </button>
-              <template #content>
-                <div class="p-1">
-                  <UCalendar v-model="calendarDate" :min-value="hojeCalendarDate" color="primary" />
-                </div>
-              </template>
-            </UPopover>
+            <!-- Seleção de Funcionário -->
+            <div v-if="employees.length > 0" class="mb-6">
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-3">Escolha o Profissional</label>
+              <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                <button @click="selecionarFuncionario('qualquer')"
+                  :class="['flex-shrink-0 flex flex-col items-center gap-2 p-3 rounded-xl border transition-all min-w-[90px]', funcionarioSelecionado === 'qualquer' ? 'border-[#6d3483] bg-[#6d3483]/5 ring-2 ring-[#6d3483]/20' : 'border-gray-200 bg-white hover:border-[#6d3483]']">
+                  <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
+                    <UIcon name="i-heroicons-sparkles" class="w-6 h-6" />
+                  </div>
+                  <span class="text-xs font-bold text-gray-700 text-center leading-tight">Qualquer<br/>um</span>
+                </button>
 
-            <div v-if="loadingSlots" class="flex justify-center py-6">
-              <div class="w-6 h-6 border-4 border-[#6d3483] border-t-transparent rounded-full animate-spin"></div>
-            </div>
-
-            <div v-else-if="dataSelecionada && slotsDisponiveis.length === 0" class="text-center py-6 text-sm text-gray-400">
-              Sem horários disponíveis para esta data
-            </div>
-
-            <div v-else-if="slotsDisponiveis.length > 0">
-              <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Horários Disponíveis</label>
-              <div class="grid grid-cols-2 min-[400px]:grid-cols-3 sm:grid-cols-4 gap-2 mb-5">
-                <button v-for="slot in slotsDisponiveis" :key="slot.inicio"
-                  @click="slotSelecionado = slot"
-                  :class="['py-2 rounded-lg text-sm font-semibold border transition-all', slotSelecionado?.inicio === slot.inicio ? 'bg-[#6d3483] text-white border-[#6d3483]' : 'bg-gray-50 text-gray-700 border-gray-200 hover:border-[#6d3483]']">
-                  {{ slot.label }}
+                <button v-for="emp in employees" :key="emp.id_funcionario" @click="selecionarFuncionario(emp.id_funcionario)"
+                  :class="['flex-shrink-0 flex flex-col items-center gap-2 p-3 rounded-xl border transition-all min-w-[90px]', funcionarioSelecionado === emp.id_funcionario ? 'border-[#6d3483] bg-[#6d3483]/5 ring-2 ring-[#6d3483]/20' : 'border-gray-200 bg-white hover:border-[#6d3483]']">
+                  <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
+                    <img v-if="emp.foto" :src="emp.foto" class="w-full h-full object-cover" />
+                    <UIcon v-else name="i-heroicons-user" class="w-6 h-6 text-gray-300 m-auto mt-3" />
+                  </div>
+                  <span class="text-xs font-bold text-gray-700 text-center truncate w-full">{{ emp.nome.split(' ')[0] }}</span>
                 </button>
               </div>
+            </div>
 
-              <p v-if="errorMsg" class="text-sm text-red-500 text-center mb-3">{{ errorMsg }}</p>
-              <p v-if="successMsg" class="text-sm text-green-600 text-center mb-3">{{ successMsg }}</p>
+            <div v-if="funcionarioSelecionado || employees.length === 0" class="mt-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Selecionar Data</label>
+              <UPopover v-model:open="isCalendarOpen" :content="{ align: 'start', side: 'bottom', sideOffset: 8 }" class="w-full mb-4">
+                <button type="button" :class="['w-full flex items-center gap-2 border border-gray-300 rounded-lg px-3 sm:px-4 py-2.5 outline-none focus:border-[#6d3483] hover:border-[#6d3483] transition-colors bg-white text-left', !dataSelecionada ? 'text-gray-400' : 'text-gray-900']">
+                  <span class="flex-1 text-sm">{{ dataSelecionada ? formatarDataUI(dataSelecionada) : 'Selecione uma data' }}</span>
+                  <UIcon name="i-heroicons-calendar" class="w-5 h-5 text-gray-500" />
+                </button>
+                <template #content>
+                  <div class="p-1">
+                    <UCalendar v-model="calendarDate" :min-value="hojeCalendarDate" color="primary" />
+                  </div>
+                </template>
+              </UPopover>
 
-              <button v-if="slotSelecionado" @click="confirmarAgendamento" :disabled="agendando"
-                class="w-full py-3 text-white font-bold rounded-xl hover:opacity-90 disabled:opacity-50 transition-opacity" style="background: linear-gradient(135deg,#dd4f6e,#6d3483)">
-                {{ agendando ? 'Confirmando...' : `Confirmar — ${slotSelecionado.label}` }}
-              </button>
+              <div v-if="loadingSlots" class="flex justify-center py-6">
+                <div class="w-6 h-6 border-4 border-[#6d3483] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+
+              <div v-else-if="dataSelecionada && slotsDisponiveis.length === 0" class="text-center py-6 text-sm text-gray-400">
+                Sem horários disponíveis para este profissional nesta data
+              </div>
+
+              <div v-else-if="slotsDisponiveis.length > 0">
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Horários Disponíveis</label>
+                <div class="grid grid-cols-2 min-[400px]:grid-cols-3 sm:grid-cols-4 gap-2 mb-5">
+                  <button v-for="slot in slotsDisponiveis" :key="slot.inicio"
+                    @click="slotSelecionado = slot"
+                    :class="['py-2 rounded-lg text-sm font-semibold border transition-all', slotSelecionado?.inicio === slot.inicio ? 'bg-[#6d3483] text-white border-[#6d3483]' : 'bg-gray-50 text-gray-700 border-gray-200 hover:border-[#6d3483]']">
+                    {{ slot.label }}
+                  </button>
+                </div>
+
+                <p v-if="errorMsg" class="text-sm text-red-500 text-center mb-3">{{ errorMsg }}</p>
+                <p v-if="successMsg" class="text-sm text-green-600 text-center mb-3">{{ successMsg }}</p>
+
+                <button v-if="slotSelecionado" @click="confirmarAgendamento" :disabled="agendando"
+                  class="w-full py-3 text-white font-bold rounded-xl hover:opacity-90 disabled:opacity-50 transition-opacity" style="background: linear-gradient(135deg,#dd4f6e,#6d3483)">
+                  {{ agendando ? 'Confirmando...' : `Confirmar — ${slotSelecionado.label}` }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -149,6 +174,7 @@ const toast = useToast();
 
 const empresa = ref<any>(null);
 const services = ref<any[]>([]);
+const employees = ref<any[]>([]);
 const loadingEmpresa = ref(true);
 const loadingSlots = ref(false);
 const agendando = ref(false);
@@ -156,6 +182,7 @@ const errorMsg = ref('');
 const successMsg = ref('');
 
 const servicoSelecionado = ref<any>(null);
+const funcionarioSelecionado = ref<string | null>(null);
 const dataSelecionada = ref('');
 const isCalendarOpen = ref(false);
 const calendarDate = ref<any>();
@@ -183,10 +210,20 @@ watch(calendarDate, (newDate) => {
 
 function selecionarServico(s: any) {
   servicoSelecionado.value = s;
+  funcionarioSelecionado.value = null;
   slotSelecionado.value = null;
   slotsDisponiveis.value = [];
   dataSelecionada.value = '';
   calendarDate.value = null;
+}
+
+function selecionarFuncionario(id: string) {
+  funcionarioSelecionado.value = id;
+  slotSelecionado.value = null;
+  slotsDisponiveis.value = [];
+  if (dataSelecionada.value) {
+    buscarDisponibilidade();
+  }
 }
 
 async function buscarDisponibilidade() {
@@ -195,7 +232,12 @@ async function buscarDisponibilidade() {
   slotSelecionado.value = null;
   try {
     const data = await $fetch('/api/appointment/available', {
-      query: { id_empresa, id_servico: servicoSelecionado.value.id_servico, data: dataSelecionada.value },
+      query: { 
+        id_empresa, 
+        id_servico: servicoSelecionado.value.id_servico, 
+        data: dataSelecionada.value,
+        id_funcionario: funcionarioSelecionado.value || 'qualquer'
+      },
     }) as any;
     slotsDisponiveis.value = data.available || [];
   } catch {
@@ -216,6 +258,7 @@ async function confirmarAgendamento() {
         id_empresa,
         id_servico: servicoSelecionado.value.id_servico,
         data_hora_inicio: slotSelecionado.value.inicio,
+        id_funcionario: funcionarioSelecionado.value || 'qualquer'
       },
     });
     
@@ -242,6 +285,8 @@ onMounted(async () => {
     empresa.value = data.enterprise;
     const svcData = await $fetch('/api/service', { query: { id_empresa } }) as any;
     services.value = svcData.services || [];
+    const empData = await $fetch(`/api/employee?id_empresa=${id_empresa}`) as any;
+    employees.value = empData.employees || [];
   } catch {
     empresa.value = null;
   } finally {
@@ -249,3 +294,4 @@ onMounted(async () => {
   }
 });
 </script>
+

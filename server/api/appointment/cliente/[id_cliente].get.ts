@@ -1,12 +1,9 @@
 import Appointment from "~~/server/models/Appointment";
 import Service from "~~/server/models/Service";
 import Enterprise from "~~/server/models/Enterprise";
+import Employee from "~~/server/models/Employee";
 import jwt from "jsonwebtoken";
 
-/**
- * GET /api/appointment/cliente/:id_cliente — Histórico de agendamentos do cliente (RF016, UC13)
- * Retorna agendamentos passados e futuros, enriquecidos com dados de empresa e serviço.
- */
 export default defineEventHandler(async (event) => {
   const token = getCookie(event, "token");
   if (!token) throw createError({ statusCode: 401, message: "Não autorizado" });
@@ -21,7 +18,6 @@ export default defineEventHandler(async (event) => {
 
   const id_cliente = getRouterParam(event, "id_cliente");
 
-  // Cliente só vê o próprio histórico; admin pode ver qualquer um
   if (decoded.roles !== "admin" && decoded.id !== id_cliente) {
     throw createError({ statusCode: 403, message: "Sem permissão" });
   }
@@ -32,12 +28,14 @@ export default defineEventHandler(async (event) => {
 
     const enriquecidos = await Promise.all(
       agendamentos.map(async (ag) => {
-        const [servico, empresa] = await Promise.all([
+        const [servico, empresa, funcionario] = await Promise.all([
           Service.findOne({ id_servico: ag.id_servico }),
           Enterprise.findOne({ id_empresa: ag.id_empresa }).select(
             "nome_empresa imagem_empresa categoria_empresa local",
           ),
+          ag.id_funcionario ? Employee.findOne({ id_funcionario: ag.id_funcionario }).select("nome foto") : null
         ]);
+        
         return {
           ...ag.toObject(),
           servico: servico
@@ -49,6 +47,12 @@ export default defineEventHandler(async (event) => {
                 imagem: empresa.imagem_empresa,
                 categoria: empresa.categoria_empresa,
                 cidade: empresa.local?.cidade_empresa,
+              }
+            : null,
+          funcionario: funcionario
+            ? {
+                nome: funcionario.nome,
+                foto: funcionario.foto
               }
             : null,
         };
