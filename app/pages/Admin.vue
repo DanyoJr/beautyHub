@@ -7,7 +7,7 @@
     <GradientDivisor />
     
     <div class="table-container">
-      <UTabs :items="tabs" v-model="activeTab" class="w-full">
+      <UTabs :items="tabs" v-model="activeTab" class="w-full" color="primary">
         <template #empresas="{ item }">
           <div class="mt-4">
             <AllEnterprises />

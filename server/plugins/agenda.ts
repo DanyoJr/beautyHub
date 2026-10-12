@@ -61,7 +61,7 @@ export default defineNitroPlugin(async () => {
         const resend = new Resend(config.resendApiKey);
 
         await resend.emails.send({
-          from: 'BeautyHub <onboarding@resend.dev>', // Use onboarding@resend.dev apenas para testes na mesma conta.
+          from: 'BeautyHub <nao-responda@beauty-hub.tec.br>',
           to: user.email,
           subject: `Lembrete de Agendamento: ${tipo === '1h' ? '1 hora' : '30 minutos'}!`,
           html: html

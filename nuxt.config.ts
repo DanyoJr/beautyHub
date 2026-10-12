@@ -5,6 +5,8 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "nuxt-auth-utils", "@vercel/analytics"],
   colorMode: {
     preference: "light",
+    fallback: "light",
+    classSuffix: "",
   },
   css: ["~/assets/css/main.css"],
   routeRules: {

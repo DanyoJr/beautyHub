@@ -2,8 +2,12 @@ import Appointment from "~~/server/models/Appointment";
 import Service from "~~/server/models/Service";
 import Employee from "~~/server/models/Employee";
 import AgendaConfig from "~~/server/models/AgendaConfig";
+import User from "~~/server/models/User";
+import Enterprise from "~~/server/models/Enterprise";
 import jwt from "jsonwebtoken";
 import { getAgenda } from "~~/server/utils/agenda";
+import { Resend } from "resend";
+import { getConfirmacaoEmailHtml } from "~~/server/utils/emailTemplate";
 
 export default defineEventHandler(async (event) => {
   const token = getCookie(event, "token");
@@ -138,6 +142,40 @@ export default defineEventHandler(async (event) => {
         appointmentId: appointment.id_agendamento,
         tipo: "30m"
       });
+    }
+
+    // FASE 4: Enviar e-mail de confirmação do agendamento
+    try {
+      if (config.resendApiKey) {
+        const user = await User.findById(decoded.id);
+        const enterprise = await Enterprise.findOne({ id_empresa });
+        
+        if (user && enterprise && service) {
+          const resend = new Resend(config.resendApiKey);
+          const timeFormatted = new Date(inicio).toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo',
+            dateStyle: 'short',
+            timeStyle: 'short'
+          });
+          const html = getConfirmacaoEmailHtml(
+            user.name || 'Cliente', 
+            service.nome || 'Serviço', 
+            enterprise.nome_fantasia || 'Empresa', 
+            timeFormatted
+          );
+
+          // Dispara o envio sem bloquear a resposta ao usuário
+          resend.emails.send({
+            from: 'BeautyHub <nao-responda@beauty-hub.tec.br>',
+            to: user.email,
+            subject: 'Agendamento Confirmado!',
+            html: html
+          }).then(() => console.log(`[Resend] E-mail de confirmação enviado para ${user.email}`))
+            .catch(e => console.error("[Resend] Erro no envio assíncrono:", e));
+        }
+      }
+    } catch (e) {
+      console.error("[Resend] Erro ao preparar envio de e-mail:", e);
     }
 
     return { statusCode: 201, message: "Agendamento realizado com sucesso!", appointment };
