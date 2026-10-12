@@ -2,6 +2,7 @@
 @import "@nuxt/ui";
 
 :root {
+  color-scheme: light;
   --ui-primary: #6d3483;
   --ui-bg: #ffffff;
 }
