@@ -45,7 +45,7 @@
 
         <!-- Forgot Password -->
         <div class="text-center mt-4">
-          <a href="#" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">Esqueceu a senha? <span class="font-medium text-gray-800">Clique aqui</span></a>
+          <NuxtLink to="/recuperar-senha" class="text-sm text-gray-600 hover:text-gray-800 transition-colors">Esqueceu a senha? <span class="font-medium text-gray-800">Clique aqui</span></NuxtLink>
         </div>
 
         <!-- Divider -->

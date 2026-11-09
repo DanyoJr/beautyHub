@@ -23,3 +23,6 @@ logs
 .env.*
 !.env.example
 /docs.md
+
+/TCC_BeautyHub_ABNT_imagens
+converter_tcc_beautyhub.py

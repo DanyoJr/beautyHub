@@ -69,3 +69,35 @@ export const getConfirmacaoEmailHtml = (
     </div>
   `;
 };
+
+export const getRecuperacaoSenhaEmailHtml = (
+  userName: string,
+  code: string
+) => {
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eaeaea; border-radius: 8px; overflow: hidden;">
+      <div style="background: linear-gradient(90deg, #dd4f6e 0%, #6d3483 100%); padding: 24px; text-align: center;">
+        <h1 style="color: white; margin: 0; font-size: 24px;">Recuperação de Senha</h1>
+      </div>
+      <div style="padding: 32px 24px;">
+        <p style="font-size: 16px; color: #333;">Olá <strong>${userName}</strong>,</p>
+        <p style="font-size: 16px; color: #555; line-height: 1.5;">
+          Recebemos uma solicitação para alterar a senha da sua conta no <strong>BeautyHub</strong>. Utilize o código de 4 dígitos abaixo para confirmar a alteração:
+        </p>
+        
+        <div style="background-color: #f9fafb; border: 2px dashed #6d3483; border-radius: 8px; padding: 20px; margin: 24px 0; text-align: center;">
+          <span style="font-size: 32px; font-weight: bold; letter-spacing: 8px; color: #6d3483;">
+            ${code}
+          </span>
+        </div>
+        
+        <p style="font-size: 14px; color: #777;">
+          Este código é válido por <strong>15 minutos</strong>. Se você não solicitou a troca de senha, ignore este e-mail e sua senha permanecerá a mesma.
+        </p>
+      </div>
+      <div style="background-color: #f3f4f6; padding: 16px; text-align: center; font-size: 12px; color: #aaa;">
+        © 2026 BeautyHub. Todos os direitos reservados.
+      </div>
+    </div>
+  `;
+};
