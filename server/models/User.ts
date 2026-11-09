@@ -9,6 +9,9 @@ export interface IUser {
   googleId?: string;
   id_empresa?: string; // Vínculo com a empresa (apenas para role 'empresa')
   imagem_perfil?: string; // Base64 da imagem de perfil
+  resetPasswordCode?: string;
+  resetPasswordExpires?: Date;
+  resetPasswordHash?: string;
 }
 
 const UserSchema = new mongoose.Schema<IUser>(
@@ -21,6 +24,9 @@ const UserSchema = new mongoose.Schema<IUser>(
     googleId: { type: String },
     id_empresa: { type: String, required: false },
     imagem_perfil: { type: String, required: false },
+    resetPasswordCode: { type: String, required: false },
+    resetPasswordExpires: { type: Date, required: false },
+    resetPasswordHash: { type: String, required: false },
   },
   { timestamps: true },
 );

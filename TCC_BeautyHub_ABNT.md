@@ -1,4 +1,5 @@
 # FACULDADE DE TECNOLOGIA DE SÃO CAETANO DO SUL – ANTONIO RUSSO
+
 ## CURSO SUPERIOR DE TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS
 
 <br><br><br>
@@ -7,7 +8,7 @@
 **DANIEL YONESHIGE JUNIOR**  
 **GUILHERME LOURENZO ASSUMPÇÃO**  
 **GUILHERME BORGES MONTEIRO**  
-**JOÃO VICTOR DANIEL NOGUEIRA DO SANTOS**  
+**JOÃO VICTOR DANIEL NOGUEIRA DO SANTOS**
 
 <br><br><br><br>
 
@@ -26,7 +27,7 @@
 **DANIEL YONESHIGE JUNIOR**  
 **GUILHERME LOURENZO ASSUMPÇÃO**  
 **GUILHERME BORGES MONTEIRO**  
-**JOÃO VICTOR DANIEL NOGUEIRA DO SANTOS**  
+**JOÃO VICTOR DANIEL NOGUEIRA DO SANTOS**
 
 <br><br><br>
 
@@ -34,8 +35,8 @@
 
 <br><br>
 
-> Trabalho de Conclusão de Curso apresentado à Faculdade de Tecnologia de São Caetano do Sul – Antonio Russo, como requisito parcial para a obtenção do título de Tecnólogo em Análise e Desenvolvimento de Sistemas.  
->  
+> Trabalho de Conclusão de Curso apresentado à Faculdade de Tecnologia de São Caetano do Sul – Antonio Russo, como requisito parcial para a obtenção do título de Tecnólogo em Análise e Desenvolvimento de Sistemas.
+>
 > **Área de Concentração:** Engenharia de Software e Sistemas Web  
 > **Orientador:** Prof. Dr. Jacinto Carlos Ascencio Cansado
 
@@ -48,7 +49,7 @@
 
 ## DEDICATÓRIA
 
-*Dedicamos este trabalho a todas as mulheres microempreendedoras do setor da beleza e estética que, com resiliência, determinação e talento, transformam suas realidades e impulsionam a economia de suas comunidades. Dedicamos também aos nossos familiares, que nos apoiaram incondicionalmente ao longo de toda a nossa jornada acadêmica.*
+_Dedicamos este trabalho a todas as mulheres microempreendedoras do setor da beleza e estética que, com resiliência, determinação e talento, transformam suas realidades e impulsionam a economia de suas comunidades. Dedicamos também aos nossos familiares, que nos apoiaram incondicionalmente ao longo de toda a nossa jornada acadêmica._
 
 ---
 
@@ -69,13 +70,13 @@ A todos os colegas de curso, pelas trocas de conhecimento e pelas noites de estu
 ## EPÍGRAFE
 
 > "Software é uma ótima combinação entre arte e engenharia. Quando você finalmente vê as pessoas usando algo que você construiu para melhorar as vidas delas, tudo ganha sentido."  
-> — *Bill Gates*
+> — _Bill Gates_
 
 ---
 
 ## RESUMO
 
-O presente Trabalho de Conclusão de Curso descreve a concepção, modelagem, implementação e validação da plataforma **BeautyHub**, um ecossistema digital de gestão e agendamento de serviços estéticos voltado a mitigar os gargalos operacionais enfrentados por microempreendedoras individuais (MEIs) e profissionais autônomas do segmento da beleza (como manicures, maquiadoras, cabeleireiras e extensionistas de cílios). Historicamente, a gestão das microempresas do ramo apoia-se em fluxos analógicos, cadernos físicos ou trocas fragmentadas de mensagens em aplicativos de conversação, o que frequentemente acarreta desencontros de horários, perda de faturamento, conflitos de sobreposição de reservas (*overbooking*) e sobrecarga na comunicação com a clientela. Para solucionar tais desafios, o BeautyHub foi concebido sob o paradigma de "ambiente modificável", capacitando cada gestora a parametrizar de forma autônoma seu catálogo de serviços, durações personalizadas, precificação informativa, jornadas de atendimento, pausas intrajornada e escalas de funcionárias. A solução foi projetada sob uma arquitetura limpa em camadas, adotando o framework full-stack **Nuxt 4** integrado ao **Vue.js 3**, **TypeScript**, estilização por **Nuxt UI** e banco de dados orientado a documentos **MongoDB** gerenciado através do ODM **Mongoose**. Para além da interface transacional responsiva (*Mobile-First*), o sistema incorpora um motor assíncrono de tarefas em segundo plano baseado em **Agenda.js**, emissão transacional de e-mails via **Resend** e atualizações em tempo real com **Server-Sent Events (SSE)** para lembretes automáticos e notificações de status de agendamentos. A engenharia de requisitos abrangeu a formalização de 16 requisitos funcionais e 10 requisitos não funcionais, especificação detalhada de 16 casos de uso em tabelas normalizadas, diagramação UML (casos de uso, classes e diagramas de sequência comportamentais) e um plano de testes funcionais sistemático. Os resultados obtidos comprovaram a eliminação total de conflitos de horário via índices compostos no banco de dados, redução sensível do tempo despendido em tarefas de agendamento e uma experiência de autosserviço transparente e fluida para as clientes finais.
+O presente Trabalho de Conclusão de Curso descreve a concepção, modelagem, implementação e validação da plataforma **BeautyHub**, um ecossistema digital de gestão e agendamento de serviços estéticos voltado a mitigar os gargalos operacionais enfrentados por microempreendedoras individuais (MEIs) e profissionais autônomas do segmento da beleza (como manicures, maquiadoras, cabeleireiras e extensionistas de cílios). Historicamente, a gestão das microempresas do ramo apoia-se em fluxos analógicos, cadernos físicos ou trocas fragmentadas de mensagens em aplicativos de conversação, o que frequentemente acarreta desencontros de horários, perda de faturamento, conflitos de sobreposição de reservas (_overbooking_) e sobrecarga na comunicação com a clientela. Para solucionar tais desafios, o BeautyHub foi concebido sob o paradigma de "ambiente modificável", capacitando cada gestora a parametrizar de forma autônoma seu catálogo de serviços, durações personalizadas, precificação informativa, jornadas de atendimento, pausas intrajornada e escalas de funcionárias. A solução foi projetada sob uma arquitetura limpa em camadas, adotando o framework full-stack **Nuxt 4** integrado ao **Vue.js 3**, **TypeScript**, estilização por **Nuxt UI** e banco de dados orientado a documentos **MongoDB** gerenciado através do ODM **Mongoose**. Para além da interface transacional responsiva (_Mobile-First_), o sistema incorpora um motor assíncrono de tarefas em segundo plano baseado em **Agenda.js**, emissão transacional de e-mails via **Resend** e atualizações em tempo real com **Server-Sent Events (SSE)** para lembretes automáticos e notificações de status de agendamentos. A engenharia de requisitos abrangeu a formalização de 16 requisitos funcionais e 10 requisitos não funcionais, especificação detalhada de 16 casos de uso em tabelas normalizadas, diagramação UML (casos de uso, classes e diagramas de sequência comportamentais) e um plano de testes funcionais sistemático. Os resultados obtidos comprovaram a eliminação total de conflitos de horário via índices compostos no banco de dados, redução sensível do tempo despendido em tarefas de agendamento e uma experiência de autosserviço transparente e fluida para as clientes finais.
 
 **Palavras-chave:** Engenharia de Software; Agendamento Digital; Empreendedorismo Feminino; Nuxt; MongoDB; Arquitetura em Camadas.
 
@@ -83,7 +84,7 @@ O presente Trabalho de Conclusão de Curso descreve a concepção, modelagem, im
 
 ## ABSTRACT
 
-This Final Graduation Project describes the design, modeling, implementation, and validation of the **BeautyHub** platform, a digital management and service scheduling ecosystem engineered to mitigate operational bottlenecks experienced by sole proprietorships, individual micro-entrepreneurs (MEIs), and independent beauty professionals (such as manicurists, makeup artists, hairstylists, and lash technicians). Historically, management in small beauty establishments has relied heavily on analog workflows, physical notebooks, or fragmented instant messaging conversations, which routinely leads to scheduling misalignments, missed revenues, double-booking conflicts (*overbooking*), and cognitive overload in client communications. To address these challenges, BeautyHub was architected around the paradigm of a "modifiable environment," enabling each business manager to autonomously configure service catalogs, estimated durations, informative price tables, working hours, break periods, and multi-staff schedules. The software was engineered upon a clean layered architecture, adopting the full-stack framework **Nuxt 4** coupled with **Vue.js 3**, **TypeScript**, **Nuxt UI** design tokens, and a document-oriented database powered by **MongoDB** and **Mongoose** ODM. Beyond a highly responsive, mobile-first interface, the platform incorporates an asynchronous background job processing engine orchestrated by **Agenda.js**, transactional email delivery powered by **Resend**, and real-time client notifications via **Server-Sent Events (SSE)** for automatic reminder dispatches and schedule status updates. Software engineering procedures included the formal definition of 16 functional requirements and 10 non-functional requirements, exhaustive tabular specifications for 16 use cases, comprehensive UML diagrams (use case, domain class, and behavioral sequence diagrams), and a systematic functional testing suite. The achieved results verified the complete prevention of booking conflicts via compound database indexes, a significant reduction in operational overhead for scheduling, and a seamless self-service experience for end consumers.
+This Final Graduation Project describes the design, modeling, implementation, and validation of the **BeautyHub** platform, a digital management and service scheduling ecosystem engineered to mitigate operational bottlenecks experienced by sole proprietorships, individual micro-entrepreneurs (MEIs), and independent beauty professionals (such as manicurists, makeup artists, hairstylists, and lash technicians). Historically, management in small beauty establishments has relied heavily on analog workflows, physical notebooks, or fragmented instant messaging conversations, which routinely leads to scheduling misalignments, missed revenues, double-booking conflicts (_overbooking_), and cognitive overload in client communications. To address these challenges, BeautyHub was architected around the paradigm of a "modifiable environment," enabling each business manager to autonomously configure service catalogs, estimated durations, informative price tables, working hours, break periods, and multi-staff schedules. The software was engineered upon a clean layered architecture, adopting the full-stack framework **Nuxt 4** coupled with **Vue.js 3**, **TypeScript**, **Nuxt UI** design tokens, and a document-oriented database powered by **MongoDB** and **Mongoose** ODM. Beyond a highly responsive, mobile-first interface, the platform incorporates an asynchronous background job processing engine orchestrated by **Agenda.js**, transactional email delivery powered by **Resend**, and real-time client notifications via **Server-Sent Events (SSE)** for automatic reminder dispatches and schedule status updates. Software engineering procedures included the formal definition of 16 functional requirements and 10 non-functional requirements, exhaustive tabular specifications for 16 use cases, comprehensive UML diagrams (use case, domain class, and behavioral sequence diagrams), and a systematic functional testing suite. The achieved results verified the complete prevention of booking conflicts via compound database indexes, a significant reduction in operational overhead for scheduling, and a seamless self-service experience for end consumers.
 
 **Keywords:** Software Engineering; Digital Scheduling; Female Entrepreneurship; Nuxt; MongoDB; Layered Architecture.
 
@@ -152,49 +153,49 @@ This Final Graduation Project describes the design, modeling, implementation, an
 ## LISTA DE ABREVIATURAS E SIGLAS
 
 - **ABNT** – Associação Brasileira de Normas Técnicas
-- **API** – *Application Programming Interface* (Interface de Programação de Aplicações)
-- **BaaS** – *Backend-as-a-Service*
-- **BMC** – *Business Model Canvas*
+- **API** – _Application Programming Interface_ (Interface de Programação de Aplicações)
+- **BaaS** – _Backend-as-a-Service_
+- **BMC** – _Business Model Canvas_
 - **Bcrypt** – Função criptográfica de derivação de chaves adaptativa
 - **CEP** – Código de Endereçamento Postal
 - **CNPJ** – Cadastro Nacional da Pessoa Jurídica
 - **CPF** – Cadastro de Pessoas Físicas
-- **CRUD** – *Create, Read, Update, Delete* (Criar, Ler, Atualizar e Excluir)
-- **CSS** – *Cascading Style Sheets*
+- **CRUD** – _Create, Read, Update, Delete_ (Criar, Ler, Atualizar e Excluir)
+- **CSS** – _Cascading Style Sheets_
 - **CSU** – Caso de Uso do Sistema
-- **CTA** – *Call to Action* (Chamada para Ação)
+- **CTA** – _Call to Action_ (Chamada para Ação)
 - **DER** – Diagrama de Entidade-Relacionamento
-- **DNS** – *Domain Name System*
-- **DOM** – *Document Object Model*
+- **DNS** – _Domain Name System_
+- **DOM** – _Document Object Model_
 - **DS** – Diagrama de Sequência
-- **HTML** – *HyperText Markup Language*
-- **HTTP** – *HyperText Transfer Protocol*
-- **HTTPS** – *HyperText Transfer Protocol Secure*
-- **IDE** – *Integrated Development Environment* (Ambiente de Desenvolvimento Integrado)
-- **JSON** – *JavaScript Object Notation*
-- **JWT** – *JSON Web Token*
+- **HTML** – _HyperText Markup Language_
+- **HTTP** – _HyperText Transfer Protocol_
+- **HTTPS** – _HyperText Transfer Protocol Secure_
+- **IDE** – _Integrated Development Environment_ (Ambiente de Desenvolvimento Integrado)
+- **JSON** – _JavaScript Object Notation_
+- **JWT** – _JSON Web Token_
 - **MEI** – Microempreendedor Individual
-- **MVC** – *Model-View-Controller*
+- **MVC** – _Model-View-Controller_
 - **NBR** – Norma Brasileira Regulamentadora
-- **NoSQL** – *Not Only SQL* (Bancos de dados não relacionais)
-- **ODM** – *Object Data Modeling* (Mapeador de Objetos para Bancos de Documentos)
-- **PWA** – *Progressive Web Application*
-- **REST** – *Representational State Transfer*
+- **NoSQL** – _Not Only SQL_ (Bancos de dados não relacionais)
+- **ODM** – _Object Data Modeling_ (Mapeador de Objetos para Bancos de Documentos)
+- **PWA** – _Progressive Web Application_
+- **REST** – _Representational State Transfer_
 - **RF** – Requisito Funcional
 - **RN** – Regra de Negócio
 - **RNF** – Requisito Não Funcional
-- **SaaS** – *Software as a Service* (Software como Serviço)
-- **SEO** – *Search Engine Optimization*
-- **SPA** – *Single Page Application*
-- **SQL** – *Structured Query Language*
-- **SSE** – *Server-Sent Events*
-- **SSR** – *Server-Side Rendering*
+- **SaaS** – _Software as a Service_ (Software como Serviço)
+- **SEO** – _Search Engine Optimization_
+- **SPA** – _Single Page Application_
+- **SQL** – _Structured Query Language_
+- **SSE** – _Server-Sent Events_
+- **SSR** – _Server-Side Rendering_
 - **TS** – TypeScript
-- **UI** – *User Interface* (Interface do Usuário)
-- **UML** – *Unified Modeling Language*
-- **URI** – *Uniform Resource Identifier*
-- **URL** – *Uniform Resource Locator*
-- **UX** – *User Experience* (Experiência do Usuário)
+- **UI** – _User Interface_ (Interface do Usuário)
+- **UML** – _Unified Modeling Language_
+- **URI** – _Uniform Resource Identifier_
+- **URL** – _Uniform Resource Locator_
+- **UX** – _User Experience_ (Experiência do Usuário)
 
 ---
 
@@ -293,7 +294,7 @@ O advento da computação ubíqua, consolidada pela expansão acelerada dos disp
 
 Nesse panorama de transformação digital, o empreendedorismo feminino desponta como um dos motores mais expressivos da economia contemporânea. Dados do Serviço Brasileiro de Apoio às Micro e Pequenas Empresas (SEBRAE) indicam que mais de 10 milhões de mulheres comandam negócios no Brasil, com uma concentração expressiva nas atividades de serviços de beleza, cuidados pessoais e estética (como cabeleireiras, manicures, maquiadoras, designers de sobrancelhas e extensionistas de cílios). A esmagadora maioria dessas profissionais atua sob o regime jurídico de Microempreendedora Individual (MEI) ou como profissionais autônomas independentes.
 
-Não obstante o expressivo faturamento e o volume ininterrupto de demanda por cuidados estéticos, a infraestrutura gerencial dessas microempreendedoras permanece amplamente rudimentar. É recorrente a constatação de profissionais que ainda utilizam agendas de papel físicas ou gerenciam centenas de mensagens simultâneas em aplicativos de mensageria instantânea (como o WhatsApp) para negociar e confirmar datas e horários. Essa prática fragmentada gera sobrecarga cognitiva severa, pois a profissional se vê forçada a interromper repetidamente procedimentos técnicos manuais de alta precisão para consultar disponibilidade, responder clientes e registrar reservas. O resultado direto dessa desorganização estrutural reflete-se em conflitos de agendamento (*overbooking*), esquecimentos de horários, ociosidade involuntária da agenda e ausência de previsibilidade de fluxo de caixa.
+Não obstante o expressivo faturamento e o volume ininterrupto de demanda por cuidados estéticos, a infraestrutura gerencial dessas microempreendedoras permanece amplamente rudimentar. É recorrente a constatação de profissionais que ainda utilizam agendas de papel físicas ou gerenciam centenas de mensagens simultâneas em aplicativos de mensageria instantânea (como o WhatsApp) para negociar e confirmar datas e horários. Essa prática fragmentada gera sobrecarga cognitiva severa, pois a profissional se vê forçada a interromper repetidamente procedimentos técnicos manuais de alta precisão para consultar disponibilidade, responder clientes e registrar reservas. O resultado direto dessa desorganização estrutural reflete-se em conflitos de agendamento (_overbooking_), esquecimentos de horários, ociosidade involuntária da agenda e ausência de previsibilidade de fluxo de caixa.
 
 Diante de tais circunstâncias, plataformas de software comercialmente estabelecidas no mercado frequentemente falham em atender as particularidades desse nicho. Muitas impõem mensalidades fixas onerosas, exigem configurações corporativas complexas ou apresentam interfaces densas e pouco adaptadas a telas de smartphones, afastando profissionais autônomas que buscam agilidade sem fricção técnica. Constata-se, portanto, a necessidade urgente de desenvolver uma solução de software que integre a robustez da engenharia de sistemas contemporânea à simplicidade de um **ambiente modificável**, onde a própria profissional seja capaz de moldar o sistema às peculiaridades de sua rotina de trabalho.
 
@@ -315,8 +316,8 @@ Para materializar o objetivo geral, foram traçados os seguintes objetivos espec
 
 1. **Levantar e formalizar** os requisitos funcionais e não funcionais específicos do segmento de beleza, estabelecendo regras de negócio rigorosas para cálculo dinâmico de disponibilidade e bloqueio de reservas;
 2. **Modelar a arquitetura da solução** utilizando notação padronizada da Unified Modeling Language (UML), contemplando diagramas de casos de uso com especificações formais, diagramas de classes de domínio e diagramas de sequência comportamentais;
-3. **Projetar a estrutura de persistência de dados** em modelo NoSQL utilizando MongoDB e ODM Mongoose, projetando índices compostos específicos para prevenir ativamente conflitos de concorrência e *overbooking*;
-4. **Construir interfaces de usuário responsivas (*Mobile-First*)** com base em componentes modernos, priorizando a usabilidade, acessibilidade e redução da carga cognitiva para clientes e gestoras;
+3. **Projetar a estrutura de persistência de dados** em modelo NoSQL utilizando MongoDB e ODM Mongoose, projetando índices compostos específicos para prevenir ativamente conflitos de concorrência e _overbooking_;
+4. **Construir interfaces de usuário responsivas (_Mobile-First_)** com base em componentes modernos, priorizando a usabilidade, acessibilidade e redução da carga cognitiva para clientes e gestoras;
 5. **Desenvolver o ecossistema full-stack** sob o framework Nuxt 4 e linguagem TypeScript, aplicando o padrão de arquitetura em camadas e modularizando regras de negócio no back-end (Nitro Engine);
 6. **Integrar serviços em tempo real e de segundo plano**, implementando fila de tarefas assíncronas com Agenda.js, notificações no navegador via Server-Sent Events (SSE) e disparo transacional de e-mails de lembrete com Resend API;
 7. **Elaborar e executar um plano de testes funcionais sistemático**, validando os fluxos críticos de autenticação, agendamento concorrente, edição de catálogos e integridade dos dados persistidos.
@@ -325,11 +326,12 @@ Para materializar o objetivo geral, foram traçados os seguintes objetivos espec
 
 ### 1.4.1 Justificativa Social e Econômica
 
-Sob a perspectiva socioeconômica, o fortalecimento de microempreendimentos geridos por mulheres atua como um vetor primordial de emancipação financeira e geração de renda nas comunidades urbanas. Quando uma manicure ou cabeleireira automatiza o atendimento e as reservas de horários de suas clientes, ela não apenas mitiga perdas decorrentes de faltas não avisadas (*no-shows*), mas também recupera horas produtivas diárias que anteriormente eram dissipadas em trocas de mensagens manuais. A previsibilidade de receita e a transparência propiciadas por um catálogo digital valorizam o trabalho da profissional, estimulando a formalização empresarial e a expansão sustentável de seus pequenos estabelecimentos.
+Sob a perspectiva socioeconômica, o fortalecimento de microempreendimentos geridos por mulheres atua como um vetor primordial de emancipação financeira e geração de renda nas comunidades urbanas. Quando uma manicure ou cabeleireira automatiza o atendimento e as reservas de horários de suas clientes, ela não apenas mitiga perdas decorrentes de faltas não avisadas (_no-shows_), mas também recupera horas produtivas diárias que anteriormente eram dissipadas em trocas de mensagens manuais. A previsibilidade de receita e a transparência propiciadas por um catálogo digital valorizam o trabalho da profissional, estimulando a formalização empresarial e a expansão sustentável de seus pequenos estabelecimentos.
 
 ### 1.4.2 Justificativa Técnica
 
 Do ponto de vista da Ciência da Computação e da Engenharia de Software, o desenvolvimento do BeautyHub ancora-se em desafios contemporâneos de arquitetura web:
+
 - **Computação Reativa e Concorrente:** A determinação de horários vagos não é uma simples busca em banco de dados; trata-se de um algoritmo que calcula a interseção entre o expediente configurado, as pausas intrajornada, os agendamentos previamente confirmados e a duração exata do procedimento pretendido, exigindo consistência transacional sob concorrência simultânea.
 - **Ambiente Modificável:** O software não deve ser rígido. Ele precisa conceder a uma usuária leiga o controle total sobre a duração de serviços fracionados (ex.: 45 min, 90 min) e a inclusão ou exclusão de colaboradores, sem requerer intervenção de programadores ou migrações manuais de esquemas de dados.
 - **Processamento Assíncrono Desacoplado:** A gestão de lembretes prévios (1 hora e 30 minutos antes de cada procedimento) demanda uma fila resiliente de tarefas em segundo plano (Agenda.js) que desonere o ciclo de requisição/resposta do usuário.
@@ -337,6 +339,7 @@ Do ponto de vista da Ciência da Computação e da Engenharia de Software, o des
 ## 1.5 Estrutura do Trabalho
 
 Este documento monográfico segue as diretrizes metodológicas da ABNT e organiza-se em 10 capítulos estruturados:
+
 - **Capítulo 1 – Introdução:** Contextualização, problema, objetivos, justificativa e síntese estrutural.
 - **Capítulo 2 – Metodologia e Tecnologias Aplicadas:** Processo metodológico ágil, escopo, arquitetura em camadas e stack completa (Nuxt 4, Vue 3, MongoDB, Mongoose, Agenda, SSE, Resend).
 - **Capítulo 3 – Revisão da Literatura e Análise de Similares:** Fundamentação teórica do nicho de beleza, análise comparativa de soluções existentes de mercado e proposição do conceito de ambiente modificável.
@@ -355,13 +358,14 @@ Este documento monográfico segue as diretrizes metodológicas da ABNT e organiz
 
 ## 2.1 Metodologia de Desenvolvimento de Software
 
-A condução do projeto BeautyHub fundamentou-se em práticas ágeis de desenvolvimento de software, com ênfase no método **Kanban** (ANDERSON, 2011). O Kanban viabiliza a gestão visual do fluxo de trabalho por meio de um quadro de cartões (*cards*) organizados em colunas dinâmicas (como *Backlog*, *Em Análise*, *Desenvolvimento*, *Code Review*, *Testes* e *Concluído*).
+A condução do projeto BeautyHub fundamentou-se em práticas ágeis de desenvolvimento de software, com ênfase no método **Kanban** (ANDERSON, 2011). O Kanban viabiliza a gestão visual do fluxo de trabalho por meio de um quadro de cartões (_cards_) organizados em colunas dinâmicas (como _Backlog_, _Em Análise_, _Desenvolvimento_, _Code Review_, _Testes_ e _Concluído_).
 
-A escolha do Kanban justificou-se pela necessidade de responder rapidamente a refinamentos de requisitos identificados durante as interações com o público-alvo, limitando o trabalho em progresso (*Work In Progress* - WIP) para assegurar que cada funcionalidade fosse codificada, testada e integrada antes do início da subsequente. As reuniões de alinhamento entre os membros da equipe ocorreram semanalmente, apoiadas pelo versionamento contínuo em repositório Git hospedado na plataforma GitHub, mediante a estratégia de ramificação por funcionalidades (*Feature Branch Workflow*).
+A escolha do Kanban justificou-se pela necessidade de responder rapidamente a refinamentos de requisitos identificados durante as interações com o público-alvo, limitando o trabalho em progresso (_Work In Progress_ - WIP) para assegurar que cada funcionalidade fosse codificada, testada e integrada antes do início da subsequente. As reuniões de alinhamento entre os membros da equipe ocorreram semanalmente, apoiadas pelo versionamento contínuo em repositório Git hospedado na plataforma GitHub, mediante a estratégia de ramificação por funcionalidades (_Feature Branch Workflow_).
 
 ## 2.2 Escopo do Projeto
 
-O escopo do sistema abrange a automação completa do ciclo de agendamentos no ramo estético, operando como um Software como Serviço (*SaaS*) focado em três frentes principais:
+O escopo do sistema abrange a automação completa do ciclo de agendamentos no ramo estético, operando como um Software como Serviço (_SaaS_) focado em três frentes principais:
+
 1. **Frente da Consumidora (Cliente):** Autoatendimento para localização de estabelecimentos, consulta de preços informativos e durações, reserva autônoma em horários disponíveis, visualização de histórico de agendamentos, cancelamentos dentro do prazo permitido e emissão de avaliações após o atendimento.
 2. **Frente da Gestora (Empresa/MEI):** Parametrização completa do ambiente modificável (catálogo de serviços, horários de expediente, intervalos e colaboradores), visualização da agenda diária e controle de conclusão de procedimentos.
 3. **Frente de Governança (Administrador):** Painel de controle global para acompanhamento de novos cadastros de empresas e clientes, métricas de adoção e gestão de status operacional de empresas na plataforma.
@@ -371,14 +375,15 @@ Delimita-se que a plataforma **não atua como intermediadora financeira**: as tr
 ## 2.3 Ferramentas e Ambiente de Desenvolvimento
 
 Para a construção e sustentação do projeto, foram adotadas as seguintes ferramentas:
+
 - **Figma:** Plataforma de prototipação em nuvem utilizada na elaboração dos wireframes e protótipos de alta fidelidade para as interfaces mobile e desktop, assegurando consistência em tipografia, cores e hierarquia visual (PM3, 2024);
 - **Visual Studio Code (VS Code):** Ambiente de Desenvolvimento Integrado (IDE) configurado com extensões de TypeScript, ESLint, Prettier e suporte a componentes Vue/Nuxt;
 - **Git e GitHub:** Controle de versões distribuído, permitindo rastreabilidade de código, resolução controlada de conflitos e histórico auditável de desenvolvimento;
-- **Yarn (v1.22.22):** Gerenciador de pacotes de alta performance com resolução determinística de dependências via arquivo de bloqueio (*yarn.lock*).
+- **Yarn (v1.22.22):** Gerenciador de pacotes de alta performance com resolução determinística de dependências via arquivo de bloqueio (_yarn.lock_).
 
 ## 2.4 Stack Tecnológica do Ecossistema Web
 
-A Figura 1 ilustra a arquitetura lógica do sistema BeautyHub, estruturada sob uma rigorosa separação de responsabilidades em três camadas fundamentais: Camada de Apresentação (*Client-Side*), Camada de Aplicação e Serviços (*Server-Side / Nitro Engine*) e Camada de Persistência (*Database*).
+A Figura 1 ilustra a arquitetura lógica do sistema BeautyHub, estruturada sob uma rigorosa separação de responsabilidades em três camadas fundamentais: Camada de Apresentação (_Client-Side_), Camada de Aplicação e Serviços (_Server-Side / Nitro Engine_) e Camada de Persistência (_Database_).
 
 ```mermaid
 graph TD
@@ -404,7 +409,7 @@ graph TD
     end
 
     UI --> Nitro
-    SSE_Client <.. SSEServer
+    SSEServer -.-> SSE_Client
     Nitro --> AuthMiddleware
     Nitro --> AlgoritmoAgenda
     Nitro --> MongooseODM
@@ -415,30 +420,33 @@ graph TD
     AgendaWorker --> AgendaCollection
     MongooseODM --> MongoDB
 ```
-*Figura 1 – Arquitetura Geral do Sistema BeautyHub em Camadas. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 1 – Arquitetura Geral do Sistema BeautyHub em Camadas. Fonte: Elaborado pelos autores (2026)._
 
 ### 2.4.1 Front-End e Framework Full-Stack: Nuxt 4, Vue.js 3 e Nuxt UI
 
 O front-end do BeautyHub foi construído utilizando o **Nuxt 4**, o mais moderno framework para o ecossistema **Vue.js 3**. O Nuxt proporciona recursos nativos essenciais para aplicações de alto nível:
-- **Roteamento Baseado no Sistema de Arquivos (*File-Based Routing*):** Todas as páginas situadas no diretório `app/pages` convertem-se automaticamente em rotas tipadas, eliminando a manutenção manual de arquivos extensos de rotas;
-- **Composição e Reatividade (Composition API):** Permite organizar a lógica de interface em módulos coesos e desacoplados através de *composables*, promovendo legibilidade e reuso de lógica;
+
+- **Roteamento Baseado no Sistema de Arquivos (_File-Based Routing_):** Todas as páginas situadas no diretório `app/pages` convertem-se automaticamente em rotas tipadas, eliminando a manutenção manual de arquivos extensos de rotas;
+- **Composição e Reatividade (Composition API):** Permite organizar a lógica de interface em módulos coesos e desacoplados através de _composables_, promovendo legibilidade e reuso de lógica;
 - **Nuxt UI:** Biblioteca oficial de componentes construída sobre Tailwind CSS, que oferece acessibilidade integrada (WAI-ARIA), padronização tipográfica e suporte nativo a temas responsivos.
 
 ### 2.4.2 Back-End e Motor Nitro: TypeScript e Rotas de Servidor
 
-O servidor do BeautyHub é executado pelo motor **Nitro**, o motor de servidor integrado do Nuxt. As rotas de API, localizadas no diretório `server/api/`, operam como funções sem servidor (*serverless endpoints*) puras, escritas integralmente em **TypeScript**. Esse arranjo elimina a necessidade de configurar servidores Express externos, garantindo que o front-end e o back-end compartilhem tipos de dados e contratos de interface de ponta a ponta.
+O servidor do BeautyHub é executado pelo motor **Nitro**, o motor de servidor integrado do Nuxt. As rotas de API, localizadas no diretório `server/api/`, operam como funções sem servidor (_serverless endpoints_) puras, escritas integralmente em **TypeScript**. Esse arranjo elimina a necessidade de configurar servidores Express externos, garantindo que o front-end e o back-end compartilhem tipos de dados e contratos de interface de ponta a ponta.
 
 ### 2.4.3 Arquitetura de Notificações em Tempo Real: Server-Sent Events (SSE)
 
-Para permitir que a usuária receba avisos imediatos em tela enquanto navega na plataforma (por exemplo, avisos de confirmação de agendamento ou alertas de proximidade do horário), implementou-se o protocolo **Server-Sent Events (SSE)** através da rota `server/api/notifications/stream.get.ts`. 
+Para permitir que a usuária receba avisos imediatos em tela enquanto navega na plataforma (por exemplo, avisos de confirmação de agendamento ou alertas de proximidade do horário), implementou-se o protocolo **Server-Sent Events (SSE)** através da rota `server/api/notifications/stream.get.ts`.
 
-Diferente de requisições HTTP tradicionais que exigem consultas repetitivas em laço (*polling*), o SSE mantém uma conexão unidirecional persistente e de baixo consumo de recursos entre o servidor Nitro e o navegador, permitindo empurrar cargas JSON diretamente para a interface do cliente no exato instante em que o evento ocorre.
+Diferente de requisições HTTP tradicionais que exigem consultas repetitivas em laço (_polling_), o SSE mantém uma conexão unidirecional persistente e de baixo consumo de recursos entre o servidor Nitro e o navegador, permitindo empurrar cargas JSON diretamente para a interface do cliente no exato instante em que o evento ocorre.
 
 ### 2.4.4 Processamento em Segundo Plano e Fila com Agenda.js
 
-Para a execução de tarefas temporizadas de forma confiável, integrou-se a biblioteca **Agenda.js** (`agenda` e `@agendajs/mongo-backend`), configurada como plugin do Nitro em `server/plugins/agenda.ts`. 
+Para a execução de tarefas temporizadas de forma confiável, integrou-se a biblioteca **Agenda.js** (`agenda` e `@agendajs/mongo-backend`), configurada como plugin do Nitro em `server/plugins/agenda.ts`.
 
-O Agenda.js utiliza o próprio MongoDB como fila persistente de tarefas (*job queue*). No momento em que um agendamento é gerado no sistema, dois trabalhos futuros com a rotina `"enviar_lembrete"` são automaticamente agendados:
+O Agenda.js utiliza o próprio MongoDB como fila persistente de tarefas (_job queue_). No momento em que um agendamento é gerado no sistema, dois trabalhos futuros com a rotina `"enviar_lembrete"` são automaticamente agendados:
+
 1. Um job para **1 hora** antes do início do procedimento;
 2. Um job para **30 minutos** antes do início do procedimento.
 
@@ -450,9 +458,10 @@ O canal externo de notificação do BeautyHub baseia-se na **Resend API**, uma i
 
 ### 2.4.6 Autenticação, Criptografia e Autorização (RBAC)
 
-A segurança e o controle de acesso são suportados pelo pacote `nuxt-auth-utils`, complementado por tokens criptografados **JSON Web Tokens (JWT)** e derivação de senhas com o algoritmo adaptativo **Bcrypt** (salting com 10 rounds). 
+A segurança e o controle de acesso são suportados pelo pacote `nuxt-auth-utils`, complementado por tokens criptografados **JSON Web Tokens (JWT)** e derivação de senhas com o algoritmo adaptativo **Bcrypt** (salting com 10 rounds).
 
-O sistema implementa o padrão **Controle de Acesso Baseado em Papéis** (*Role-Based Access Control* - RBAC), segmentando os usuários em três papéis:
+O sistema implementa o padrão **Controle de Acesso Baseado em Papéis** (_Role-Based Access Control_ - RBAC), segmentando os usuários em três papéis:
+
 - `admin`: Permissão total de governança sobre empresas e cadastros;
 - `empresa`: Permissão restrita às configurações do próprio estabelecimento, catálogo, agenda e confirmação de serviços vinculados ao seu `id_empresa`;
 - `cliente`: Permissão voltada à busca, reserva, cancelamento e histórico pessoal de agendamentos.
@@ -464,8 +473,9 @@ O sistema implementa o padrão **Controle de Acesso Baseado em Papéis** (*Role-
 Optou-se pela utilização do banco de dados não relacional **MongoDB** hospedado em nuvem (**MongoDB Atlas**), integrado à aplicação através do ODM (Object Data Modeling) **Mongoose**.
 
 Diferente de bancos de dados relacionais estritos com tabelas estáticas, o modelo orientado a documentos em formato BSON/JSON atende com exatidão à proposta de "ambiente modificável" do BeautyHub:
+
 - As empresas de estética possuem variações intrínsecas: algumas operam de forma solo, outras possuem múltiplas funcionárias;
-- Os horários de pausas intrajornada (almoço, descanso) possuem cardinalidade variável e podem ser expressos diretamente como subdocumentos aninhados (`pausas: [{ inicio: "12:00", fim: "13:00" }]`) sem a sobrecarga de tabelas intermediárias com junções (*joins*) onerosas;
+- Os horários de pausas intrajornada (almoço, descanso) possuem cardinalidade variável e podem ser expressos diretamente como subdocumentos aninhados (`pausas: [{ inicio: "12:00", fim: "13:00" }]`) sem a sobrecarga de tabelas intermediárias com junções (_joins_) onerosas;
 - A evolução dos esquemas pode ocorrer sem demandar scripts complexos de migração que indisponibilizariam o serviço.
 
 ### 2.5.2 Mapeamento e Integridade Estrutural com Mongoose
@@ -474,23 +484,25 @@ Embora o MongoDB seja esquematicamente flexível, a confiabilidade de uma aplica
 
 ### 2.5.3 Prevenção de Conflitos e Otimização via Índices Compostos
 
-A garantia de que duas clientes não possam agendar o mesmo horário para a mesma profissional em simultâneo (conflito de concorrência / *overbooking*) é suportada por duas camadas de defesa:
+A garantia de que duas clientes não possam agendar o mesmo horário para a mesma profissional em simultâneo (conflito de concorrência / _overbooking_) é suportada por duas camadas de defesa:
+
 1. **Validação Algorítmica na Aplicação:** Antes de confirmar a gravação, a rota `server/api/appointment/index.post.ts` consulta se existe qualquer agendamento com status `"aberto"` cujo intervalo colida com o período calculado (`[inicio, fim]`);
 2. **Índice Composto no Banco de Dados:** Criou-se um índice específico no schema de agendamentos (`AppointmentSchema`):
    ```typescript
    AppointmentSchema.index(
      { id_empresa: 1, id_funcionario: 1, data_hora_inicio: 1, status: 1 },
-     { name: "idx_overbooking" }
+     { name: "idx_overbooking" },
    );
    ```
-   Esse índice assegura que consultas de conferência de sobreposição operem em tempo logarítmico $O(\log n)$, sem a realização de varreduras completas de coleção (*collection scans*).
+   Esse índice assegura que consultas de conferência de sobreposição operem em tempo logarítmico $O(\log n)$, sem a realização de varreduras completas de coleção (_collection scans_).
 
 ## 2.6 Escalabilidade e Infraestrutura de Nuvem
 
-A arquitetura do BeautyHub foi delineada para sustentação em nuvem (*cloud-native*):
-- O front-end e os endpoints de API são compilados de forma otimizada para execução em plataformas com suporte a computação sem servidor (*serverless/edge*), tais como a **Vercel** ou instâncias conteinerizadas **Docker**;
-- O banco de dados opera no cluster gerenciado MongoDB Atlas, que fornece redundância em três zonas de disponibilidade (*replica set*), backups contínuos automatizados e criptografia em repouso (*encryption at rest*);
-- A execução do worker Agenda.js pode operar acoplada ao processo principal em instâncias pequenas ou ser facilmente extraída para um processo isolado de computação (*background dyno*) em cenários de alta volumetria transacional.
+A arquitetura do BeautyHub foi delineada para sustentação em nuvem (_cloud-native_):
+
+- O front-end e os endpoints de API são compilados de forma otimizada para execução em plataformas com suporte a computação sem servidor (_serverless/edge_), tais como a **Vercel** ou instâncias conteinerizadas **Docker**;
+- O banco de dados opera no cluster gerenciado MongoDB Atlas, que fornece redundância em três zonas de disponibilidade (_replica set_), backups contínuos automatizados e criptografia em repouso (_encryption at rest_);
+- A execução do worker Agenda.js pode operar acoplada ao processo principal em instâncias pequenas ou ser facilmente extraída para um processo isolado de computação (_background dyno_) em cenários de alta volumetria transacional.
 
 ---
 
@@ -504,14 +516,16 @@ Nesse setor, a relação de confiança entre a prestadora e a consumidora é his
 
 ## 3.2 O Desafio da Gestão do Tempo e Barreiras Operacionais
 
-De acordo com estudos clássicos sobre produtividade e administração do tempo em pequenas empresas (MAXIMIANO, 2017), a fragmentação da atenção (*context switching*) constitui o maior fator de perda de rendimento e geração de estresse em profissionais autônomos. Quando a manicure ou esteticista necessita interromper um atendimento em curso para responder a uma cliente pelo WhatsApp perguntando "Você tem horário para amanhã?", estabelece-se um ciclo vicioso de ineficiência:
+De acordo com estudos clássicos sobre produtividade e administração do tempo em pequenas empresas (MAXIMIANO, 2017), a fragmentação da atenção (_context switching_) constitui o maior fator de perda de rendimento e geração de estresse em profissionais autônomos. Quando a manicure ou esteticista necessita interromper um atendimento em curso para responder a uma cliente pelo WhatsApp perguntando "Você tem horário para amanhã?", estabelece-se um ciclo vicioso de ineficiência:
+
 1. O atendimento presencial sofre atrasos e perda de foco na experiência da cliente na cadeira;
 2. A resposta remota pode demorar horas, fazendo com que a cliente em potencial procure outro estabelecimento concorrente;
-3. A ausência de um repositório centralizado de dados faz com que horários vagos permaneçam desocupados (*janelas mortas*), comprometendo o faturamento no final do mês.
+3. A ausência de um repositório centralizado de dados faz com que horários vagos permaneçam desocupados (_janelas mortas_), comprometendo o faturamento no final do mês.
 
 ## 3.3 Análise Crítica de Aplicações Similares e o Conceito de Ambiente Modificável
 
 A análise mercadológica de ferramentas de agendamento disponíveis revela dois polos de soluções:
+
 1. **Sistemas Corporativos de Grande Porte (ex.: Avec, Trinks):** Softwares focados em grandes redes de salões de beleza e franquias. Embora completos, impõem mensalidades elevadas, exigem a aquisição compulsória de módulos complexos de emissão de notas fiscais e controle de comissões, além de apresentarem curvas de aprendizado íngremes que intimidam profissionais autônomas que trabalham individualmente;
 2. **Agendas Genéricas e Formulários (ex.: Calendly, Google Agenda, WhatsApp Business):** Gratuitas ou de baixo custo, porém genéricas. Não compreendem a dinâmica estética — como durações diferenciadas por tipo de serviço, bloqueio de pausas de almoço ou a necessidade de exibir fotos de antes e depois dos procedimentos em uma vitrine virtual.
 
@@ -530,6 +544,7 @@ O propósito fundamental do BeautyHub é democratizar a gestão digital para o s
 ## 4.2 Perfis de Usuários (Atores do Ecossistema)
 
 A plataforma modela três atores humanos e um ator de sistema:
+
 - **Cliente:** A consumidora que busca por cuidados estéticos. Utiliza dispositivos móveis para descobrir estabelecimentos, conferir valores informativos e agendar horários em qualquer momento do dia (inclusive fora do expediente comercial);
 - **Empresa (MEI):** A profissional autônoma ou proprietária do estabelecimento estético. Detém a governança de sua página, definindo sua identidade visual, seu portfólio de serviços com durações específicas, suas regras de expediente e a homologação dos atendimentos diários;
 - **Administrador:** Mantenedor técnico da plataforma com visão consolidada dos números de uso, responsável por autorizar a entrada de empresas e resguardar as regras de convivência sistêmica;
@@ -537,7 +552,7 @@ A plataforma modela três atores humanos e um ator de sistema:
 
 ## 4.3 Arquitetura de Informação e Modelo de Navegação
 
-A Figura 2 apresenta o modelo de navegação do BeautyHub. O usuário inicia sua jornada pela Landing Page pública. A partir da autenticação, o mecanismo de roteamento baseado em permissões (*RBAC*) conduz o usuário para sua área de trabalho especializada:
+A Figura 2 apresenta o modelo de navegação do BeautyHub. O usuário inicia sua jornada pela Landing Page pública. A partir da autenticação, o mecanismo de roteamento baseado em permissões (_RBAC_) conduz o usuário para sua área de trabalho especializada:
 
 ```mermaid
 graph TD
@@ -568,7 +583,8 @@ graph TD
     AreaAdmin --> DashAdmin["Métricas Globais do Sistema"]
     AreaAdmin --> GestaoEmpresas["Auditoria e Ativação de Empresas"]
 ```
-*Figura 2 – Modelo de Navegação Global do Sistema BeautyHub. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 2 – Modelo de Navegação Global do Sistema BeautyHub. Fonte: Elaborado pelos autores (2026)._
 
 ---
 
@@ -576,7 +592,7 @@ graph TD
 
 ## 5.1 Engenharia de Requisitos
 
-A especificação de requisitos representa o alicerce fundamental para a garantia de qualidade e conformidade de um artefato de software. Conforme destaca Sommerville (2018, p. 104), *"a especificação de requisitos é o processo de escrever os requisitos de usuário e de sistema em um documento de requisitos. Em condições ideais, esses requisitos devem ser claros, inequívocos, fáceis de entender, completos e consistentes"*.
+A especificação de requisitos representa o alicerce fundamental para a garantia de qualidade e conformidade de um artefato de software. Conforme destaca Sommerville (2018, p. 104), _"a especificação de requisitos é o processo de escrever os requisitos de usuário e de sistema em um documento de requisitos. Em condições ideais, esses requisitos devem ser claros, inequívocos, fáceis de entender, completos e consistentes"_.
 
 ### 5.1.1 Requisitos Funcionais (RF)
 
@@ -584,26 +600,26 @@ O Quadro 1 descreve formalmente os Requisitos Funcionais identificados e impleme
 
 **Quadro 1 – Requisitos Funcionais do Sistema BeautyHub**
 
-| ID | Descrição do Requisito Funcional | Caso de Uso Relacionado | Regra de Negócio |
-| :--- | :--- | :--- | :--- |
-| **RF001** | O sistema deve permitir o cadastro de novos clientes, validando nome, e-mail único e senha criptografada. | CSU001 | RN01 |
-| **RF002** | O sistema deve autenticar usuários (clientes, empresas e admin) via e-mail e senha, retornando sessão segura JWT. | CSU002 | RN03 |
-| **RF003** | O sistema deve disponibilizar funcionalidade de recuperação de senha por e-mail com tokens de expiração curta. | CSU003 | RN03 |
-| **RF004** | O sistema deve exibir painel de controle administrativo com métricas globais (total de empresas, clientes e agendamentos). | CSU004 | - |
-| **RF005** | O sistema deve permitir o cadastro de empresas/profissionais, validando dados cadastrais, contato, categoria e endereço integrado via CEP. | CSU005 | RN01 |
-| **RF006** | O sistema deve permitir que o administrador ative ou suspenda contas de estabelecimentos cadastrados. | CSU006 | RN02 |
-| **RF007** | O sistema deve permitir que a empresa mantenha seu catálogo de serviços (criar, listar, editar, inativar), informando nome, valor e duração em minutos. | CSU007 | RN02 |
-| **RF008** | O sistema deve permitir que a empresa configure os dias de atendimento da semana, horários de abertura e fechamento, e pausas de almoço/descanso. | CSU008 | RN05 |
-| **RF009** | O sistema deve permitir que a empresa cadastre sua equipe de funcionárias com jornadas e pausas individualizadas. | CSU009 | RN05 |
-| **RF010** | O sistema deve apresentar à gestora da empresa a visualização da agenda diária, agrupando as reservas confirmadas por data. | CSU010 | - |
-| **RF011** | O sistema deve permitir que a empresa atualize manualmente o status de um agendamento para "Concluído" ou "Cancelado". | CSU011 | RN07 |
-| **RF012** | O sistema deve permitir a busca pública de serviços e estabelecimentos com filtros por nome, localidade e categoria estética. | CSU012 | RN02 |
-| **RF013** | O sistema deve calcular dinamicamente os blocos de horários livres, subtraindo pausas e agendamentos existentes, prevenindo conflitos (*overbooking*). | CSU013 | RN04, RN05 |
-| **RF014** | O sistema deve permitir que a cliente autenticada confirme a reserva de um serviço, disparando o agendamento de lembretes automáticos. | CSU013 | RN03, RN04 |
-| **RF015** | O sistema deve permitir que a cliente cancele um agendamento ativo, respeitando o prazo mínimo de antecedência de 2 horas. | CSU015 | RN06 |
-| **RF016** | O sistema deve permitir que a cliente avalie com nota (estrelas) e comentário um atendimento marcado como "Concluído", limitando a uma avaliação por reserva. | CSU016 | RN08, RN09 |
+| ID        | Descrição do Requisito Funcional                                                                                                                              | Caso de Uso Relacionado | Regra de Negócio |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :---------------------- | :--------------- |
+| **RF001** | O sistema deve permitir o cadastro de novos clientes, validando nome, e-mail único e senha criptografada.                                                     | CSU001                  | RN01             |
+| **RF002** | O sistema deve autenticar usuários (clientes, empresas e admin) via e-mail e senha, retornando sessão segura JWT.                                             | CSU002                  | RN03             |
+| **RF003** | O sistema deve disponibilizar funcionalidade de recuperação de senha por e-mail com tokens de expiração curta.                                                | CSU003                  | RN03             |
+| **RF004** | O sistema deve exibir painel de controle administrativo com métricas globais (total de empresas, clientes e agendamentos).                                    | CSU004                  | -                |
+| **RF005** | O sistema deve permitir o cadastro de empresas/profissionais, validando dados cadastrais, contato, categoria e endereço integrado via CEP.                    | CSU005                  | RN01             |
+| **RF006** | O sistema deve permitir que o administrador ative ou suspenda contas de estabelecimentos cadastrados.                                                         | CSU006                  | RN02             |
+| **RF007** | O sistema deve permitir que a empresa mantenha seu catálogo de serviços (criar, listar, editar, inativar), informando nome, valor e duração em minutos.       | CSU007                  | RN02             |
+| **RF008** | O sistema deve permitir que a empresa configure os dias de atendimento da semana, horários de abertura e fechamento, e pausas de almoço/descanso.             | CSU008                  | RN05             |
+| **RF009** | O sistema deve permitir que a empresa cadastre sua equipe de funcionárias com jornadas e pausas individualizadas.                                             | CSU009                  | RN05             |
+| **RF010** | O sistema deve apresentar à gestora da empresa a visualização da agenda diária, agrupando as reservas confirmadas por data.                                   | CSU010                  | -                |
+| **RF011** | O sistema deve permitir que a empresa atualize manualmente o status de um agendamento para "Concluído" ou "Cancelado".                                        | CSU011                  | RN07             |
+| **RF012** | O sistema deve permitir a busca pública de serviços e estabelecimentos com filtros por nome, localidade e categoria estética.                                 | CSU012                  | RN02             |
+| **RF013** | O sistema deve calcular dinamicamente os blocos de horários livres, subtraindo pausas e agendamentos existentes, prevenindo conflitos (_overbooking_).        | CSU013                  | RN04, RN05       |
+| **RF014** | O sistema deve permitir que a cliente autenticada confirme a reserva de um serviço, disparando o agendamento de lembretes automáticos.                        | CSU013                  | RN03, RN04       |
+| **RF015** | O sistema deve permitir que a cliente cancele um agendamento ativo, respeitando o prazo mínimo de antecedência de 2 horas.                                    | CSU015                  | RN06             |
+| **RF016** | O sistema deve permitir que a cliente avalie com nota (estrelas) e comentário um atendimento marcado como "Concluído", limitando a uma avaliação por reserva. | CSU016                  | RN08, RN09       |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ### 5.1.2 Requisitos Não Funcionais (RNF)
 
@@ -611,20 +627,20 @@ O Quadro 2 estabelece os parâmetros de qualidade, restrições arquiteturais e 
 
 **Quadro 2 – Requisitos Não Funcionais do Sistema BeautyHub**
 
-| ID | Categoria | Descrição do Requisito Não Funcional | Critério de Aceite / Métrica |
-| :--- | :--- | :--- | :--- |
-| **RNF001** | Arquitetura | O sistema deve ser estruturado em arquitetura em camadas clara (Apresentação, Serviços de Negócio e Persistência de Dados). | Código desacoplado em pastas `app/`, `server/api/` e `server/models/`. |
-| **RNF002** | Usabilidade | A interface deve aderir integralmente ao paradigma *Mobile-First*, com layout responsivo para smartphones e desktops. | Adaptação em telas de 360px a 1920px sem quebras de layout ou sobreposição de componentes. |
-| **RNF003** | Segurança | As credenciais de acesso (senhas) devem ser criptografadas com hash adaptativo antes da persistência. | Emprego obrigatório da biblioteca Bcrypt com no mínimo 10 salt rounds. |
-| **RNF004** | Desempenho | O endpoint de cálculo dinâmico de disponibilidade de horários deve responder com agilidade. | Tempo de resposta menor que 800 milissegundos para 95% das requisições (*P95*). |
-| **RNF005** | Integridade | A camada de persistência deve utilizar banco NoSQL com tipagem estrita de schemas e índices de unicidade. | Schemas Mongoose tipados com TypeScript e índice composto `idx_overbooking`. |
-| **RNF006** | Confiabilidade | O envio de lembretes de agendamento não deve depender de requisições ativas de clientes. | Fila persistente de jobs em segundo plano com Agenda.js e tolerância a reinicializações. |
-| **RNF007** | Interoperabilidade | O sistema deve consumir serviço externo de consulta de CEPs para preenchimento ágil de endereços. | Integração síncrona com a API pública ViaCEP retornando dados em JSON. |
-| **RNF008** | Autenticação | A comunicação entre cliente e servidor deve ser protegida por tokens assinados criptograficamente. | Utilização de JSON Web Tokens (JWT) trafegados em cookies seguros HTTP-Only. |
-| **RNF009** | Reatividade | Atualizações críticas de status devem ser transmitidas em tempo real para navegadores abertos. | Transmissão de eventos via protocolo Server-Sent Events (SSE). |
-| **RNF010** | Portabilidade | A aplicação deve ser plenamente executável em navegadores modernos sem necessidade de plugins proprietários. | Suporte comprovado a Google Chrome, Safari, Firefox e Microsoft Edge. |
+| ID         | Categoria          | Descrição do Requisito Não Funcional                                                                                        | Critério de Aceite / Métrica                                                               |
+| :--------- | :----------------- | :-------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
+| **RNF001** | Arquitetura        | O sistema deve ser estruturado em arquitetura em camadas clara (Apresentação, Serviços de Negócio e Persistência de Dados). | Código desacoplado em pastas `app/`, `server/api/` e `server/models/`.                     |
+| **RNF002** | Usabilidade        | A interface deve aderir integralmente ao paradigma _Mobile-First_, com layout responsivo para smartphones e desktops.       | Adaptação em telas de 360px a 1920px sem quebras de layout ou sobreposição de componentes. |
+| **RNF003** | Segurança          | As credenciais de acesso (senhas) devem ser criptografadas com hash adaptativo antes da persistência.                       | Emprego obrigatório da biblioteca Bcrypt com no mínimo 10 salt rounds.                     |
+| **RNF004** | Desempenho         | O endpoint de cálculo dinâmico de disponibilidade de horários deve responder com agilidade.                                 | Tempo de resposta menor que 800 milissegundos para 95% das requisições (_P95_).            |
+| **RNF005** | Integridade        | A camada de persistência deve utilizar banco NoSQL com tipagem estrita de schemas e índices de unicidade.                   | Schemas Mongoose tipados com TypeScript e índice composto `idx_overbooking`.               |
+| **RNF006** | Confiabilidade     | O envio de lembretes de agendamento não deve depender de requisições ativas de clientes.                                    | Fila persistente de jobs em segundo plano com Agenda.js e tolerância a reinicializações.   |
+| **RNF007** | Interoperabilidade | O sistema deve consumir serviço externo de consulta de CEPs para preenchimento ágil de endereços.                           | Integração síncrona com a API pública ViaCEP retornando dados em JSON.                     |
+| **RNF008** | Autenticação       | A comunicação entre cliente e servidor deve ser protegida por tokens assinados criptograficamente.                          | Utilização de JSON Web Tokens (JWT) trafegados em cookies seguros HTTP-Only.               |
+| **RNF009** | Reatividade        | Atualizações críticas de status devem ser transmitidas em tempo real para navegadores abertos.                              | Transmissão de eventos via protocolo Server-Sent Events (SSE).                             |
+| **RNF010** | Portabilidade      | A aplicação deve ser plenamente executável em navegadores modernos sem necessidade de plugins proprietários.                | Suporte comprovado a Google Chrome, Safari, Firefox e Microsoft Edge.                      |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ### 5.1.3 Regras de Negócio do Sistema (RN)
 
@@ -632,20 +648,20 @@ O Quadro 3 sintetiza as regras e diretrizes normativas que condicionam os proces
 
 **Quadro 3 – Regras de Negócio do Sistema BeautyHub**
 
-| ID | Título da Regra | Descrição e Condicionamento Lógico |
-| :--- | :--- | :--- |
-| **RN01** | Unicidade de Cadastro | O e-mail informado no cadastro de usuários e empresas deve ser único em toda a base de dados. O documento fiscal (CPF/CNPJ) informado pela empresa também não pode constar em múltiplos registros. |
-| **RN02** | Visibilidade em Buscas | Uma empresa cadastrada só se torna visível nas buscas públicas para clientes se o seu status for "ativo" e possuir, no mínimo, um serviço cadastrado no catálogo. |
-| **RN03** | Exigência de Autenticação | Visitantes anônimos podem buscar serviços e visualizar perfis de salões. Contudo, a efetivação de uma reserva de horário exige que o usuário esteja devidamente autenticado como cliente. |
-| **RN04** | Prevenção de *Overbooking* | Sob nenhuma condição o sistema permitirá o agendamento de dois procedimentos simultâneos para a mesma funcionária (ou mesma empresa solo) no mesmo intervalo de tempo. |
-| **RN05** | Cálculo Dinâmico de Slots | O cálculo dos blocos de horários livres considera: (Expediente) - (Pausas Intrajornada) - (Agendamentos em Aberto). O bloco livre precisa comportar integralmente a duração em minutos do procedimento. |
-| **RN06** | Prazo Mínimo de Cancelamento | A cliente só poderá cancelar um agendamento diretamente pela plataforma se o horário de início distar, no mínimo, 2 horas do momento da solicitação. |
-| **RN07** | Transição de Status da Reserva | Um agendamento é criado com status "aberto". Apenas a empresa prestadora pode alterar o status para "concluído". O cancelamento pode ser acionado pela empresa ou pela cliente (respeitando a RN06). |
-| **RN08** | Elegibilidade de Avaliação | A cliente só tem permissão para submeter uma avaliação com estrelas e comentário se o agendamento correspondente estiver com status "concluído". |
-| **RN09** | Avaliação Estritamente Única | Cada agendamento concluído autoriza a realização de exatamente uma avaliação (`avaliado: true`), impedindo duplicação de notas pelo mesmo serviço prestado. |
-| **RN10** | Pagamento Presencial | A plataforma BeautyHub gerencia exclusivamente a agenda e a vitrine; a cobrança monetária do valor do serviço ocorre diretamente entre cliente e profissional no local de atendimento. |
+| ID       | Título da Regra                | Descrição e Condicionamento Lógico                                                                                                                                                                      |
+| :------- | :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **RN01** | Unicidade de Cadastro          | O e-mail informado no cadastro de usuários e empresas deve ser único em toda a base de dados. O documento fiscal (CPF/CNPJ) informado pela empresa também não pode constar em múltiplos registros.      |
+| **RN02** | Visibilidade em Buscas         | Uma empresa cadastrada só se torna visível nas buscas públicas para clientes se o seu status for "ativo" e possuir, no mínimo, um serviço cadastrado no catálogo.                                       |
+| **RN03** | Exigência de Autenticação      | Visitantes anônimos podem buscar serviços e visualizar perfis de salões. Contudo, a efetivação de uma reserva de horário exige que o usuário esteja devidamente autenticado como cliente.               |
+| **RN04** | Prevenção de _Overbooking_     | Sob nenhuma condição o sistema permitirá o agendamento de dois procedimentos simultâneos para a mesma funcionária (ou mesma empresa solo) no mesmo intervalo de tempo.                                  |
+| **RN05** | Cálculo Dinâmico de Slots      | O cálculo dos blocos de horários livres considera: (Expediente) - (Pausas Intrajornada) - (Agendamentos em Aberto). O bloco livre precisa comportar integralmente a duração em minutos do procedimento. |
+| **RN06** | Prazo Mínimo de Cancelamento   | A cliente só poderá cancelar um agendamento diretamente pela plataforma se o horário de início distar, no mínimo, 2 horas do momento da solicitação.                                                    |
+| **RN07** | Transição de Status da Reserva | Um agendamento é criado com status "aberto". Apenas a empresa prestadora pode alterar o status para "concluído". O cancelamento pode ser acionado pela empresa ou pela cliente (respeitando a RN06).    |
+| **RN08** | Elegibilidade de Avaliação     | A cliente só tem permissão para submeter uma avaliação com estrelas e comentário se o agendamento correspondente estiver com status "concluído".                                                        |
+| **RN09** | Avaliação Estritamente Única   | Cada agendamento concluído autoriza a realização de exatamente uma avaliação (`avaliado: true`), impedindo duplicação de notas pelo mesmo serviço prestado.                                             |
+| **RN10** | Pagamento Presencial           | A plataforma BeautyHub gerencia exclusivamente a agenda e a vitrine; a cobrança monetária do valor do serviço ocorre diretamente entre cliente e profissional no local de atendimento.                  |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ## 5.2 Especificações dos Casos de Uso
 
@@ -710,7 +726,8 @@ graph LR
     UC015 -.->|<<extend>>| UC014
     UC_Job -.->|<<include>>| UC013
 ```
-*Figura 3 – Diagrama Geral de Casos de Uso (UML). Fonte: Elaborado pelos autores (2026).*
+
+_Figura 3 – Diagrama Geral de Casos de Uso (UML). Fonte: Elaborado pelos autores (2026)._
 
 ### 5.2.2 Documentação dos Atores
 
@@ -718,47 +735,47 @@ Os Quadros 4 a 7 detalham os perfis de atores humanos e de sistema que interagem
 
 **Quadro 4 – Documentação do Ator: Usuário Geral**
 
-| Campo | Descrição |
-| :--- | :--- |
-| **Ator** | Usuário Geral (Superclasse Abstrata) |
-| **Resumo** | Representa qualquer indivíduo que acesse a aplicação web pelo navegador, com permissão para visualizar páginas públicas e autenticar-se. |
+| Campo                 | Descrição                                                                                                                                                                           |
+| :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ator**              | Usuário Geral (Superclasse Abstrata)                                                                                                                                                |
+| **Resumo**            | Representa qualquer indivíduo que acesse a aplicação web pelo navegador, com permissão para visualizar páginas públicas e autenticar-se.                                            |
 | **Responsabilidades** | 1. Navegar pela Landing Page e termos de uso;<br>2. Realizar busca pública por estabelecimentos e procedimentos estéticos;<br>3. Informar credenciais para autenticação no sistema. |
-| **Ambiente Físico** | Navegadores web em dispositivos móveis (*smartphones*, *tablets*) ou computadores desktop com acesso à internet. |
+| **Ambiente Físico**   | Navegadores web em dispositivos móveis (_smartphones_, _tablets_) ou computadores desktop com acesso à internet.                                                                    |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 5 – Documentação do Ator: Administrador**
 
-| Campo | Descrição |
-| :--- | :--- |
-| **Ator** | Administrador |
-| **Resumo** | Ator responsável pela supervisão técnica, integridade e governança da plataforma BeautyHub. |
+| Campo                 | Descrição                                                                                                                                                                                     |
+| :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ator**              | Administrador                                                                                                                                                                                 |
+| **Resumo**            | Ator responsável pela supervisão técnica, integridade e governança da plataforma BeautyHub.                                                                                                   |
 | **Responsabilidades** | 1. Monitorar o crescimento e adesão do sistema através do dashboard analítico;<br>2. Auditar estabelecimentos cadastrados;<br>3. Suspender ou reativar empresas que descumpram termos de uso. |
-| **Ambiente Físico** | Navegador web em computadores desktop ou notebooks. |
+| **Ambiente Físico**   | Navegador web em computadores desktop ou notebooks.                                                                                                                                           |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 6 – Documentação do Ator: Empresa (MEI / Gestora)**
 
-| Campo | Descrição |
-| :--- | :--- |
-| **Ator** | Empresa (MEI / Gestora de Estética) |
-| **Resumo** | Profissional autônoma ou proprietária de estabelecimento de beleza que utiliza o ambiente modificável para estruturar seu negócio. |
+| Campo                 | Descrição                                                                                                                                                                                                                                                                                                                                              |
+| :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ator**              | Empresa (MEI / Gestora de Estética)                                                                                                                                                                                                                                                                                                                    |
+| **Resumo**            | Profissional autônoma ou proprietária de estabelecimento de beleza que utiliza o ambiente modificável para estruturar seu negócio.                                                                                                                                                                                                                     |
 | **Responsabilidades** | 1. Cadastrar e manter os dados institucionais e endereço do salão;<br>2. Gerenciar o catálogo de procedimentos, valores e durações;<br>3. Parametrizar a jornada semanal, horários de expediente e pausas de almoço;<br>4. Cadastrar e vincular colaboradoras/funcionárias;<br>5. Acompanhar a agenda diária e registrar a conclusão dos atendimentos. |
-| **Ambiente Físico** | Navegador web em smartphones ou computadores do estabelecimento. |
+| **Ambiente Físico**   | Navegador web em smartphones ou computadores do estabelecimento.                                                                                                                                                                                                                                                                                       |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 7 – Documentação do Ator: Cliente (Consumidora Final)**
 
-| Campo | Descrição |
-| :--- | :--- |
-| **Ator** | Cliente (Consumidora Final) |
-| **Resumo** | Usuária que busca comodidade e praticidade para encontrar serviços estéticos e agendar horários de forma independente. |
+| Campo                 | Descrição                                                                                                                                                                                                                                                                                                                                     |
+| :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ator**              | Cliente (Consumidora Final)                                                                                                                                                                                                                                                                                                                   |
+| **Resumo**            | Usuária que busca comodidade e praticidade para encontrar serviços estéticos e agendar horários de forma independente.                                                                                                                                                                                                                        |
 | **Responsabilidades** | 1. Cadastrar seu perfil pessoal;<br>2. Localizar salões por proximidade, serviço ou categoria estética;<br>3. Escolher data, serviço e profissional, confirmando a reserva do horário vago;<br>4. Gerenciar histórico de reservas ativas e efetuar cancelamentos antecipados;<br>5. Submeter avaliações e notas para atendimentos concluídos. |
-| **Ambiente Físico** | Principalmente navegadores móveis em smartphones. |
+| **Ambiente Físico**   | Principalmente navegadores móveis em smartphones.                                                                                                                                                                                                                                                                                             |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ## 5.3 Catálogo Detalhado de Casos de Uso (CSU001 a CSU016)
 
@@ -766,221 +783,221 @@ Os Quadros 8 a 23 formalizam o catálogo completo de casos de uso do BeautyHub s
 
 **Quadro 8 – Especificação de Caso de Uso CSU001: Cadastrar Cliente**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU001: Cadastrar Cliente** |
-| **Resumo** | Permite que uma nova consumidora crie uma conta na plataforma para realizar agendamentos. |
-| **Atores** | Cliente (Primário), Banco de Dados MongoDB (Secundário). |
-| **Pré-condições** | Possuir um endereço de e-mail válido que ainda não esteja registrado na plataforma. |
-| **Fluxo Principal** | 1. O usuário acessa a página de cadastro e seleciona a opção "Sou Cliente";<br>2. O sistema exibe o formulário solicitando nome completo, e-mail e senha;<br>3. O usuário preenche os campos e clica no botão "Criar Conta";<br>4. O sistema valida os campos, aplica o hash Bcrypt na senha e grava o documento na coleção de usuários com o papel `cliente`;<br>5. O sistema emite a sessão JWT em cookie seguro e redireciona a cliente para a tela de busca de serviços. |
-| **Pós-condições** | A conta é criada e a cliente encontra-se autenticada no sistema. |
-| **Fluxos Alternativos** | **FA01 - Cadastro via Conta Google:** No passo 2, a cliente opta por "Cadastrar com Google", autentica-se externamente via OAuth e o sistema salva o registro associando o `googleId`. |
-| **Fluxos de Exceção** | **FE01 - E-mail já cadastrado:** Caso o e-mail já exista na base, o sistema exibe alerta informando a duplicidade e orienta a usuária a efetuar login. |
+| Elemento                | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**           | **CSU001: Cadastrar Cliente**                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Resumo**              | Permite que uma nova consumidora crie uma conta na plataforma para realizar agendamentos.                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Atores**              | Cliente (Primário), Banco de Dados MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Pré-condições**       | Possuir um endereço de e-mail válido que ainda não esteja registrado na plataforma.                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Fluxo Principal**     | 1. O usuário acessa a página de cadastro e seleciona a opção "Sou Cliente";<br>2. O sistema exibe o formulário solicitando nome completo, e-mail e senha;<br>3. O usuário preenche os campos e clica no botão "Criar Conta";<br>4. O sistema valida os campos, aplica o hash Bcrypt na senha e grava o documento na coleção de usuários com o papel `cliente`;<br>5. O sistema emite a sessão JWT em cookie seguro e redireciona a cliente para a tela de busca de serviços. |
+| **Pós-condições**       | A conta é criada e a cliente encontra-se autenticada no sistema.                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Fluxos Alternativos** | **FA01 - Cadastro via Conta Google:** No passo 2, a cliente opta por "Cadastrar com Google", autentica-se externamente via OAuth e o sistema salva o registro associando o `googleId`.                                                                                                                                                                                                                                                                                       |
+| **Fluxos de Exceção**   | **FE01 - E-mail já cadastrado:** Caso o e-mail já exista na base, o sistema exibe alerta informando a duplicidade e orienta a usuária a efetuar login.                                                                                                                                                                                                                                                                                                                       |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 9 – Especificação de Caso de Uso CSU002: Efetuar Login**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU002: Efetuar Login** |
-| **Resumo** | Autentica as credenciais do usuário e concede acesso às funcionalidades pertinentes ao seu perfil. |
-| **Atores** | Usuário (Primário), Banco de Dados MongoDB (Secundário). |
-| **Pré-condições** | Usuário previamente cadastrado na plataforma. |
-| **Fluxo Principal** | 1. O usuário acessa a tela de autenticação;<br>2. O usuário informa seu e-mail e sua senha de acesso e clica em "Entrar";<br>3. O sistema localiza o usuário pelo e-mail e compara a senha informada com o hash armazenado via `bcrypt.compare`;<br>4. O sistema gera um token JWT contendo os dados básicos e o papel (`role`) do usuário;<br>5. O sistema grava o token em cookie seguro e redireciona o usuário para o módulo correspondente (Admin, Empresa ou Cliente). |
-| **Pós-condições** | Sessão segura estabelecida. |
-| **Fluxos Alternativos** | **FA01 - Redirecionamento Contextual:** Se o usuário tentou agendar antes de estar logado, o sistema o devolve diretamente ao fluxo de finalização do agendamento. |
-| **Fluxos de Exceção** | **FE01 - Credenciais Inválidas:** Se o e-mail não existir ou a senha estiver incorreta, o sistema exibe mensagem de erro e permanece na tela de login. |
+| Elemento                | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**           | **CSU002: Efetuar Login**                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Resumo**              | Autentica as credenciais do usuário e concede acesso às funcionalidades pertinentes ao seu perfil.                                                                                                                                                                                                                                                                                                                                                                           |
+| **Atores**              | Usuário (Primário), Banco de Dados MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Pré-condições**       | Usuário previamente cadastrado na plataforma.                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Fluxo Principal**     | 1. O usuário acessa a tela de autenticação;<br>2. O usuário informa seu e-mail e sua senha de acesso e clica em "Entrar";<br>3. O sistema localiza o usuário pelo e-mail e compara a senha informada com o hash armazenado via `bcrypt.compare`;<br>4. O sistema gera um token JWT contendo os dados básicos e o papel (`role`) do usuário;<br>5. O sistema grava o token em cookie seguro e redireciona o usuário para o módulo correspondente (Admin, Empresa ou Cliente). |
+| **Pós-condições**       | Sessão segura estabelecida.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Fluxos Alternativos** | **FA01 - Redirecionamento Contextual:** Se o usuário tentou agendar antes de estar logado, o sistema o devolve diretamente ao fluxo de finalização do agendamento.                                                                                                                                                                                                                                                                                                           |
+| **Fluxos de Exceção**   | **FE01 - Credenciais Inválidas:** Se o e-mail não existir ou a senha estiver incorreta, o sistema exibe mensagem de erro e permanece na tela de login.                                                                                                                                                                                                                                                                                                                       |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 10 – Especificação de Caso de Uso CSU003: Recuperar Senha**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU003: Recuperar Senha** |
-| **Resumo** | Permite a redefinição de senha para usuários que esqueceram suas credenciais. |
-| **Atores** | Usuário (Primário), Serviço de E-mail Resend (Secundário). |
-| **Pré-condições** | Ter um e-mail previamente registrado no sistema. |
-| **Fluxo Principal** | 1. O usuário clica em "Esqueci minha senha" na tela de login;<br>2. O sistema solicita a inserção do e-mail cadastrado;<br>3. O usuário digita o e-mail e clica em "Enviar link de recuperação";<br>4. O sistema gera um token assinado de expiração curta (15 minutos) e envia por e-mail com template seguro;<br>5. O usuário acessa o link recebido, digita a nova senha e confirma;<br>6. O sistema atualiza o hash da senha no banco de dados e confirma a alteração. |
-| **Pós-condições** | Nova senha registrada com segurança. |
-| **Fluxos de Exceção** | **FE01 - E-mail não encontrado:** O sistema exibe mensagem amigável sem revelar detalhes sensíveis sobre a existência do e-mail na base de dados. |
+| Elemento              | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**         | **CSU003: Recuperar Senha**                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Resumo**            | Permite a redefinição de senha para usuários que esqueceram suas credenciais.                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Atores**            | Usuário (Primário), Serviço de E-mail Resend (Secundário).                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Pré-condições**     | Ter um e-mail previamente registrado no sistema.                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Fluxo Principal**   | 1. O usuário clica em "Esqueci minha senha" na tela de login;<br>2. O sistema solicita a inserção do e-mail cadastrado;<br>3. O usuário digita o e-mail e clica em "Enviar link de recuperação";<br>4. O sistema gera um token assinado de expiração curta (15 minutos) e envia por e-mail com template seguro;<br>5. O usuário acessa o link recebido, digita a nova senha e confirma;<br>6. O sistema atualiza o hash da senha no banco de dados e confirma a alteração. |
+| **Pós-condições**     | Nova senha registrada com segurança.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **Fluxos de Exceção** | **FE01 - E-mail não encontrado:** O sistema exibe mensagem amigável sem revelar detalhes sensíveis sobre a existência do e-mail na base de dados.                                                                                                                                                                                                                                                                                                                          |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 11 – Especificação de Caso de Uso CSU004: Visualizar Dashboard Administrativo**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU004: Visualizar Dashboard Administrativo** |
-| **Resumo** | Apresenta os indicadores de gestão e métricas agregadas da plataforma ao Administrador. |
-| **Atores** | Administrador (Primário), Banco de Dados MongoDB (Secundário). |
-| **Pré-condições** | Estar autenticado com o papel `admin`. |
-| **Fluxo Principal** | 1. O administrador acessa a rota `/Admin`;<br>2. O middleware de servidor valida o papel `admin` no token JWT;<br>3. O sistema calcula a contagem total de empresas cadastradas, clientes registrados e volume de agendamentos transacionados;<br>4. A tela exibe os cartões com indicadores e a listagem consolidada de estabelecimentos. |
-| **Pós-condições** | Métricas exibidas sem alteração de estado no banco. |
-| **Fluxos de Exceção** | **FE01 - Acesso Não Autorizado:** Caso um usuário sem privilégios tente acessar, o sistema retorna HTTP 403 (Forbidden) e redireciona para a página inicial. |
+| Elemento              | Detalhamento                                                                                                                                                                                                                                                                                                                               |
+| :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**         | **CSU004: Visualizar Dashboard Administrativo**                                                                                                                                                                                                                                                                                            |
+| **Resumo**            | Apresenta os indicadores de gestão e métricas agregadas da plataforma ao Administrador.                                                                                                                                                                                                                                                    |
+| **Atores**            | Administrador (Primário), Banco de Dados MongoDB (Secundário).                                                                                                                                                                                                                                                                             |
+| **Pré-condições**     | Estar autenticado com o papel `admin`.                                                                                                                                                                                                                                                                                                     |
+| **Fluxo Principal**   | 1. O administrador acessa a rota `/Admin`;<br>2. O middleware de servidor valida o papel `admin` no token JWT;<br>3. O sistema calcula a contagem total de empresas cadastradas, clientes registrados e volume de agendamentos transacionados;<br>4. A tela exibe os cartões com indicadores e a listagem consolidada de estabelecimentos. |
+| **Pós-condições**     | Métricas exibidas sem alteração de estado no banco.                                                                                                                                                                                                                                                                                        |
+| **Fluxos de Exceção** | **FE01 - Acesso Não Autorizado:** Caso um usuário sem privilégios tente acessar, o sistema retorna HTTP 403 (Forbidden) e redireciona para a página inicial.                                                                                                                                                                               |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 12 – Especificação de Caso de Uso CSU005: Cadastrar Empresa**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU005: Cadastrar Empresa** |
-| **Resumo** | Realiza o onboarding de novos estabelecimentos e profissionais de beleza na plataforma. |
-| **Atores** | Empresa/Gestora (Primário), API ViaCEP (Secundário), MongoDB (Secundário). |
-| **Pré-condições** | Possuir e-mail e CNPJ/CPF não registrados anteriormente. |
-| **Fluxo Principal** | 1. O usuário acessa o cadastro e seleciona "Sou Empresa / Profissional";<br>2. O usuário informa dados cadastrais (nome da empresa, e-mail comercial, telefone, categoria estética e descrição);<br>3. O usuário digita o CEP de atendimento e o sistema consulta a API ViaCEP, autopreenchendo logradouro, bairro, cidade e estado;<br>4. O usuário complementa o número predial e a senha de acesso;<br>5. O sistema grava o usuário com o papel `empresa` e cria o registro na coleção `Enterprise` com status inicial "ativo";<br>6. O sistema inicializa uma configuração padrão de agenda (`AgendaConfig`) e redireciona a gestora para seu painel. |
-| **Pós-condições** | Empresa registrada e apta a configurar seus serviços e jornadas. |
-| **Fluxos de Exceção** | **FE01 - CEP não localizado:** O sistema permite a digitação manual dos campos de endereço caso a API do ViaCEP retorne código de erro. |
+| Elemento              | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| :-------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**         | **CSU005: Cadastrar Empresa**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Resumo**            | Realiza o onboarding de novos estabelecimentos e profissionais de beleza na plataforma.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Atores**            | Empresa/Gestora (Primário), API ViaCEP (Secundário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Pré-condições**     | Possuir e-mail e CNPJ/CPF não registrados anteriormente.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Fluxo Principal**   | 1. O usuário acessa o cadastro e seleciona "Sou Empresa / Profissional";<br>2. O usuário informa dados cadastrais (nome da empresa, e-mail comercial, telefone, categoria estética e descrição);<br>3. O usuário digita o CEP de atendimento e o sistema consulta a API ViaCEP, autopreenchendo logradouro, bairro, cidade e estado;<br>4. O usuário complementa o número predial e a senha de acesso;<br>5. O sistema grava o usuário com o papel `empresa` e cria o registro na coleção `Enterprise` com status inicial "ativo";<br>6. O sistema inicializa uma configuração padrão de agenda (`AgendaConfig`) e redireciona a gestora para seu painel. |
+| **Pós-condições**     | Empresa registrada e apta a configurar seus serviços e jornadas.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Fluxos de Exceção** | **FE01 - CEP não localizado:** O sistema permite a digitação manual dos campos de endereço caso a API do ViaCEP retorne código de erro.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 13 – Especificação de Caso de Uso CSU006: Manter Status da Empresa**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU006: Manter Status da Empresa** |
-| **Resumo** | Permite ao Administrador suspender temporariamente ou reativar estabelecimentos. |
-| **Atores** | Administrador (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Administrador logado e empresa existente na base. |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                                                                                   |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**       | **CSU006: Manter Status da Empresa**                                                                                                                                                                                                                                                                                                                                           |
+| **Resumo**          | Permite ao Administrador suspender temporariamente ou reativar estabelecimentos.                                                                                                                                                                                                                                                                                               |
+| **Atores**          | Administrador (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                |
+| **Pré-condições**   | Administrador logado e empresa existente na base.                                                                                                                                                                                                                                                                                                                              |
 | **Fluxo Principal** | 1. O administrador acessa a lista de empresas no painel administrativo;<br>2. Localiza a empresa desejada e aciona o botão de alternância de status ("Ativar" / "Suspender");<br>3. O sistema atualiza o campo `status_empresa` para "inativo" ou "ativo" no banco de dados;<br>4. Se suspensa, a empresa é imediatamente omitida das consultas públicas de busca de serviços. |
-| **Pós-condições** | Status da empresa atualizado com sucesso. |
+| **Pós-condições**   | Status da empresa atualizado com sucesso.                                                                                                                                                                                                                                                                                                                                      |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 14 – Especificação de Caso de Uso CSU007: Manter Catálogo de Serviços**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU007: Manter Catálogo de Serviços** |
-| **Resumo** | Permite à gestora cadastrar, editar, inativar e definir durações e preços de seus procedimentos. |
-| **Atores** | Empresa/Gestora (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Usuário autenticado como empresa. |
-| **Fluxo Principal** | 1. A gestora acessa o módulo "Catálogo de Serviços" em seu painel;<br>2. O sistema lista os procedimentos atualmente cadastrados;<br>3. A gestora clica em "Adicionar Serviço" e preenche: título do procedimento, descrição, preço de tabela e tempo estimado de execução (ex.: 30, 45, 60, 90 minutos);<br>4. Clica em "Salvar Procedimento";<br>5. O sistema grava o documento na coleção `Service` vinculado ao `id_empresa` da gestora. |
-| **Pós-condições** | O catálogo é atualizado e os novos parâmetros passam a alimentar o motor de agendamentos. |
-| **Fluxos Alternativos** | **FA01 - Inativação Temporária:** A gestora altera o campo `ativo` para falso caso não deseje ofertar o serviço momentaneamente, preservando o histórico anterior. |
+| Elemento                | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**           | **CSU007: Manter Catálogo de Serviços**                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Resumo**              | Permite à gestora cadastrar, editar, inativar e definir durações e preços de seus procedimentos.                                                                                                                                                                                                                                                                                                                                             |
+| **Atores**              | Empresa/Gestora (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Pré-condições**       | Usuário autenticado como empresa.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Fluxo Principal**     | 1. A gestora acessa o módulo "Catálogo de Serviços" em seu painel;<br>2. O sistema lista os procedimentos atualmente cadastrados;<br>3. A gestora clica em "Adicionar Serviço" e preenche: título do procedimento, descrição, preço de tabela e tempo estimado de execução (ex.: 30, 45, 60, 90 minutos);<br>4. Clica em "Salvar Procedimento";<br>5. O sistema grava o documento na coleção `Service` vinculado ao `id_empresa` da gestora. |
+| **Pós-condições**       | O catálogo é atualizado e os novos parâmetros passam a alimentar o motor de agendamentos.                                                                                                                                                                                                                                                                                                                                                    |
+| **Fluxos Alternativos** | **FA01 - Inativação Temporária:** A gestora altera o campo `ativo` para falso caso não deseje ofertar o serviço momentaneamente, preservando o histórico anterior.                                                                                                                                                                                                                                                                           |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 15 – Especificação de Caso de Uso CSU008: Configurar Agenda de Atendimento**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU008: Configurar Agenda de Atendimento** |
-| **Resumo** | Parametriza a jornada de funcionamento da empresa, dias da semana e pausas intrajornada. |
-| **Atores** | Empresa/Gestora (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Usuário autenticado como empresa. |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**       | **CSU008: Configurar Agenda de Atendimento**                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Resumo**          | Parametriza a jornada de funcionamento da empresa, dias da semana e pausas intrajornada.                                                                                                                                                                                                                                                                                                                                       |
+| **Atores**          | Empresa/Gestora (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                              |
+| **Pré-condições**   | Usuário autenticado como empresa.                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Fluxo Principal** | 1. A gestora acessa a página "Configurações da Agenda";<br>2. Seleciona os dias da semana em que atende (ex.: Terça a Sábado);<br>3. Define os horários de início e término do expediente geral (ex.: 09:00 às 18:00);<br>4. Adiciona intervalos regulares de pausas (ex.: pausa de almoço das 12:00 às 13:00);<br>5. Aciona o comando "Gravar Configurações";<br>6. O sistema atualiza o documento na coleção `AgendaConfig`. |
-| **Pós-condições** | O motor de agendamento passa a respeitar as novas regras de disponibilidade. |
+| **Pós-condições**   | O motor de agendamento passa a respeitar as novas regras de disponibilidade.                                                                                                                                                                                                                                                                                                                                                   |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 16 – Especificação de Caso de Uso CSU009: Gerenciar Equipe de Funcionárias**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU009: Gerenciar Equipe de Funcionárias** |
-| **Resumo** | Permite o cadastro e gestão de colaboradoras com escalas de trabalho individuais. |
-| **Atores** | Empresa/Gestora (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Usuário autenticado como empresa. |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                                                                                               |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**       | **CSU009: Gerenciar Equipe de Funcionárias**                                                                                                                                                                                                                                                                                                                                               |
+| **Resumo**          | Permite o cadastro e gestão de colaboradoras com escalas de trabalho individuais.                                                                                                                                                                                                                                                                                                          |
+| **Atores**          | Empresa/Gestora (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                          |
+| **Pré-condições**   | Usuário autenticado como empresa.                                                                                                                                                                                                                                                                                                                                                          |
 | **Fluxo Principal** | 1. A gestora acessa o módulo "Equipe" no painel da empresa;<br>2. Clica em "Cadastrar Colaboradora" e informa: nome, idade, foto e escala personalizada de dias e horários;<br>3. Grava o registro;<br>4. O sistema cria o documento na coleção `Employee` associado à empresa;<br>5. O sistema passa a permitir que as clientes escolham a profissional específica durante o agendamento. |
-| **Pós-condições** | Colaboradora disponível para reservas simultâneas na empresa. |
+| **Pós-condições**   | Colaboradora disponível para reservas simultâneas na empresa.                                                                                                                                                                                                                                                                                                                              |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 17 – Especificação de Caso de Uso CSU010: Visualizar Agenda Diária da Empresa**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU010: Visualizar Agenda Diária da Empresa** |
-| **Resumo** | Exibe à gestora o cronograma visual de atendimentos confirmados para o dia selecionado. |
-| **Atores** | Empresa/Gestora (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Usuário autenticado como empresa. |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                                                  |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**       | **CSU010: Visualizar Agenda Diária da Empresa**                                                                                                                                                                                                                                                                                               |
+| **Resumo**          | Exibe à gestora o cronograma visual de atendimentos confirmados para o dia selecionado.                                                                                                                                                                                                                                                       |
+| **Atores**          | Empresa/Gestora (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                             |
+| **Pré-condições**   | Usuário autenticado como empresa.                                                                                                                                                                                                                                                                                                             |
 | **Fluxo Principal** | 1. A gestora acessa o Dashboard da Empresa;<br>2. O sistema consulta os agendamentos registrados para a data de hoje onde `id_empresa` corresponda à empresa logada;<br>3. Os agendamentos são apresentados em ordem cronológica com nome da cliente, serviço, profissional designada, horário e status ("aberto", "concluído", "cancelado"). |
-| **Pós-condições** | Agenda exibida de forma clara e visual. |
+| **Pós-condições**   | Agenda exibida de forma clara e visual.                                                                                                                                                                                                                                                                                                       |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 18 – Especificação de Caso de Uso CSU011: Atualizar Status do Atendimento**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU011: Atualizar Status do Atendimento** |
-| **Resumo** | Permite que a empresa marque um agendamento como "Concluído" ou registre cancelamento. |
-| **Atores** | Empresa/Gestora (Primário), Servidor SSE (Secundário), MongoDB (Secundário). |
-| **Pré-condições** | Agendamento existente com status "aberto". |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                      |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **ID e Nome**       | **CSU011: Atualizar Status do Atendimento**                                                                                                                                                                                                                                                                                                                                                       |
+| **Resumo**          | Permite que a empresa marque um agendamento como "Concluído" ou registre cancelamento.                                                                                                                                                                                                                                                                                                            |
+| **Atores**          | Empresa/Gestora (Primário), Servidor SSE (Secundário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                      |
+| **Pré-condições**   | Agendamento existente com status "aberto".                                                                                                                                                                                                                                                                                                                                                        |
 | **Fluxo Principal** | 1. No dashboard diário, a gestora identifica o atendimento recém-finalizado;<br>2. Clica no botão "Marcar como Concluído";<br>3. O sistema atualiza o status para `concluido` na coleção `Appointment`;<br>4. O sistema emite um evento SSE informando à interface da cliente que o procedimento foi finalizado;<br>5. A plataforma da cliente desbloqueia a opção para que ela avalie o serviço. |
-| **Pós-condições** | Agendamento concluído e gatilho de avaliação ativado. |
+| **Pós-condições**   | Agendamento concluído e gatilho de avaliação ativado.                                                                                                                                                                                                                                                                                                                                             |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 19 – Especificação de Caso de Uso CSU012: Buscar Empresas e Serviços**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU012: Buscar Empresas e Serviços** |
-| **Resumo** | Permite a pesquisa e filtragem de estabelecimentos de beleza por categoria estética ou localidade. |
-| **Atores** | Cliente / Visitante (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Nenhuma (acesso público). |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                                                                                               |
+| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**       | **CSU012: Buscar Empresas e Serviços**                                                                                                                                                                                                                                                                                                                                                     |
+| **Resumo**          | Permite a pesquisa e filtragem de estabelecimentos de beleza por categoria estética ou localidade.                                                                                                                                                                                                                                                                                         |
+| **Atores**          | Cliente / Visitante (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                      |
+| **Pré-condições**   | Nenhuma (acesso público).                                                                                                                                                                                                                                                                                                                                                                  |
 | **Fluxo Principal** | 1. O usuário acessa a página de busca do BeautyHub;<br>2. Digita palavras-chave (ex.: "Manicure", "Sobrancelhas") ou seleciona uma categoria estética;<br>3. O sistema realiza busca com operadores de texto no banco de dados e retorna os estabelecimentos ativos que satisfazem o critério;<br>4. O usuário clica na empresa de sua preferência para visualizar seu portfólio completo. |
-| **Pós-condições** | Lista de resultados pertinentes apresentada. |
+| **Pós-condições**   | Lista de resultados pertinentes apresentada.                                                                                                                                                                                                                                                                                                                                               |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 20 – Especificação de Caso de Uso CSU013: Consultar Slots e Agendar Serviço**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU013: Consultar Slots e Agendar Serviço** |
-| **Resumo** | Principal ação de conversão: a cliente escolhe o procedimento, visualiza horários vagos e consolida a reserva. |
-| **Atores** | Cliente (Primário), Agenda.js (Secundário), Resend (Secundário), MongoDB (Secundário). |
-| **Pré-condições** | Cliente autenticada e serviço ativo na empresa. |
-| **Fluxo Principal** | 1. A cliente visualiza o catálogo da empresa e seleciona um serviço;<br>2. A cliente pode optar por uma profissional específica ou "Qualquer Profissional";<br>3. A cliente seleciona a data pretendida no calendário;<br>4. O sistema executa a consulta `available.get.ts`, calculando os slots vagos em tempo real e exibindo apenas os horários livres;<br>5. A cliente seleciona o horário pretendido e clica em "Confirmar Agendamento";<br>6. O sistema valida que o horário ainda está desocupado, gera o código `id_agendamento` e grava o documento com status "aberto";<br>7. O sistema agenda automaticamente os jobs na fila do Agenda.js (1h e 30 min antes) e despacha e-mail de confirmação imediata via Resend. |
-| **Pós-condições** | Horário reservado, conflitos prevenidos e lembretes agendados. |
-| **Fluxos de Exceção** | **FE01 - Concorrência (Slot ocupado no mesmo instante):** Se outra cliente concluiu a reserva milissegundos antes, o sistema detecta o conflito (via validação e índice composto), retorna HTTP 409 (Conflict) e orienta a cliente a selecionar outro horário. |
+| Elemento              | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**         | **CSU013: Consultar Slots e Agendar Serviço**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Resumo**            | Principal ação de conversão: a cliente escolhe o procedimento, visualiza horários vagos e consolida a reserva.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Atores**            | Cliente (Primário), Agenda.js (Secundário), Resend (Secundário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Pré-condições**     | Cliente autenticada e serviço ativo na empresa.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Fluxo Principal**   | 1. A cliente visualiza o catálogo da empresa e seleciona um serviço;<br>2. A cliente pode optar por uma profissional específica ou "Qualquer Profissional";<br>3. A cliente seleciona a data pretendida no calendário;<br>4. O sistema executa a consulta `available.get.ts`, calculando os slots vagos em tempo real e exibindo apenas os horários livres;<br>5. A cliente seleciona o horário pretendido e clica em "Confirmar Agendamento";<br>6. O sistema valida que o horário ainda está desocupado, gera o código `id_agendamento` e grava o documento com status "aberto";<br>7. O sistema agenda automaticamente os jobs na fila do Agenda.js (1h e 30 min antes) e despacha e-mail de confirmação imediata via Resend. |
+| **Pós-condições**     | Horário reservado, conflitos prevenidos e lembretes agendados.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Fluxos de Exceção** | **FE01 - Concorrência (Slot ocupado no mesmo instante):** Se outra cliente concluiu a reserva milissegundos antes, o sistema detecta o conflito (via validação e índice composto), retorna HTTP 409 (Conflict) e orienta a cliente a selecionar outro horário.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 21 – Especificação de Caso de Uso CSU014: Visualizar Histórico de Reservas**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU014: Visualizar Histórico de Reservas** |
-| **Resumo** | Exibe à cliente a relação de seus agendamentos futuros, ativos e concluídos. |
-| **Atores** | Cliente (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Cliente autenticada. |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                           |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**       | **CSU014: Visualizar Histórico de Reservas**                                                                                                                                                                                                                                                                           |
+| **Resumo**          | Exibe à cliente a relação de seus agendamentos futuros, ativos e concluídos.                                                                                                                                                                                                                                           |
+| **Atores**          | Cliente (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                              |
+| **Pré-condições**   | Cliente autenticada.                                                                                                                                                                                                                                                                                                   |
 | **Fluxo Principal** | 1. A cliente acessa a aba "Meus Agendamentos";<br>2. O sistema busca os registros na coleção `Appointment` filtrados pelo `id_cliente` da usuária logada;<br>3. A interface agrupa os atendimentos em cartões organizados entre "Em Aberto" e "Finalizados/Cancelados", exibindo nome do salão, serviço, valor e data. |
-| **Pós-condições** | Histórico exibido com opções contextuais (avaliar ou cancelar). |
+| **Pós-condições**   | Histórico exibido com opções contextuais (avaliar ou cancelar).                                                                                                                                                                                                                                                        |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 22 – Especificação de Caso de Uso CSU015: Cancelar Agendamento**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU015: Cancelar Agendamento** |
-| **Resumo** | Permite à cliente cancelar uma reserva previamente confirmada, liberando o horário na agenda pública. |
-| **Atores** | Cliente (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Agendamento com status "aberto" e prazo superior a 2 horas para o início. |
-| **Fluxo Principal** | 1. No histórico, a cliente localiza o agendamento futuro e clica em "Cancelar Agendamento";<br>2. O sistema verifica a diferença entre o horário atual e o início do procedimento (`data_hora_inicio - now >= 2 horas`);<br>3. Satisfeita a condição, o sistema atualiza o status para `cancelado`;<br>4. O horário torna-se imediatamente liberado para novas consultas e reservas por outras usuárias. |
-| **Pós-condições** | Agendamento cancelado e horário restituído à grade. |
-| **Fluxos de Exceção** | **FE01 - Prazo Excedido:** Se faltar menos de 2 horas para o procedimento, o sistema rejeita o cancelamento automático e exibe o telefone da empresa para contato direto. |
+| Elemento              | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                             |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**         | **CSU015: Cancelar Agendamento**                                                                                                                                                                                                                                                                                                                                                                         |
+| **Resumo**            | Permite à cliente cancelar uma reserva previamente confirmada, liberando o horário na agenda pública.                                                                                                                                                                                                                                                                                                    |
+| **Atores**            | Cliente (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                |
+| **Pré-condições**     | Agendamento com status "aberto" e prazo superior a 2 horas para o início.                                                                                                                                                                                                                                                                                                                                |
+| **Fluxo Principal**   | 1. No histórico, a cliente localiza o agendamento futuro e clica em "Cancelar Agendamento";<br>2. O sistema verifica a diferença entre o horário atual e o início do procedimento (`data_hora_inicio - now >= 2 horas`);<br>3. Satisfeita a condição, o sistema atualiza o status para `cancelado`;<br>4. O horário torna-se imediatamente liberado para novas consultas e reservas por outras usuárias. |
+| **Pós-condições**     | Agendamento cancelado e horário restituído à grade.                                                                                                                                                                                                                                                                                                                                                      |
+| **Fluxos de Exceção** | **FE01 - Prazo Excedido:** Se faltar menos de 2 horas para o procedimento, o sistema rejeita o cancelamento automático e exibe o telefone da empresa para contato direto.                                                                                                                                                                                                                                |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 **Quadro 23 – Especificação de Caso de Uso CSU016: Avaliar Atendimento Concluído**
 
-| Elemento | Detalhamento |
-| :--- | :--- |
-| **ID e Nome** | **CSU016: Avaliar Atendimento Concluído** |
-| **Resumo** | Permite o envio de feedback qualitativo e quantitativo após a prestação do serviço estético. |
-| **Atores** | Cliente (Primário), MongoDB (Secundário). |
-| **Pré-condições** | Atendimento com status `concluido` e campo `avaliado: false`. |
+| Elemento            | Detalhamento                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID e Nome**       | **CSU016: Avaliar Atendimento Concluído**                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Resumo**          | Permite o envio de feedback qualitativo e quantitativo após a prestação do serviço estético.                                                                                                                                                                                                                                                                                                                                                          |
+| **Atores**          | Cliente (Primário), MongoDB (Secundário).                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Pré-condições**   | Atendimento com status `concluido` e campo `avaliado: false`.                                                                                                                                                                                                                                                                                                                                                                                         |
 | **Fluxo Principal** | 1. A cliente acessa o agendamento concluído no histórico e clica em "Avaliar Serviço";<br>2. O sistema abre modal permitindo a seleção de notas de 1 a 5 estrelas e um campo de comentário descritivo;<br>3. A cliente preenche e aciona "Enviar Avaliação";<br>4. O sistema cria o documento na coleção `Rate` e atualiza a flag `avaliado: true` no agendamento correspondente;<br>5. A nota passa a compor a reputação pública do estabelecimento. |
-| **Pós-condições** | Avaliação computada e bloqueada contra novos envios para o mesmo atendimento. |
+| **Pós-condições**   | Avaliação computada e bloqueada contra novos envios para o mesmo atendimento.                                                                                                                                                                                                                                                                                                                                                                         |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ### 5.2.3 Matriz de Rastreabilidade
 
@@ -988,26 +1005,26 @@ O Quadro 24 consolida a rastreabilidade entre requisitos, regras de negócio e c
 
 **Quadro 24 – Matriz de Rastreabilidade de Requisitos e Casos de Uso**
 
-| Requisito Funcional | Casos de Uso Relacionados | Regras de Negócio Associadas | Componente / Rota de API |
-| :--- | :--- | :--- | :--- |
-| RF001 (Cadastro Cliente) | CSU001 | RN01 | `server/api/auth/register.post.ts` |
-| RF002 (Autenticação) | CSU002 | RN03 | `server/api/auth/login.post.ts` |
-| RF003 (Recuperar Senha) | CSU003 | RN03 | `server/api/auth/recover.post.ts` |
-| RF004 (Dashboard Admin) | CSU004 | - | `app/pages/Admin.vue` |
-| RF005 (Cadastro Empresa) | CSU005 | RN01, RN02 | `server/api/enterprise/index.post.ts` |
-| RF006 (Status Empresa) | CSU006 | RN02 | `server/api/enterprise/[id].put.ts` |
-| RF007 (Catálogo Serviços) | CSU007 | RN02 | `server/api/service/index.post.ts` |
-| RF008 (Configurar Agenda) | CSU008 | RN05 | `server/api/agenda/config.post.ts` |
-| RF009 (Equipe Funcionárias)| CSU009 | RN05 | `server/api/employee/index.post.ts` |
-| RF010 (Agenda Diária) | CSU010 | - | `app/pages/empresa/dashboard.vue` |
-| RF011 (Concluir Atendimento)| CSU011 | RN07 | `server/api/appointment/[id].put.ts` |
-| RF012 (Busca de Salões) | CSU012 | RN02 | `app/pages/cliente/busca.vue` |
-| RF013 (Cálculo de Slots) | CSU013 | RN04, RN05 | `server/api/appointment/available.get.ts` |
-| RF014 (Reserva e Lembretes)| CSU013 | RN03, RN04 | `server/api/appointment/index.post.ts` |
-| RF015 (Cancelamento) | CSU015 | RN06 | `server/api/appointment/[id].put.ts` |
-| RF016 (Avaliação de Atendimento)| CSU016 | RN08, RN09 | `server/api/rate/index.post.ts` |
+| Requisito Funcional              | Casos de Uso Relacionados | Regras de Negócio Associadas | Componente / Rota de API                  |
+| :------------------------------- | :------------------------ | :--------------------------- | :---------------------------------------- |
+| RF001 (Cadastro Cliente)         | CSU001                    | RN01                         | `server/api/auth/register.post.ts`        |
+| RF002 (Autenticação)             | CSU002                    | RN03                         | `server/api/auth/login.post.ts`           |
+| RF003 (Recuperar Senha)          | CSU003                    | RN03                         | `server/api/auth/recover.post.ts`         |
+| RF004 (Dashboard Admin)          | CSU004                    | -                            | `app/pages/Admin.vue`                     |
+| RF005 (Cadastro Empresa)         | CSU005                    | RN01, RN02                   | `server/api/enterprise/index.post.ts`     |
+| RF006 (Status Empresa)           | CSU006                    | RN02                         | `server/api/enterprise/[id].put.ts`       |
+| RF007 (Catálogo Serviços)        | CSU007                    | RN02                         | `server/api/service/index.post.ts`        |
+| RF008 (Configurar Agenda)        | CSU008                    | RN05                         | `server/api/agenda/config.post.ts`        |
+| RF009 (Equipe Funcionárias)      | CSU009                    | RN05                         | `server/api/employee/index.post.ts`       |
+| RF010 (Agenda Diária)            | CSU010                    | -                            | `app/pages/empresa/dashboard.vue`         |
+| RF011 (Concluir Atendimento)     | CSU011                    | RN07                         | `server/api/appointment/[id].put.ts`      |
+| RF012 (Busca de Salões)          | CSU012                    | RN02                         | `app/pages/cliente/busca.vue`             |
+| RF013 (Cálculo de Slots)         | CSU013                    | RN04, RN05                   | `server/api/appointment/available.get.ts` |
+| RF014 (Reserva e Lembretes)      | CSU013                    | RN03, RN04                   | `server/api/appointment/index.post.ts`    |
+| RF015 (Cancelamento)             | CSU015                    | RN06                         | `server/api/appointment/[id].put.ts`      |
+| RF016 (Avaliação de Atendimento) | CSU016                    | RN08, RN09                   | `server/api/rate/index.post.ts`           |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ## 5.4 Diagrama de Classes de Domínio (UML)
 
@@ -1129,7 +1146,8 @@ classDiagram
     User "1" --> "0..*" Rate : submete
     Enterprise "1" <-- "0..*" Rate : recebe
 ```
-*Figura 4 – Diagrama de Classes de Domínio (UML). Fonte: Elaborado pelos autores (2026).*
+
+_Figura 4 – Diagrama de Classes de Domínio (UML). Fonte: Elaborado pelos autores (2026)._
 
 ## 5.5 Diagramas de Sequência (UML)
 
@@ -1171,7 +1189,8 @@ sequenceDiagram
         end
     end
 ```
-*Figura 6 – Diagrama de Sequência: Autenticação e Login de Usuário. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 6 – Diagrama de Sequência: Autenticação e Login de Usuário. Fonte: Elaborado pelos autores (2026)._
 
 ### 5.5.2 DS02 – Cadastro de Nova Empresa com Busca de CEP (ViaCEP)
 
@@ -1201,7 +1220,8 @@ sequenceDiagram
     API-->>Front: Retorna 201 Created com dados da empresa
     Front-->>Gestora: Redireciona para o Dashboard da Empresa
 ```
-*Figura 7 – Diagrama de Sequência: Cadastro de Empresa com Integração ViaCEP. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 7 – Diagrama de Sequência: Cadastro de Empresa com Integração ViaCEP. Fonte: Elaborado pelos autores (2026)._
 
 ### 5.5.3 DS03 – Parametrização da Agenda e Pausas
 
@@ -1224,7 +1244,8 @@ sequenceDiagram
     API-->>Front: Retorna status 200 com mensagem de sucesso
     Front-->>Gestora: Notifica que as regras de disponibilidade foram atualizadas
 ```
-*Figura 8 – Diagrama de Sequência: Parametrização da Agenda e Pausas. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 8 – Diagrama de Sequência: Parametrização da Agenda e Pausas. Fonte: Elaborado pelos autores (2026)._
 
 ### 5.5.4 DS04 – Consulta Dinâmica de Horários Livres (Disponibilidade Anti-Overbooking)
 
@@ -1256,7 +1277,8 @@ sequenceDiagram
     API-->>Front: Retorna array JSON com horários disponíveis `slots: ["09:00", "09:45", "10:30", ...]`
     Front-->>Cliente: Renderiza botões interativos de horários vagos
 ```
-*Figura 9 – Diagrama de Sequência: Consulta Dinâmica de Horários Livres. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 9 – Diagrama de Sequência: Consulta Dinâmica de Horários Livres. Fonte: Elaborado pelos autores (2026)._
 
 ### 5.5.5 DS05 – Reserva de Horário e Agendamento de Job de Lembrete
 
@@ -1276,7 +1298,7 @@ sequenceDiagram
     Front->>API: POST /api/appointment { id_empresa, id_servico, data_hora_inicio, id_funcionario }
     API->>API: Valida token JWT da cliente
     API->>DB: Consulta concorrência: existe agendamento ativo no mesmo intervalo?
-    
+
     alt Conflito detectado (Horário recém-ocupado)
         DB-->>API: Conflito encontrado
         API-->>Front: Retorna HTTP 409 Conflict
@@ -1293,7 +1315,8 @@ sequenceDiagram
         Front-->>Cliente: Exibe confirmação com detalhes do agendamento
     end
 ```
-*Figura 10 – Diagrama de Sequência: Reserva de Horário e Agendamento de Job. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 10 – Diagrama de Sequência: Reserva de Horário e Agendamento de Job. Fonte: Elaborado pelos autores (2026)._
 
 ### 5.5.6 DS06 – Conclusão de Serviço e Notificação em Tempo Real (SSE)
 
@@ -1319,7 +1342,8 @@ sequenceDiagram
     API-->>FrontEmpresa: Retorna HTTP 200 OK
     FrontEmpresa-->>Empresa: Atualiza lista diária exibindo status "Concluído"
 ```
-*Figura 11 – Diagrama de Sequência: Conclusão de Serviço e Notificação SSE. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 11 – Diagrama de Sequência: Conclusão de Serviço e Notificação SSE. Fonte: Elaborado pelos autores (2026)._
 
 ### 5.5.7 DS07 – Avaliação de Serviço Concluído
 
@@ -1349,7 +1373,8 @@ sequenceDiagram
         Front-->>Cliente: Exibe agradecimento e atualiza histórico
     end
 ```
-*Figura 12 – Diagrama de Sequência: Avaliação de Atendimento Concluído. Fonte: Elaborado pelos autores (2026).*
+
+_Figura 12 – Diagrama de Sequência: Avaliação de Atendimento Concluído. Fonte: Elaborado pelos autores (2026)._
 
 ## 5.6 Modelagem Estrutural de Dados NoSQL
 
@@ -1439,7 +1464,8 @@ erDiagram
         string enterpriseID FK
     }
 ```
-*Figura 5 – Diagrama Entidade-Relacionamento Lógico (Coleções MongoDB). Fonte: Elaborado pelos autores (2026).*
+
+_Figura 5 – Diagrama Entidade-Relacionamento Lógico (Coleções MongoDB). Fonte: Elaborado pelos autores (2026)._
 
 ---
 
@@ -1450,6 +1476,7 @@ erDiagram
 Para assegurar que o BeautyHub opere em estrita conformidade com os requisitos levantados e garanta a integridade transacional de seus dados, adotou-se a estratégia de **testes funcionais de caixa-preta** aliada a testes de integração em pontos críticos (como o motor anti-overbooking e o despachante de lembretes).
 
 Os casos de teste foram estruturados avaliando:
+
 1. **Condições de Sucesso (Caminho Feliz):** Execução do fluxo de acordo com o esperado;
 2. **Condições de Fronteira e Exceção:** Inserção de dados inválidos, tentativas de agendamento em horários já ocupados e cancelamentos fora da janela regulamentar.
 
@@ -1459,14 +1486,14 @@ O Quadro 25 detalha os testes aplicados ao fluxo de controle de acesso.
 
 **Quadro 25 – Casos de Testes Funcionais do Módulo de Autenticação e Perfil**
 
-| ID | Cenário de Teste | Entradas Fornecidas | Procedimento Executado | Resultado Esperado | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC01** | Cadastro de cliente com e-mail inédito | Nome: "Ana Silva", E-mail: "ana@teste.com", Senha: "SenhaForte@123" | Preencher campos e clicar no botão "Criar Conta". | Usuário inserido no MongoDB com role `cliente`, cookie de sessão gerado e redirecionamento para busca. | Aprovado |
-| **TC02** | Tentativa de cadastro com e-mail duplicado | E-mail: "ana@teste.com" (já existente na base) | Tentar registrar usuário com e-mail idêntico. | O sistema bloqueia a inserção, retorna HTTP 400 e exibe alerta visual de e-mail existente. | Aprovado |
-| **TC03** | Autenticação com credenciais corretas | E-mail: "ana@teste.com", Senha correta | Clicar em "Entrar" na tela de login. | Validação do hash Bcrypt com sucesso, cookie JWT emitido e sessão iniciada. | Aprovado |
-| **TC04** | Tentativa de login com senha incorreta | E-mail: "ana@teste.com", Senha errada | Inserir senha incorreta e submeter. | Retorno HTTP 401 e mensagem amigável "Credenciais inválidas" sem travar o sistema. | Aprovado |
+| ID       | Cenário de Teste                           | Entradas Fornecidas                                                 | Procedimento Executado                            | Resultado Esperado                                                                                     | Status   |
+| :------- | :----------------------------------------- | :------------------------------------------------------------------ | :------------------------------------------------ | :----------------------------------------------------------------------------------------------------- | :------- |
+| **TC01** | Cadastro de cliente com e-mail inédito     | Nome: "Ana Silva", E-mail: "ana@teste.com", Senha: "SenhaForte@123" | Preencher campos e clicar no botão "Criar Conta". | Usuário inserido no MongoDB com role `cliente`, cookie de sessão gerado e redirecionamento para busca. | Aprovado |
+| **TC02** | Tentativa de cadastro com e-mail duplicado | E-mail: "ana@teste.com" (já existente na base)                      | Tentar registrar usuário com e-mail idêntico.     | O sistema bloqueia a inserção, retorna HTTP 400 e exibe alerta visual de e-mail existente.             | Aprovado |
+| **TC03** | Autenticação com credenciais corretas      | E-mail: "ana@teste.com", Senha correta                              | Clicar em "Entrar" na tela de login.              | Validação do hash Bcrypt com sucesso, cookie JWT emitido e sessão iniciada.                            | Aprovado |
+| **TC04** | Tentativa de login com senha incorreta     | E-mail: "ana@teste.com", Senha errada                               | Inserir senha incorreta e submeter.               | Retorno HTTP 401 e mensagem amigável "Credenciais inválidas" sem travar o sistema.                     | Aprovado |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ## 6.3 Testes de Operação e Catálogo da Empresa
 
@@ -1474,13 +1501,13 @@ O Quadro 26 descreve a validação das configurações da empresa no ambiente mo
 
 **Quadro 26 – Casos de Testes Funcionais da Configuração de Agenda e Catálogo**
 
-| ID | Cenário de Teste | Entradas Fornecidas | Procedimento Executado | Resultado Esperado | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC05** | Cadastro de empresa com autopreenchimento de CEP | CEP: "09520-180", Nome: "Studio Bella", Categoria: "Cílios" | Inserir o CEP e aguardar a resposta da API ViaCEP. | Logradouro, bairro e cidade preenchidos automaticamente; empresa salva no banco como "ativa". | Aprovado |
-| **TC06** | Inclusão de serviço no catálogo | Nome: "Alongamento Russo", Duração: 90 min, Valor: R$ 160,00 | Cadastrar serviço na área da empresa. | Documento criado na coleção `Service` com campo `ativo: true` e duração em minutos preservada. | Aprovado |
-| **TC07** | Configuração de jornada com pausa intrajornada | Dias: Terça a Sábado, Abertura: 09:00, Fechamento: 19:00, Pausa: 12:00 às 13:00 | Salvar parâmetros no painel de agenda. | `AgendaConfig` gravado com os códigos numéricos de dias da semana e subdocumento de pausas validado. | Aprovado |
+| ID       | Cenário de Teste                                 | Entradas Fornecidas                                                             | Procedimento Executado                             | Resultado Esperado                                                                                   | Status   |
+| :------- | :----------------------------------------------- | :------------------------------------------------------------------------------ | :------------------------------------------------- | :--------------------------------------------------------------------------------------------------- | :------- |
+| **TC05** | Cadastro de empresa com autopreenchimento de CEP | CEP: "09520-180", Nome: "Studio Bella", Categoria: "Cílios"                     | Inserir o CEP e aguardar a resposta da API ViaCEP. | Logradouro, bairro e cidade preenchidos automaticamente; empresa salva no banco como "ativa".        | Aprovado |
+| **TC06** | Inclusão de serviço no catálogo                  | Nome: "Alongamento Russo", Duração: 90 min, Valor: R$ 160,00                    | Cadastrar serviço na área da empresa.              | Documento criado na coleção `Service` com campo `ativo: true` e duração em minutos preservada.       | Aprovado |
+| **TC07** | Configuração de jornada com pausa intrajornada   | Dias: Terça a Sábado, Abertura: 09:00, Fechamento: 19:00, Pausa: 12:00 às 13:00 | Salvar parâmetros no painel de agenda.             | `AgendaConfig` gravado com os códigos numéricos de dias da semana e subdocumento de pausas validado. | Aprovado |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ## 6.4 Testes do Algoritmo de Disponibilidade e Prevenção de Overbooking
 
@@ -1488,15 +1515,15 @@ O Quadro 27 documenta os testes do motor de concorrência e cálculo de slots va
 
 **Quadro 27 – Casos de Testes Funcionais do Motor de Agendamento e Overbooking**
 
-| ID | Cenário de Teste | Entradas Fornecidas | Procedimento Executado | Resultado Esperado | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC08** | Cálculo de disponibilidade sem agendamentos prévios | Serviço de 60 min, Expediente: 09:00 às 12:00 | Chamar endpoint `available.get.ts` para a data. | Retorno exato dos blocos livres: `09:00`, `10:00`, `11:00`. O horário das 11:30 não deve ser exibido pois 11:30 + 60 min ultrapassa 12:00. | Aprovado |
-| **TC09** | Supressão de horário que colide com pausa de almoço | Serviço de 45 min, Pausa: 12:00 às 13:00 | Consultar horários livres para o intervalo matutino. | O slot das 11:30 é ocultado pois o término (12:15) colide com o início do almoço às 12:00. | Aprovado |
-| **TC10** | Prevenção de concorrência simultânea (*Overbooking*) | Duas clientes submetem reserva para o mesmo serviço, dia e horário (14:00) | Requisições submetidas concorrentemente contra o endpoint de agendamento. | Uma cliente obtém sucesso (HTTP 201) e a segunda recebe HTTP 409 Conflict, mantendo a unicidade da agenda. | Aprovado |
-| **TC11** | Cancelamento de reserva com antecedência válida | Agendamento marcado para dali a 24 horas | Cliente clica em "Cancelar Agendamento". | Status alterado para `cancelado` e horário imediatamente restituído à grade de horários disponíveis. | Aprovado |
-| **TC12** | Tentativa de cancelamento com menos de 2 horas | Agendamento marcado para dali a 30 minutos | Cliente tenta cancelar pelo sistema. | Sistema bloqueia o cancelamento automático (RN06) e instrui contato direto com o salão. | Aprovado |
+| ID       | Cenário de Teste                                     | Entradas Fornecidas                                                        | Procedimento Executado                                                    | Resultado Esperado                                                                                                                         | Status   |
+| :------- | :--------------------------------------------------- | :------------------------------------------------------------------------- | :------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------- | :------- |
+| **TC08** | Cálculo de disponibilidade sem agendamentos prévios  | Serviço de 60 min, Expediente: 09:00 às 12:00                              | Chamar endpoint `available.get.ts` para a data.                           | Retorno exato dos blocos livres: `09:00`, `10:00`, `11:00`. O horário das 11:30 não deve ser exibido pois 11:30 + 60 min ultrapassa 12:00. | Aprovado |
+| **TC09** | Supressão de horário que colide com pausa de almoço  | Serviço de 45 min, Pausa: 12:00 às 13:00                                   | Consultar horários livres para o intervalo matutino.                      | O slot das 11:30 é ocultado pois o término (12:15) colide com o início do almoço às 12:00.                                                 | Aprovado |
+| **TC10** | Prevenção de concorrência simultânea (_Overbooking_) | Duas clientes submetem reserva para o mesmo serviço, dia e horário (14:00) | Requisições submetidas concorrentemente contra o endpoint de agendamento. | Uma cliente obtém sucesso (HTTP 201) e a segunda recebe HTTP 409 Conflict, mantendo a unicidade da agenda.                                 | Aprovado |
+| **TC11** | Cancelamento de reserva com antecedência válida      | Agendamento marcado para dali a 24 horas                                   | Cliente clica em "Cancelar Agendamento".                                  | Status alterado para `cancelado` e horário imediatamente restituído à grade de horários disponíveis.                                       | Aprovado |
+| **TC12** | Tentativa de cancelamento com menos de 2 horas       | Agendamento marcado para dali a 30 minutos                                 | Cliente tenta cancelar pelo sistema.                                      | Sistema bloqueia o cancelamento automático (RN06) e instrui contato direto com o salão.                                                    | Aprovado |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ## 6.5 Testes de Processamento Assíncrono (Agenda.js, Resend e SSE)
 
@@ -1504,13 +1531,13 @@ O Quadro 28 apresenta a validação das rotinas em segundo plano e mensageria.
 
 **Quadro 28 – Casos de Testes Funcionais do Sistema Assíncrono de Lembretes e SSE**
 
-| ID | Cenário de Teste | Entradas Fornecidas | Procedimento Executado | Resultado Esperado | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **TC13** | Criação de jobs de lembrete no Agenda.js | Agendamento gerado para 15:00 do dia subsequente | Inspecionar a coleção de jobs do Agenda no MongoDB após a criação da reserva. | Registro de dois jobs `"enviar_lembrete"` programados exatamente para 14:00 (1h) e 14:30 (30m). | Aprovado |
-| **TC14** | Disparo de e-mail de confirmação via Resend | Agendamento confirmado com e-mail verificado | Monitorar o log de disparo da API Resend. | Despacho imediato de e-mail com layout HTML estilizado contendo data, salão e serviço. | Aprovado |
-| **TC15** | Notificação em tempo real via Server-Sent Events | Empresa altera status de atendimento para "Concluído" | Cliente com o navegador aberto na plataforma. | O cliente recebe o evento via canal SSE sem necessidade de recarregar a página (F5). | Aprovado |
+| ID       | Cenário de Teste                                 | Entradas Fornecidas                                   | Procedimento Executado                                                        | Resultado Esperado                                                                              | Status   |
+| :------- | :----------------------------------------------- | :---------------------------------------------------- | :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------- | :------- |
+| **TC13** | Criação de jobs de lembrete no Agenda.js         | Agendamento gerado para 15:00 do dia subsequente      | Inspecionar a coleção de jobs do Agenda no MongoDB após a criação da reserva. | Registro de dois jobs `"enviar_lembrete"` programados exatamente para 14:00 (1h) e 14:30 (30m). | Aprovado |
+| **TC14** | Disparo de e-mail de confirmação via Resend      | Agendamento confirmado com e-mail verificado          | Monitorar o log de disparo da API Resend.                                     | Despacho imediato de e-mail com layout HTML estilizado contendo data, salão e serviço.          | Aprovado |
+| **TC15** | Notificação em tempo real via Server-Sent Events | Empresa altera status de atendimento para "Concluído" | Cliente com o navegador aberto na plataforma.                                 | O cliente recebe o evento via canal SSE sem necessidade de recarregar a página (F5).            | Aprovado |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ## 6.6 Testes de Requisitos Não Funcionais
 
@@ -1518,14 +1545,14 @@ O Quadro 29 consolida a homologação técnica dos requisitos não funcionais.
 
 **Quadro 29 – Avaliação de Conformidade dos Requisitos Não Funcionais**
 
-| ID RNF | Requisito Avaliado | Metodologia de Medição | Resultado Obtido | Conformidade |
-| :--- | :--- | :--- | :--- | :--- |
-| **RNF002** | Usabilidade Mobile-First | Testes em emuladores Chrome DevTools (360px a 1440px) e dispositivo físico Samsung Galaxy e iPhone. | Todas as telas adaptaram-se com fontes legíveis, botões táteis adequados e sem barras de rolagem horizontal espúrias. | Conforme |
-| **RNF003** | Criptografia de Senhas | Inspeção direta dos documentos no banco de dados MongoDB Atlas. | As senhas estão protegidas por hashes Bcrypt (ex.: `$2b$10$...`), inexistindo senhas em texto puro. | Conforme |
-| **RNF004** | Desempenho do Cálculo de Slots | Execução de bateria de 100 requisições consecutivas no endpoint `available.get.ts`. | Latência média registrada de 184 ms, com percentil 95 (P95) em 320 ms (bem abaixo do limite estipulado de 800 ms). | Conforme |
-| **RNF008** | Autenticação Segura JWT | Validação de cabeçalhos HTTP e cookies de resposta. | Tokens assinados com segredo de ambiente, transmitidos com flags `HttpOnly`, `SameSite=Lax` e `Secure`. | Conforme |
+| ID RNF     | Requisito Avaliado             | Metodologia de Medição                                                                              | Resultado Obtido                                                                                                      | Conformidade |
+| :--------- | :----------------------------- | :-------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- | :----------- |
+| **RNF002** | Usabilidade Mobile-First       | Testes em emuladores Chrome DevTools (360px a 1440px) e dispositivo físico Samsung Galaxy e iPhone. | Todas as telas adaptaram-se com fontes legíveis, botões táteis adequados e sem barras de rolagem horizontal espúrias. | Conforme     |
+| **RNF003** | Criptografia de Senhas         | Inspeção direta dos documentos no banco de dados MongoDB Atlas.                                     | As senhas estão protegidas por hashes Bcrypt (ex.: `$2b$10$...`), inexistindo senhas em texto puro.                   | Conforme     |
+| **RNF004** | Desempenho do Cálculo de Slots | Execução de bateria de 100 requisições consecutivas no endpoint `available.get.ts`.                 | Latência média registrada de 184 ms, com percentil 95 (P95) em 320 ms (bem abaixo do limite estipulado de 800 ms).    | Conforme     |
+| **RNF008** | Autenticação Segura JWT        | Validação de cabeçalhos HTTP e cookies de resposta.                                                 | Tokens assinados com segredo de ambiente, transmitidos com flags `HttpOnly`, `SameSite=Lax` e `Secure`.               | Conforme     |
 
-*Fonte: Elaborado pelos autores (2026).*
+_Fonte: Elaborado pelos autores (2026)._
 
 ---
 
@@ -1557,6 +1584,7 @@ O Quadro 29 consolida a homologação técnica dos requisitos não funcionais.
 ## 7.5 Fundamentação Teórica de Usabilidade e UX/UI
 
 O design das interfaces do BeautyHub orientou-se pelas **10 Heurísticas de Usabilidade de Nielsen** (NIELSEN, 1994):
+
 - **Visibilidade do Status do Sistema:** Uso de indicadores de carregamento durante a consulta de disponibilidade e confirmações em tempo real via SSE quando um agendamento é concluído;
 - **Correspondência entre o Sistema e o Mundo Real:** Termos e linguagens familiares às profissionais de estética (catálogo, procedimento, pausa de almoço, duração em minutos), abandonando jargões técnicos de banco de dados;
 - **Controle e Liberdade do Usuário:** Mecanismos fáceis de cancelamento de agendamento e edição de serviços cadastrados;
@@ -1569,6 +1597,7 @@ O design das interfaces do BeautyHub orientou-se pelas **10 Heurísticas de Usab
 ## 8.1 Requisitos de Hardware e Software
 
 ### Ambiente de Desenvolvimento e Servidor
+
 - **Processador:** Mínimo dual-core de 2.0 GHz (arquitetura x86_64 ou ARM64 como Apple Silicon);
 - **Memória RAM:** Mínimo de 4 GB (recomendado 8 GB para compilação SSR);
 - **Armazenamento:** 2 GB de espaço livre em disco;
@@ -1617,9 +1646,10 @@ Após a inicialização do motor Nitro, a aplicação estará acessível atravé
 ## 8.4 Estratégia de Deploy em Produção
 
 Para implantação em ambiente de produção:
+
 1. **Compilação Otimizada:** Executa-se o comando `yarn build`, que aciona o empacotador Vite e compila o código TypeScript em módulos JavaScript minificados;
-2. **Hospedagem de Nuvem (Vercel):** O repositório está integrado à Vercel, que detecta nativamente o Nuxt 4, converte os endpoints do Nitro em *Edge/Serverless Functions* distribuídas e distribui os assets estáticos através de uma rede de entrega de conteúdo (*CDN*) global com suporte automático a certificados HTTPS;
-3. **Sustentação do Worker:** Para garantir que a fila do Agenda.js processe lembretes ininterruptamente em ambientes *serverless*, pode-se vincular o processamento a gatilhos cron regulares (*Vercel Cron Jobs*) ou executar uma instância conteinerizada leve em plataformas como Railway ou Render executando `node .output/server/index.mjs`.
+2. **Hospedagem de Nuvem (Vercel):** O repositório está integrado à Vercel, que detecta nativamente o Nuxt 4, converte os endpoints do Nitro em _Edge/Serverless Functions_ distribuídas e distribui os assets estáticos através de uma rede de entrega de conteúdo (_CDN_) global com suporte automático a certificados HTTPS;
+3. **Sustentação do Worker:** Para garantir que a fila do Agenda.js processe lembretes ininterruptamente em ambientes _serverless_, pode-se vincular o processamento a gatilhos cron regulares (_Vercel Cron Jobs_) ou executar uma instância conteinerizada leve em plataformas como Railway ou Render executando `node .output/server/index.mjs`.
 
 ---
 
@@ -1628,6 +1658,7 @@ Para implantação em ambiente de produção:
 ## 9.1 Limitações da Versão Atual
 
 Embora o BeautyHub atenda com excelência a todos os requisitos funcionais e não funcionais delineados, identificam-se as seguintes limitações no escopo atual:
+
 - **Ausência de Pagamento Online Integrado:** A plataforma opera deliberadamente com foco em agendamento e vitrine, não processando transações via cartão de crédito ou Pix diretamente no app;
 - **Comunicação por WhatsApp:** As notificações são transmitidas via navegador (SSE) e e-mail transacional (Resend); o envio de mensagens ativas pelo WhatsApp ainda depende da ação manual da gestora ou de contratação de APIs oficiais de mensageria;
 - **Aplicação Exclusivamente Web:** O sistema é responsivo para navegadores móveis, porém ainda não foi empacotado como aplicativo nativo nas lojas Google Play Store e Apple App Store.
@@ -1635,8 +1666,9 @@ Embora o BeautyHub atenda com excelência a todos os requisitos funcionais e nã
 ## 9.2 Propostas de Evolução e Funcionalidades Futuras
 
 Como trabalhos futuros e oportunidades de expansão mercadológica e tecnológica, propõe-se:
+
 1. **Integração com Gateway de Pagamento:** Módulo opcional de cobrança de taxa de reserva (sinal) via Pix para mitigar faltas não justificadas;
-2. **Transformação em Progressive Web App (PWA) e App Nativo:** Configuração de *Service Workers* e empacotamento via Capacitor para instalação direta na tela inicial de smartphones;
+2. **Transformação em Progressive Web App (PWA) e App Nativo:** Configuração de _Service Workers_ e empacotamento via Capacitor para instalação direta na tela inicial de smartphones;
 3. **Módulo de Relatórios Financeiros Avançados:** Dashboard com gráficos de faturamento mensal estimado, serviços mais rentáveis e taxa de retenção de clientes;
 4. **Integração com WhatsApp Cloud API:** Disparo de mensagens automáticas com botões de confirmação direta ("Sim, confirmo minha presença") pelo aplicativo de conversa mais popular do país.
 
@@ -1664,27 +1696,27 @@ Do ponto de vista social e econômico, o BeautyHub entrega uma ferramenta concre
 
 A seguir listam-se os principais contratos e rotas da API desenvolvida no motor Nitro:
 
-| Método HTTP | Rota da API | Descrição Operacional | Nível de Acesso |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/api/auth/register` | Cadastro de novo usuário cliente | Público |
-| `POST` | `/api/auth/login` | Autenticação e emissão do cookie JWT | Público |
-| `POST` | `/api/enterprise` | Cadastro de nova empresa com endereço | Público |
-| `GET` | `/api/enterprise` | Listagem pública de empresas ativas | Público |
-| `GET` | `/api/enterprise/[id]` | Detalhes e perfil de uma empresa específica | Público |
-| `POST` | `/api/service` | Criação de novo procedimento no catálogo | Empresa |
-| `GET` | `/api/service` | Consulta de catálogo de serviços | Público |
-| `POST` | `/api/agenda/config` | Parametrização de expediente e pausas | Empresa |
-| `GET` | `/api/agenda/config` | Consulta de configuração de expediente | Público / Empresa |
-| `POST` | `/api/employee` | Cadastro de colaboradora na equipe | Empresa |
-| `GET` | `/api/employee` | Consulta de funcionárias ativas da empresa | Público / Empresa |
-| `GET` | `/api/appointment/available` | Cálculo dinâmico de horários livres | Público / Cliente |
-| `POST` | `/api/appointment` | Criação de agendamento e disparo de jobs | Cliente autenticado |
-| `GET` | `/api/appointment/cliente` | Histórico de reservas da cliente logada | Cliente autenticado |
-| `GET` | `/api/appointment/empresa/[id]`| Agenda de atendimentos da empresa | Empresa autenticada |
-| `PUT` | `/api/appointment/[id]` | Atualização de status (concluído/cancelado)| Cliente / Empresa |
-| `POST` | `/api/rate` | Envio de avaliação e nota para serviço | Cliente autenticado |
-| `GET` | `/api/notifications/stream` | Conexão SSE para eventos em tempo real | Usuário autenticado |
-| `GET` | `/api/viacep/[cep]` | Proxy para consulta de endereço por CEP | Público |
+| Método HTTP | Rota da API                     | Descrição Operacional                       | Nível de Acesso     |
+| :---------- | :------------------------------ | :------------------------------------------ | :------------------ |
+| `POST`      | `/api/auth/register`            | Cadastro de novo usuário cliente            | Público             |
+| `POST`      | `/api/auth/login`               | Autenticação e emissão do cookie JWT        | Público             |
+| `POST`      | `/api/enterprise`               | Cadastro de nova empresa com endereço       | Público             |
+| `GET`       | `/api/enterprise`               | Listagem pública de empresas ativas         | Público             |
+| `GET`       | `/api/enterprise/[id]`          | Detalhes e perfil de uma empresa específica | Público             |
+| `POST`      | `/api/service`                  | Criação de novo procedimento no catálogo    | Empresa             |
+| `GET`       | `/api/service`                  | Consulta de catálogo de serviços            | Público             |
+| `POST`      | `/api/agenda/config`            | Parametrização de expediente e pausas       | Empresa             |
+| `GET`       | `/api/agenda/config`            | Consulta de configuração de expediente      | Público / Empresa   |
+| `POST`      | `/api/employee`                 | Cadastro de colaboradora na equipe          | Empresa             |
+| `GET`       | `/api/employee`                 | Consulta de funcionárias ativas da empresa  | Público / Empresa   |
+| `GET`       | `/api/appointment/available`    | Cálculo dinâmico de horários livres         | Público / Cliente   |
+| `POST`      | `/api/appointment`              | Criação de agendamento e disparo de jobs    | Cliente autenticado |
+| `GET`       | `/api/appointment/cliente`      | Histórico de reservas da cliente logada     | Cliente autenticado |
+| `GET`       | `/api/appointment/empresa/[id]` | Agenda de atendimentos da empresa           | Empresa autenticada |
+| `PUT`       | `/api/appointment/[id]`         | Atualização de status (concluído/cancelado) | Cliente / Empresa   |
+| `POST`      | `/api/rate`                     | Envio de avaliação e nota para serviço      | Cliente autenticado |
+| `GET`       | `/api/notifications/stream`     | Conexão SSE para eventos em tempo real      | Usuário autenticado |
+| `GET`       | `/api/viacep/[cep]`             | Proxy para consulta de endereço por CEP     | Público             |
 
 ## Apêndice B – Código do Template de E-mail de Lembrete
 
@@ -1696,10 +1728,10 @@ export function getLembreteEmailHtml(
   nomeServico: string,
   nomeEmpresa: string,
   dataHoraFormatada: string,
-  tipo: string
+  tipo: string,
 ): string {
-  const tempoAviso = tipo === '1h' ? '1 hora' : '30 minutos';
-  
+  const tempoAviso = tipo === "1h" ? "1 hora" : "30 minutos";
+
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff;">
       <h2 style="color: #ec4899; margin-top: 0;">Lembrete de Atendimento - BeautyHub</h2>
@@ -1738,7 +1770,7 @@ O quadro a seguir resume a modelagem estratégica de negócios da plataforma Bea
    - Para Profissionais: Autonomia, eliminação de conflitos de agenda, redução do estresse com WhatsApp, ambiente 100% modificável e gratuito para começar;
    - Para Clientes: Conveniência de agendamento 24h por dia, confirmação em tempo real e transparência de preços e durações.
 5. **Relacionamento com Clientes:**
-   - Autosserviço digital (*Self-service*);
+   - Autosserviço digital (_Self-service_);
    - Notificações preventivas em tempo real (SSE e e-mail);
    - Canal de suporte e tutoriais de configuração de agenda.
 6. **Canais de Distribuição:**
