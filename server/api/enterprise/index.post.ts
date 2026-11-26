@@ -1,4 +1,5 @@
 import Enterprise from "~~/server/models/Enterprise";
+import { isDuplicateKeyError } from "~~/server/utils/lock";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -61,6 +62,12 @@ export default defineEventHandler(async (event) => {
     };
   } catch (error: any) {
     if (error.statusCode) throw error;
+    if (isDuplicateKeyError(error)) {
+      throw createError({
+        statusCode: 409,
+        message: "Empresa já cadastrada",
+      });
+    }
     throw createError({
       statusCode: 500,
       message: "Erro ao criar empresa" + error.message,

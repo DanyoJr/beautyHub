@@ -10,33 +10,37 @@ export default defineNitroPlugin(async () => {
     
     console.log(`[Agenda] Disparando lembrete de ${tipo} para o usuário ${userId}`);
 
-    // Fase 2: Envia a notificação em tempo real (In-App) se o usuário estiver no site
-    sendNotificationToUser(userId, {
-      type: "LEMBRETE_AGENDAMENTO",
-      appointmentId,
-      message: `Seu agendamento é em ${tipo === '1h' ? '1 hora' : '30 minutos'}!`,
-      tipo
-    });
-    
-    // Fase 3 (Envio de Email)
     try {
-      const config = useRuntimeConfig();
-      if (!config.resendApiKey) {
-        console.warn("[Agenda] Resend API Key não configurada. Pulando envio de e-mail.");
-        return;
-      }
-
       // Importar os modelos dinamicamente para garantir que o mongoose já esteja conectado
       const User = (await import('../models/User')).default;
       const Appointment = (await import('../models/Appointment')).default;
       const Enterprise = (await import('../models/Enterprise')).default;
       const Service = (await import('../models/Service')).default;
 
-      // Buscar as informações completas
-      const user = await User.findById(userId);
+      // Valida se o agendamento ainda existe e está ativo antes de notificar
       const appointment = await Appointment.findOne({ id_agendamento: appointmentId });
-      
-      if (user && appointment) {
+      if (!appointment || appointment.status !== "aberto") {
+        console.log(`[Agenda] Lembrete ignorado: agendamento ${appointmentId} não está mais aberto.`);
+        return;
+      }
+
+      // Fase 2: Envia a notificação em tempo real (In-App) se o usuário estiver no site
+      sendNotificationToUser(userId, {
+        type: "LEMBRETE_AGENDAMENTO",
+        appointmentId,
+        message: `Seu agendamento é em ${tipo === '1h' ? '1 hora' : '30 minutos'}!`,
+        tipo
+      });
+
+      // Fase 3 (Envio de Email)
+      const config = useRuntimeConfig();
+      if (!config.resendApiKey) {
+        console.warn("[Agenda] Resend API Key não configurada. Pulando envio de e-mail.");
+        return;
+      }
+
+      const user = await User.findById(userId);
+      if (user) {
         const enterprise = await Enterprise.findOne({ id_empresa: appointment.id_empresa });
         const service = await Service.findOne({ id_servico: appointment.id_servico });
 

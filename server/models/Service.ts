@@ -22,7 +22,7 @@ const ServiceSchema = new mongoose.Schema<IService>(
     duracao_minutos: { type: Number, required: true, min: 5 },
     ativo: { type: Boolean, required: true, default: true },
   },
-  { timestamps: true },
+  { timestamps: true, optimisticConcurrency: true },
 );
 
 export default (mongoose.models.Service as mongoose.Model<IService>) ||

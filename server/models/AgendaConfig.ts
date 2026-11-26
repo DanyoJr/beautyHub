@@ -36,7 +36,7 @@ const AgendaConfigSchema = new mongoose.Schema<IAgendaConfig>(
     hora_fechamento: { type: String, required: true }, // "18:00"
     pausas: { type: [PausaSchema], default: [] },
   },
-  { timestamps: true },
+  { timestamps: true, optimisticConcurrency: true },
 );
 
 export default (mongoose.models.AgendaConfig as mongoose.Model<IAgendaConfig>) ||

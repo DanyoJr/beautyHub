@@ -54,7 +54,7 @@ const errorMsg = ref('');
 function close() { isOpen.value = false; nota.value = 0; comentario.value = ''; errorMsg.value = ''; }
 
 async function salvar() {
-  if (!nota.value || !props.agendamento) return;
+  if (loading.value || !nota.value || !props.agendamento) return;
   loading.value = true;
   errorMsg.value = '';
   try {

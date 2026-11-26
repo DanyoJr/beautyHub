@@ -226,29 +226,45 @@ function selecionarFuncionario(id: string) {
   }
 }
 
+let slotsAbortController: AbortController | null = null;
+let slotsRequestSeq = 0;
+
 async function buscarDisponibilidade() {
   if (!dataSelecionada.value || !servicoSelecionado.value) return;
+
+  slotsAbortController?.abort();
+  slotsAbortController = new AbortController();
+  const currentReq = ++slotsRequestSeq;
+
   loadingSlots.value = true;
   slotSelecionado.value = null;
   try {
     const data = await $fetch('/api/appointment/available', {
-      query: { 
-        id_empresa, 
-        id_servico: servicoSelecionado.value.id_servico, 
+      signal: slotsAbortController.signal,
+      query: {
+        id_empresa,
+        id_servico: servicoSelecionado.value.id_servico,
         data: dataSelecionada.value,
         id_funcionario: funcionarioSelecionado.value || 'qualquer'
       },
     }) as any;
-    slotsDisponiveis.value = data.available || [];
-  } catch {
-    slotsDisponiveis.value = [];
+
+    if (currentReq === slotsRequestSeq) {
+      slotsDisponiveis.value = data.available || [];
+    }
+  } catch (err: any) {
+    if (err?.name !== 'AbortError' && currentReq === slotsRequestSeq) {
+      slotsDisponiveis.value = [];
+    }
   } finally {
-    loadingSlots.value = false;
+    if (currentReq === slotsRequestSeq) {
+      loadingSlots.value = false;
+    }
   }
 }
 
 async function confirmarAgendamento() {
-  if (!slotSelecionado.value) return;
+  if (agendando.value || !slotSelecionado.value) return;
   agendando.value = true;
   errorMsg.value = '';
   try {
@@ -261,23 +277,32 @@ async function confirmarAgendamento() {
         id_funcionario: funcionarioSelecionado.value || 'qualquer'
       },
     });
-    
+
     toast.add({
       title: 'Sucesso!',
       description: 'Agendamento confirmado com sucesso.',
       color: 'green',
       icon: 'i-heroicons-check-circle'
     });
-    
+
     setTimeout(() => {
       navigateTo('/cliente/historico');
     }, 1500);
   } catch (err: any) {
     errorMsg.value = err.data?.message || 'Erro ao confirmar agendamento';
+    const statusCode = err?.statusCode || err?.response?.status;
+    if (statusCode === 409) {
+      // Atualiza os horários imediatamente quando outro cliente reservou o mesmo slot
+      await buscarDisponibilidade();
+    }
   } finally {
     agendando.value = false;
   }
 }
+
+onBeforeUnmount(() => {
+  slotsAbortController?.abort();
+});
 
 onMounted(async () => {
   try {

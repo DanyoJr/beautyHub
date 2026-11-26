@@ -1,4 +1,5 @@
 import Appointment from "~~/server/models/Appointment";
+import { getAgenda } from "~~/server/utils/agenda";
 import jwt from "jsonwebtoken";
 
 /**
@@ -72,10 +73,29 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    appointment.status = status;
-    await appointment.save();
+    // Atualização atômica: só altera se o agendamento ainda estiver "aberto"
+    const updatedAppointment = await Appointment.findOneAndUpdate(
+      { id_agendamento, status: "aberto" },
+      { $set: { status } },
+      { new: true },
+    );
 
-    return { message: `Agendamento marcado como ${status}`, appointment };
+    if (!updatedAppointment) {
+      throw createError({
+        statusCode: 409,
+        message: "Este agendamento já foi atualizado por outra ação",
+      });
+    }
+
+    // Cancela lembretes pendentes na fila do Agenda.js
+    try {
+      const agenda = await getAgenda();
+      await agenda.cancel({ "data.appointmentId": id_agendamento });
+    } catch (agendaError) {
+      console.error("[Agenda] Erro ao cancelar lembretes:", agendaError);
+    }
+
+    return { message: `Agendamento marcado como ${status}`, appointment: updatedAppointment };
   } catch (error: any) {
     if (error.statusCode) throw error;
     throw createError({ statusCode: 500, message: "Erro ao atualizar agendamento" });

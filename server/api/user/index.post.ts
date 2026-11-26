@@ -1,4 +1,5 @@
 import UserSchema from "~~/server/models/User";
+import { isDuplicateKeyError } from "~~/server/utils/lock";
 import bcrypt from "bcrypt";
 
 export default defineEventHandler(async (event) => {
@@ -44,6 +45,9 @@ export default defineEventHandler(async (event) => {
     };
   } catch (error: any) {
     if (error.statusCode) throw error;
+    if (isDuplicateKeyError(error)) {
+      throw createError({ statusCode: 409, message: "Email já cadastrado" });
+    }
     throw createError({ statusCode: 500, message: "Erro ao criar usuário" });
   }
 });
