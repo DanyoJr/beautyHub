@@ -22,23 +22,30 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const user = await User.findOne({ email });
+    // Gera código aleatório de 4 dígitos (1000 a 9999)
+    const code = Math.floor(1000 + Math.random() * 9000).toString();
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const expires = new Date(Date.now() + 15 * 60 * 1000); // 15 minutos
+
+    // Atualização atômica apenas dos campos de recuperação (evita sobrescrever outros campos em concorrência)
+    const user = await User.findOneAndUpdate(
+      { email },
+      {
+        $set: {
+          resetPasswordCode: code,
+          resetPasswordHash: hashedPassword,
+          resetPasswordExpires: expires,
+        },
+      },
+      { new: true },
+    );
+
     if (!user) {
       throw createError({
         statusCode: 404,
         message: "Nenhuma conta encontrada com este e-mail",
       });
     }
-
-    // Gera código aleatório de 4 dígitos (1000 a 9999)
-    const code = Math.floor(1000 + Math.random() * 9000).toString();
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    const expires = new Date(Date.now() + 15 * 60 * 1000); // 15 minutos
-
-    user.resetPasswordCode = code;
-    user.resetPasswordHash = hashedPassword;
-    user.resetPasswordExpires = expires;
-    await user.save();
 
     console.log(`[Recuperação de Senha] Código para ${email}: ${code}`);
 

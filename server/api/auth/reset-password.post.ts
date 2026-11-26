@@ -12,45 +12,62 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      throw createError({
-        statusCode: 404,
-        message: "Usuário não encontrado",
-      });
-    }
+    const normalizedCode = String(code).trim();
+    const now = new Date();
 
-    if (
-      !user.resetPasswordCode ||
-      !user.resetPasswordExpires ||
-      !user.resetPasswordHash
-    ) {
-      throw createError({
-        statusCode: 400,
-        message: "Nenhuma solicitação de troca de senha pendente",
-      });
-    }
+    // Consome o código de recuperação e efetiva a nova senha em uma única operação atômica
+    const updatedUser = await User.findOneAndUpdate(
+      {
+        email,
+        resetPasswordCode: normalizedCode,
+        resetPasswordExpires: { $gt: now },
+        resetPasswordHash: { $type: "string" },
+      },
+      [
+        {
+          $set: {
+            password: "$resetPasswordHash",
+          },
+        },
+        {
+          $unset: ["resetPasswordCode", "resetPasswordExpires", "resetPasswordHash"],
+        },
+      ],
+      { new: true },
+    );
 
-    if (new Date() > new Date(user.resetPasswordExpires)) {
-      throw createError({
-        statusCode: 400,
-        message: "O código expirou. Solicite um novo código",
-      });
-    }
+    if (!updatedUser) {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw createError({
+          statusCode: 404,
+          message: "Usuário não encontrado",
+        });
+      }
 
-    if (user.resetPasswordCode !== String(code).trim()) {
+      if (
+        !user.resetPasswordCode ||
+        !user.resetPasswordExpires ||
+        !user.resetPasswordHash
+      ) {
+        throw createError({
+          statusCode: 400,
+          message: "Nenhuma solicitação de troca de senha pendente",
+        });
+      }
+
+      if (now > new Date(user.resetPasswordExpires)) {
+        throw createError({
+          statusCode: 400,
+          message: "O código expirou. Solicite um novo código",
+        });
+      }
+
       throw createError({
         statusCode: 400,
         message: "Código inválido. Verifique os 4 números enviados ao seu e-mail",
       });
     }
-
-    // Efetiva a troca de senha e limpa os campos temporários
-    user.password = user.resetPasswordHash;
-    user.resetPasswordCode = undefined;
-    user.resetPasswordExpires = undefined;
-    user.resetPasswordHash = undefined;
-    await user.save();
 
     return {
       statusCode: 200,

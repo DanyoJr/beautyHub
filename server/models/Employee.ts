@@ -46,7 +46,7 @@ const EmployeeSchema = new mongoose.Schema<IEmployee>(
     pausas: { type: [PausaSchema], default: [] },
     ativo: { type: Boolean, default: true },
   },
-  { timestamps: true },
+  { timestamps: true, optimisticConcurrency: true },
 );
 
 export default (mongoose.models.Employee as mongoose.Model<IEmployee>) ||

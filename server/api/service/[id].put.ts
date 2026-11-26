@@ -52,6 +52,12 @@ export default defineEventHandler(async (event) => {
     return { message: "Serviço atualizado com sucesso!", service };
   } catch (error: any) {
     if (error.statusCode) throw error;
+    if (error.name === "VersionError") {
+      throw createError({
+        statusCode: 409,
+        message: "Este serviço foi alterado por outra ação. Recarregue e tente novamente.",
+      });
+    }
     throw createError({ statusCode: 500, message: "Erro ao atualizar serviço" });
   }
 });

@@ -31,14 +31,24 @@ const AppointmentSchema = new mongoose.Schema<IAppointment>(
     },
     avaliado: { type: Boolean, required: true, default: false },
   },
-  { timestamps: true },
+  { timestamps: true, optimisticConcurrency: true },
 );
 
-// Índice composto para prevenção de overbooking
-// Agora inclui id_funcionario para que 2 funcionários possam atender ao mesmo tempo
+// Índice composto para consulta de agenda e prevenção de overbooking
 AppointmentSchema.index(
   { id_empresa: 1, id_funcionario: 1, data_hora_inicio: 1, status: 1 },
   { name: "idx_overbooking" },
+);
+
+// Índice único parcial: garante no banco que nunca existam 2 agendamentos
+// abertos iniciando no mesmo instante para a mesma empresa/funcionário.
+AppointmentSchema.index(
+  { id_empresa: 1, id_funcionario: 1, data_hora_inicio: 1 },
+  {
+    name: "idx_overbooking_unique",
+    unique: true,
+    partialFilterExpression: { status: "aberto" },
+  },
 );
 
 export default (mongoose.models.Appointment as mongoose.Model<IAppointment>) ||
